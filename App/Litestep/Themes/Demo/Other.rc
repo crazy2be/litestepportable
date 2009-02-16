@@ -1,0 +1,83 @@
+;--- lsxCommand
+;---   Commandbox used to execute !bangs, run programs, do maths and internet searches
+
+IF Showlsx = True
+
+;[ Size and Position on the Screen
+CommandX									26
+CommandY									1
+CommandWidth								58
+CommandMaxWidth								200
+CommandHeight								24
+;]
+
+;[ Color/Transparency settings
+CommandPaintingMode							.multicolor
+;--> Change these in Main.rc
+CommandColors								$BaseColor$ $BorderColor$
+CommandFontColor							$FontColor$
+CommandAlphaTransparency					$Transparency$
+;]
+
+;[ Draw settings
+CommandBorders								2 2 2 2
+;--> Change in Main.rc
+CommandAlwaysOnTop							$AlwaysOnTop$
+CommandFontHeight							20
+;--> Change in Main.rc
+CommandBevels								$Bevels$
+CommandShapeType							$ShapeType$
+CommandRoundedEdges							$RoundedEdges$
+;]
+
+;[ Default text and selection settings
+CommandSelectAllOnFocus							True
+CommandSelectAllOnMouseFocus					True
+;--> Switch the comment around on these two focus lsx on loading.
+;NetLoadModuleOnLoad							!CommandSetText Runbar
+NetLoadModuleOnLoad								!CommandShowText Runbar
+;]
+
+;[ Make the lsx collapsable
+;--> Set lsxColapse = False in basic.rc to disable
+IF lsxColapse = True
+	IF ShowStats = True
+		CommandOnFocus						!Execute [!CommandResizeBy $CommandMaxWidth-CommandWidth$ 0 5 5][!LabelRepositionBy Stats $CommandMaxWidth-CommandWidth$ 0 -$CommandMaxWidth-CommandWidth$ 0 5 5]
+		CommandOnUnFocus					!Execute [!CommandResizeBy -$CommandMaxWidth-CommandWidth$ 0 5 5][!LabelRepositionBy Stats -$CommandMaxWidth-CommandWidth$ 0 $CommandMaxWidth-CommandWidth$ 0 5 5]
+	ELSE
+		CommandOnFocus						!Execute [!CommandResizeBy $CommandMaxWidth-CommandWidth$ 0 5 5]
+		CommandOnUnFocus					!Execute [!CommandResizeBy -$CommandMaxWidth-CommandWidth$ 0 5 5]
+	ENDIF
+ELSE
+	CommandWidth							$CommandMaxWidth$
+ENDIF
+;]
+ENDIF
+
+IF ShowStart = True
+;--> Creates the label
+*Label Start
+
+;[ Size and position on the screen
+StartY										1
+StartX										1
+StartWidth									24
+StartHeight									24
+;]
+
+;[ Color/Transparency Settings
+StartPaintingMode							.image
+StartImage									"$themedir$Images\Popup.png"
+StartTrueTransparency						True
+;--> makes the 100% transparent area (FF00FF) clickable.
+StartTrackingIgnoreTrueTransparency			True
+;]
+
+;[ Actions and OnTop
+;--> a !Bang to execute on being left-clicked. do !About in the lsx to see
+;   available bangs. !execute [program] can be used to launch exe's
+StartOnLeftClick							!Popup 1 26
+StartAlwaysOnTop							$AlwaysOnTop$
+;]
+
+ENDIF

@@ -1,0 +1,79 @@
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+    LiteStep 0.24.8
+    Changelog
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+-- CHANGES SINCE 0.24.7 --------------------------------------------------------
+
+ - New combined evaluation parser for If/ElseIf and inline $a+b$ expressions.
+   Supports string comparisons and built-in functions among other improvements.
+
+ - Added checks for recursively defined variables to VarExpansionEx.
+
+ - Fixed threading/reentrant crash in MessageManager.
+
+ - Updates for Notification Icon Handler (systray service).
+   * Fixed non persistent data from always being retained.
+   * Fixed always sending NID data as new/updated when it wasn't.
+     (Fixes bogus info/balloon tips on recycle)
+   * Fixed possible internal data corruption by rouge systray modules.
+   * Fixed "dead icons" from being sent to systray modules on recycle.
+   * Added basic "shared icon" tracking.
+
+ - Removed !gather bang command proxy for VWM modules (all current VWM modules
+   now implement that function internally).
+
+ - Fixed ParseCmdLine's szRcPath creation from inserting an extra backslash.
+
+ - Much improved initialization/recycle of LSAPI internals.
+
+ - Added support for "AppBars". Appbars are windows that dock to the side of
+   the screen, some of which "autohide".  Typical uses are Media Player's
+   navigation bars, or Instant Messenger's contact list window.  Appbars may
+   also cause the work area to be changed.
+
+ - Changed bang !alert messagebox caption to "!Alert Litestep" to make apparent
+   what generated the messagebox.
+
+ - Fixed error handling when encountering invalid If/ElseIf syntax.
+
+ - Now checks for ElseIf following Else directive and skips conditional block
+   if this invalid structure occurs.
+
+ - Improved debug TRACE message output during step.rc parsing for debug builds.
+
+ - Default all platform variables (eg. "WinNT") to "false" prior to setting
+   conditional to "true".
+
+ - Added Win2003 platform variable.
+
+ - Fixed semicolon following ELSE or ENDIF statement from breaking parser.
+
+ - Command line !bang handler now allows running LS instance to set foreground
+   window.
+
+ - Fixed possible lockup condition on startup/recycle if there existed a non
+   responsive application on the desktop.
+
+ - Fixed !about bang command from launching concurrent AboutBox instances.
+
+ - Fixed LS logo not showing in about box. Moved logo to the left.
+
+ - The compile date is now fetched from PE header.
+
+ - $CompileDate$ now has the full "Compiled on" string as shown in the !about
+   box.
+
+ - Now using DeferWindowPos in Show/Hide/ToggleModules bang commands.  This
+   allows for "apparent" instant showing/hiding of all module windows.
+
+ - Improvements to LSAutoHideModules.
+
+ - Added a more specific error message when failing to load a module because of
+   unresolved dependencies.
+
+ - Targeting libpng 1.2.29 and zlib 1.2.3.
+
+ - Many other incremental fixes and code cleanup changes... Thanks for reading.
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-

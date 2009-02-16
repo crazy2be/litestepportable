@@ -1,0 +1,48 @@
+;--> Demo - a fairly basic litestep theme that shows the power of
+; LiteStep, while being fairly easy to modify and build your skills
+; on. Perfect to rip apart and re-assemble into your own! Happy LiteStepping!
+
+
+OTSMajorVersion 0
+OTSMinorVersion 5
+
+ThemeName		"Demo"
+ThemeVersion	"0.5"
+ThemeAuthor		"Crazy2be"
+
+;--> Includes "Main.rc" in the config. be sure to look
+; there for settings!
+Include "$themedir$Main.rc"
+
+;--> *NetLoadModule Lines
+; Download and install all the required theme modules.
+
+*NetLoadModule xPaintClass-1.0.dll threaded
+*NetLoadModule xStatsClass-1.1 threaded
+*NetLoadModule jdesk-0.73 threaded
+IF ShowTask = True
+*NetLoadModule xtaskbar-2.2 threaded
+ENDIF
+*NetLoadModule xlabel-4.2 threaded
+IF ShowTray = True
+*NetLoadModule xTray-2.1
+ENDIF
+IF Showlsx = True
+*NetLoadModule lsxcommand-2.0.2 threaded
+ENDIF
+IF ShowDesk = True
+*NetLoadModule clickonic-1.1.4
+ENDIF
+IF ShowStatsGraph = True
+*NetLoadModule xStatsGraph-0.8.1 threaded
+ENDIF
+*NetLoadModule lslua-0.7 load lslua.dll threaded
+*NetLoadModule xpopup-2.0.5
+;*NetLoadModule MultiMonitor-1.0
+
+;--> jDesk
+; Set the work area (the area a maximized window will occupy)
+; This is set to 0,0,0,0 to give you the whole screen! see the
+; jDesk docs for detatils on how to change this to what you want.
+
+jDeskWorkArea "0, 0, 0, 0"
