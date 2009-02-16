@@ -1,8 +1,0 @@
-*Popup "$Browsername$"							"$Browser$"
-;*Popup "test"									"!ParseEvars !alert X %#xTrayCurrentX#%"
-*Popup !Separator
-;¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
-*Popup "$FMName$"								"$FileManager$"
-*Popup "$TxtEditorName$"						"$TxtEditor$"
-*Popup "$IMName$"								"$IM$"
-*Popup "$EmailName$"							"$Email$"

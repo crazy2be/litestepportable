@@ -1,5 +1,0 @@
-;------------------------------------------------------------------------------
-; Here is a list of all the currently installed themes,
-; As they are shown in the popup.
-;------------------------------------------------------------------------------
-*Popup "Demo" !Execute ["LitestepDir$utilities\ThemeSwitcher.exe" /switch "Demo"]
