@@ -1,0 +1,22 @@
+
+
+Multimonitor fallout:
+
+- The module does not store the work areas for each monitor as
+  specified in step.rc, thus !ResetWorkArea and changes in 
+  resolution don't go very smoothly.
+
+  The easiest way to fix this would be to add another RECT to
+  the monitor data struct, but I don't like this solution because
+  I'm using the exact same code to patch other modules for
+  multimon, and I'd like to keep it the same.  Additionally, I
+  may (or maybe someone else) someday patch litestep itself to
+  add these functions.
+
+  Alternatives are a bit messy, and I have no particular intersest
+  in either of the affected features, so I haven't bothered.
+
+- I know nothing of DarkStep, so the loop to read work area
+  definitions for each monitor is not written for it.
+
+

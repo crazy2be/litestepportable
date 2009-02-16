@@ -1,0 +1,11 @@
+; here you can add "shortcuts" to your favorite programs. type, for example
+; "firefox" instead of "E:\PortableApps\FirefoxPortable\FirefoxPortable.exe"
+; abit simpler, no ;)
+; like this:
+; *CommandAlias [Shorcut to Type] [Application to run]
+*CommandAlias $BrowserName$ $Browser$
+*CommandAlias $TxtEditorName$ $TxtEditor$
+*CommandAlias $FMName$ $FileManager$
+*CommandAlias $IMName$ $IM$
+*CommandAlias $EmailName$ $Email$
+*CommandAlias More "$LSD$Portableapps.bat"

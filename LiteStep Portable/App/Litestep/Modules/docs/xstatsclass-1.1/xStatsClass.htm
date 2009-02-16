@@ -1,0 +1,848 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>xDocs Wiki: xStatsClass-1.1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="Content-Language" content="en">
+<meta name="generator" content="xDocs" />
+<meta name="robots" content="index,follow">
+<meta name="revisit-after" content="7 days" />
+
+<style type="text/css" media="all">
+/*===========================================================================*/
+/* GENERAL */
+/*===========================================================================*/
+
+body {
+	font-family: "Trebuchet MS",sans-serif;
+	font-size: 14;
+	margin: 0px;
+	padding: 40px;
+	color: #3E3E3E;
+	background: #EEEEEE;
+}
+
+a {
+	text-decoration: none;
+}
+
+p {
+	margin: 12px 0px 0px 0px;
+}
+
+div.spacer { 
+	clear:both 
+}
+
+/*===========================================================================*/
+/* HEADER */
+/*===========================================================================*/
+
+#header {
+	font-family: "Arial",sans-serif;
+	margin: 0px;
+	padding: 0px;
+	height: 100px;
+	border: 1px solid #728BA5;
+	color: #8CA1B4;
+	background-color: #4E6781; 
+}
+
+#header img {
+	float: left;
+	margin: 0px;
+	padding: 0px;
+	border-style: none; 
+}
+
+#header h1 {
+	font-size: 40px;
+	font-weight: normal;
+	margin: 0px;
+	padding: 30px 0px 0px 0px; 
+}
+
+#header div#date {
+	font-size: 14px;
+	font-weight: normal;
+	float: right;
+	margin: -5px 10px 0px 0px;
+	padding: 0px; 
+}
+
+/*===========================================================================*/
+/* NAVBAR */
+/*===========================================================================*/
+
+#navbar {
+	font-family: "Arial",sans-serif;
+	font-size: 14px;
+	margin: 0px;
+	padding: 4px 0px 0px 0px; /*to get border of ul inside the navbar*/
+	height: 20px;
+	border: 1px solid silver;
+	border-width: 0px 1px;
+	font-weight: bold;
+	color: #785F30;
+	background-color: #F7C364; 
+}
+
+#navbar ul {
+	margin: 0px;
+	padding: 0px;
+	display: inline; 
+} 
+
+#navbar ul li {
+	margin: 0px 5px;
+	padding: 0px;
+	list-style: none;
+	display: inline; 
+}
+
+#navbar ul li.first {
+	margin-left: 20px; 
+}
+
+#navbar a,a:link,a:visited,a:hover,a:active {
+	display: inline;
+	border: none;
+	color: #785F30;
+	background-color: transparent; 
+}
+
+#navbar a:hover { 
+	border-top: 4px 
+	solid #DBA748; 
+	color:#363636; 
+	background-color: transparent; 
+}
+
+#navbar a:active {
+	border-top: 4px 
+	solid #DBA748; 
+	color:#363636; 
+	background-color: transparent; 
+}
+
+#navbar ul li.disabled {
+	color: #785F30;
+	background-color: #F7C364;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+/*===========================================================================*/
+/* CONTENT_AREA */
+/*===========================================================================*/
+
+#content-area {
+	margin: 0px;
+	padding: 30px;
+	text-align: justify;
+	border: 1px solid silver;
+	color: inherit;
+	background-color: #FFFFFF; 
+}
+
+#content-area code {
+	font-weight: bolder;
+	font-size: larger;
+}
+
+#content-area code:before { 
+	content:"\2022  "; 
+}
+
+#content-area strong {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+#content-area h1 {
+	font-family: "Arial",sans-serif;
+	font-size: 32px;
+	font-weight: normal;
+	margin: 40px 0px 10px 0px;
+	color: #8FA8C2;
+	background-color: transparent; 	
+	letter-spacing: 2px;
+	border-bottom: 2px dashed #CB522C;
+}
+	
+#content-area h2 {
+	font-family: "Arial",sans-serif;
+	font-size: 24px;
+	font-weight: normal;
+	margin: 40px 0px 5px 0px;
+	color: #8FA8C2;
+	background-color: transparent; 
+	letter-spacing: 1px;
+	border-bottom: 2px dotted #CB522C;
+}
+
+#content-area h3 {
+	font-family: "Arial",sans-serif;
+	font-size: 20px;
+	font-weight: normal;
+	margin: 40px 0px 0px 0px;
+	color: #8FA8C2;
+	background-color: transparent;
+	border-bottom: 1px dotted #CB522C;
+}
+	
+#content-area h4 {
+	font-family: "Arial",sans-serif;
+	font-size: 18px;
+	font-weight: normal;
+	margin: 40px 0px 0px 0px;
+	color: #8FA8C2;
+	background-color: transparent;  
+}
+	
+#content-area h5 {
+	font-family: "Arial",sans-serif;
+	font-size: 18px;
+	font-weight: normal;
+	margin: 40px 0px 0px 0px;
+	color: #8FA8C2;
+	background-color: transparent;  
+}
+
+#content-area div.nav-top {
+	font-family: "Arial",sans-serif;
+	font-size: 20px;
+	font-weight: bolder;
+	margin: 10px -20px 50px -20px;
+	padding: 0px;
+	text-align: center; 
+}
+
+#content-area a,a:link,a:visited,a:hover,a:active {
+	display: inline;
+	border: none;
+	color: #CB522C;
+	background-color: transparent; 
+}
+
+#content-area a:hover {
+	text-decoration: underline; 
+}
+
+#content-area a:active { 
+	text-decoration: underline; 
+}
+
+#content-area div.nav-top a,a:link,a:visited,a:hover,a:active {
+	display: block;
+	border: none;
+	color: #DEDEDE;
+	background-color: #FAFAFA; 
+}
+
+#content-area div.nav-top a:hover { 
+	text-decoration: none; 
+	color: #AAAAAA; 
+	background-color: #F4F4F4; 
+}
+
+#content-area div.nav-top a:active { 
+	text-decoration: none; 
+	color: #AAAAAA; 
+	background-color: #F4F4F4; 
+}
+
+#content-area pre {
+	margin: 6px 0px 0px 0px;
+	padding: 0.25em 0.5em;
+	background-color: #eee;
+	border-top: solid #ccc 1px;
+	border-left: solid #ccc 1px;
+	border-bottom: solid #ddd 1px;
+	border-right: solid #ddd 1px;
+}
+
+/*===========================================================================*/
+/* PIE INTERNALS */
+/*===========================================================================*/
+
+textarea {
+	background-color: #fff;
+	margin: 0.25em 0;
+	font-family: Courier, "Courier New", monospace;
+}
+
+input[type="submit"], input[type="reset"], input[type="button"] {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 9pt;
+	font-weight: normal;
+	font-stretch: semi-expanded;
+}
+
+input[type="text"], input[type="password"] {
+	background-color: #fff;
+	margin: 0.25em 0;
+	font-family: Courier, "Courier New", monospace;
+}
+
+.OddRow {
+	background-color: #ddd;
+}
+
+.EvenRow {
+	background-color: #fff;
+}
+
+.alertContainer {
+	width: 30em;
+	background-color: #ddd;
+	border: solid #222 1px;
+	margin: 1em;
+	padding: 1em 1em;
+	border-top: solid #444 1px;
+	border-right: solid #888 1px;
+	border-bottom: solid #aaa 1px;
+	border-left: solid #666 1px;
+	display: block;
+	clear: both;
+}
+
+.alertError {
+	display: block;
+	background-color: #eee;
+	clear: both;
+	padding: 1em;
+	border-top: solid #444 1px;
+	border-left: solid #666 1px;
+	border-bottom: solid #777 1px;
+	border-right: solid #555 1px;
+}
+
+.alertNotice {
+	display: block;
+	background-color: #eee;
+	clear: both;
+	padding: 1em;
+	border-top: solid #444 1px;
+	border-left: solid #666 1px;
+	border-bottom: solid #777 1px;
+	border-right: solid #555 1px;
+}
+
+.alertButtonContainer {
+	display: block;
+	clear: both;
+	margin: 1em 0 0 0;
+	min-height: 1em;
+}
+
+.alertButtonLeft {
+	display: inline;
+	float: left;
+	text-align: left;
+	clear: none;
+}
+
+.alertButtonRight {
+	display: inline;
+	float: right;
+	text-align: right;
+	clear: none;
+}
+
+.alertButtonCenter {
+	margin: 1em 0 0 0;
+	clear: both;
+	text-align: center;
+	min-height: 1em;
+}
+</style>
+
+</head>
+
+<body id="topglobal">
+
+<!-- ======================================================================== -->
+
+<div id="header">
+<img src="litestep_logo.png" width="100" height="100" alt="LiteStep Logo" />
+<h1>xDocs Wiki: xStatsClass-1.1</h1>
+</div>
+
+<!-- ======================================================================== -->
+
+<div id="navbar">
+<center>
+<ul>
+<li class="first"><a href="http://www.xdocs.ls-universe.info/pie.php?page=MainPage" title="Project Home">Home</a></li>
+<li><a href="http://www.xdocs.ls-universe.info/pie.php?action=list">List contents</a></li>
+
+<li>&nbsp;&nbsp;&nbsp;</li>
+<li><a href="http://www.xdocs.ls-universe.info/pie.php?page=xPaintHTMLText&amp;action=info">Info</a></li>
+<li class="disabled">Edit</li>
+<li class="disabled">Verify</li>
+<li class="disabled">Maintenance</li>
+<li><a href="http://www.xdocs.ls-universe.info/pie.php?action=login">Login</a></li>
+</ul>
+</center>
+</div>
+
+<!-- ======================================================================== -->
+
+<div id="content-area">
+
+<p><strong>xStatsClass Docs Version 1.x</strong><br/>
+<strong>Latest released xStatsClass Version 1.1</strong></p>
+<h1>xStatsClass</h1>
+<p><strong>Important:</strong><br/>
+The following explanations are related to xLabel-4.0.5, xTaskbar-2.1.5, xPopup-2.0.5 and newer versions of these modules as well as all other modules which might use xStatsClass!</p>
+<p>Make sure you load xStatsClass always BEFORE all of these modules!</p>
+<p>The following docs are especially for those modules and additionally for Module Developers, which make use of xStatsClass in the future.</p>
+
+<h1>Settings</h1>
+<p><code>xStatsNetStatsUpdateInterval INT</code><br/>
+The internal! update interval for NetWork Traffic, default is 1000 (ms).<br/>
+You really don't need to change this!</p>
+<p><code>xStatsCpuStatsUpdateInterval INT</code><br/>
+The internal! update interval for the CPU-Usage, default is 1000 (ms).<br/>
+You really don't need to change this!</p>
+<h1>Text Escape Sequences</h1>
+<p>To include dynamic text in labels, such as system information, you can use escape sequences mixed in with normal text in labels. Escapes sequences consist of a data source names and any necessary parameters and possibly one or more modifier functions all enclosed in square brackets:<br/>
+
+If you want to include [ or ] in your label's text, use [[ and ]].</p>
+<pre>LabelText &quot;Just some test... [modifier(dataSource(parameter))]&quot;
+ClockLabelText &quot;The time is: [time]&quot;
+QuoteLabelText &quot;Quote of the Day: [trim(randomLine('C:\quotes.txt'))]&quot;
+SysLabelText &quot;CPU: [cpu], RAM: [memInUse]&quot;
+</pre>
+<p>As of version 1.5, labels can have text which spans multiple lines. To create a line break in the text use the character sequence &quot;&lt;br&gt;&quot;.</p>
+
+<pre>MultiLineLabelText &quot;This is on line 1&lt;br&gt;This is on line 2&quot;
+MemLabelText &quot;Memory Info&lt;br&gt;&lt;br&gt;Free: [memAvailable]&lt;br&gt;Total: [memTotal]&quot;
+</pre>
+<h2>Valid data sources and parameters</h2>
+<p><code>activeTask('Default Value')</code><br/>
+
+Title of the currently active ( and visible ) task. If no active task is visible it will show &quot;Default Value&quot;. &quot;Default Value&quot; is optional.</p>
+<p><code>battery</code><br/>
+Percentage of battery power remaining.</p>
+<p><code>clipboardText</code><br/>
+Current text in the clipboard.</p>
+<p><code>computerName</code><br/>
+
+Name assigned to this computer.</p>
+<p><code>cpu('process')</code><br/>
+Current total CPU usage in percent, if no &quot;process&quot; is specified. If you specify a optional &quot;process&quot; (Use the Taskmanager displayed exe-name without exe), then the CPU-Usage of that specific Process is displayed.</p>
+<p><code>cpuInfo('info')</code><br/>
+Shows autoformatted multiline detailed CPU Chip Informations.<br/>
+<strong>But you can also get single informations (optional argument):</strong><br/>
+
+[cpuInfo('vendorid')]<br/>
+[cpuInfo('typeid')]<br/>
+[cpuInfo('familyid')]<br/>
+[cpuInfo('modelid')]<br/>
+[cpuInfo('steppingcode')]<br/>
+[cpuInfo('brandid')]</p>
+<p><code>cpuSpeed</code><br/>
+Shows static CPU Speed in MHz. (Recommended!)<br/>
+<code>cpuSpeed('dynamic')</code><br/>
+
+Shows current CPU Speed in MHz.<br/>
+Make sure that the cpuspeed('dynamic') is in a label with a adapted UpdateInterval, maybe once a min (UpdateInterval 60000) or even longer!</p>
+<p><code>date('format')</code><br/>
+Current local date. Format is optional and is explained below.</p>
+<p><code>dateCreated('file', 'format')</code><br/>
+Date and time file was created. Format is optional.</p>
+<p><code>dateLastModified('file', 'format')</code><br/>
+Date and time file was last modified. Format is optional.</p>
+<p><code>diskAvailable('drive', units)</code><br/>
+
+Amount of space currently available on given drive.</p>
+<p><code>diskInUse('drive', units)</code><br/>
+Amount of space currently in use on given drive.</p>
+<p><code>diskTotal('drive', units)</code><br/>
+Total amount of space on given drive.</p>
+<p><code>exportedevar('evar')</code><br/>
+Shows the Content of the specified Evar (Evar without '$'!).</p>
+<p><code>firstLine('file', 'numberoflines')</code><br/>
+Retrieves the first line from the given file.<br/>
+
+You can optionally set the &quot;number of lines&quot;, which should be retrieved.</p>
+<p>For an interactive/automatically usage of the Text Extraction Escape Sequences use the module &quot;AutoRecycle-1.0&quot;<br/>
+<strong>Simply set for each Text-File which need to be tracked the following:</strong></p>
+<pre>*watchfile c:\litestep\track.txt !labelupdate trackinglabel
+</pre>
+<p><code>hostName</code><br/>
+Host name assigned to this computer.</p>
+<p><code>ip</code><br/>
+
+Internet Protocol (IP) address assigned to this computer. Accepts Numbers from &quot;1&quot;, ... to choose Network Adapter. [ip('2')] for instance.</p>
+<p><code>iTime</code><br/>
+Current time as Swatch internet time (beats).</p>
+<p><code>kblayout</code><br/>
+Full localized name of the current keyboard layout language.</p>
+<p><code>labelname</code><br/>
+Is set to the name of the xLabel from which this Bang/TextEscape is called (for !ParseEvars).<br/>
+This only works with exactly &quot;[labelname]&quot;!</p>
+
+<p><code>labeltext</code><br/>
+Is set to the displyed text of the xLabel from which this Bang/TextEscape is called (for !ParseEvars).<br/>
+This only works with exactly &quot;[labeltext]&quot;!</p>
+<p><code>lastLine('file', 'numberoflines')</code><br/>
+Retrieves the last line from the given file.<br/>
+You can optionally set the &quot;number of lines&quot;, which should be retrieved.</p>
+<p>For an interactive/automatically usage of the Text Extraction Escape Sequences use the module &quot;AutoRecycle-1.0&quot;<br/>
+
+<strong>Simply set for each Text-File which need to be tracked the following:</strong></p>
+<pre>*watchfile c:\litestep\track.txt !labelupdate trackinglabel
+</pre>
+<p><code>line('file', 'line', 'endline')</code><br/>
+Retrieves the number'th line from the given file, &quot;endline&quot; is optional to extract more then one line.</p>
+<p><strong>Example:</strong><br/>
+To extract the first 5 lines of a file use this:</p>
+<pre>[line('c:\test.txt', '1', '5')]
+</pre>
+
+<p>For a whole File, you can do this:</p>
+<pre>[line('c:\test.txt', '1', lineCount('c:\test.txt'))]
+</pre>
+<p><code>lineCount('file')</code><br/>
+Number of lines in the given file.</p>
+<p><code>matchline('file', 'Wildcards')</code><br/>
+Retrieves the first found Line in &quot;File&quot;, which matches the Wildcards String (*, ?, ...).</p>
+<p><code>mbmCPUUsage</code><br/>
+CPU usage as reported by MBM5. Takes an optional numeric index as a parameter. MBM5 supports 4 CPUs numbered 1 to 4.</p>
+
+<p><code>mbmFanSpeed</code><br/>
+Fan speed as reported by MBM5. Takes an optional numeric index as a parameter. MBM5 supports 10 fans numbered 1 to 10.</p>
+<p><code>mbmTemperature</code><br/>
+Temperature as reported by MBM5. Takes an optional numeric index as a parameter. MBM5 supports 10 temperature sensors numbered 1 to 10.</p>
+<p><code>mbmVoltage</code><br/>
+Voltage as reported by MBM5. Takes an optional numeric index as a parameter. MBM5 supports 10 voltages numbered 1 to 10.</p>
+<p><code>memAvailable(units)</code><br/>
+Amount of physical memory currently available.</p>
+<p><code>memInUse(units)</code><br/>
+
+Amount of physical memory currently in use.</p>
+<p><code>memTotal(units)</code><br/>
+Total amount of physical memory in the system.</p>
+<p><code>mousepos</code><br/>
+Current MousePosition. Format: &quot;x: 100, y: 100&quot;</p>
+<p><code>netadaptername('adapterindex')</code><br/>
+Display the name of the selected NetWorkAdapter.<br/>
+Default is always &quot;0&quot; (Nothing), if that isn't the correct one on your PC, try &quot;1&quot; and so on ...</p>
+
+<p><code>netin('adapterindex')</code><br/>
+Incoming Traffic in KB/sec, updated once a sec (fixed timeout, doesn't react on UpdateInterval)<br/>
+You can OPTIONALLY specify the adapter for the network traffic monitor.<br/>
+Default is always &quot;0&quot; (Nothing), if that isn't the correct one on your PC, try &quot;1&quot; and so on ...</p>
+<p><code>nettotalin('adapterindex')</code><br/>
+Total Incoming Traffic since PC Start updated once a sec (fixed timeout, doesn't react on UpdateInterval)<br/>
+
+You can OPTIONALLY specify the adapter for the network traffic monitor.<br/>
+Default is always &quot;0&quot; (Nothing), if that isn't the correct one on your PC, try &quot;1&quot; and so on ...</p>
+<p><code>netout('adapterindex')</code><br/>
+OutGoing Traffic in KB/sec, updated once a sec (fixed timeout, doesn't react on UpdateInterval)<br/>
+You can OPTIONALLY specify the adapter for the network traffic monitor.<br/>
+Default is always &quot;0&quot; (Nothing), if that isn't the correct one on your PC, try &quot;1&quot; and so on ...</p>
+
+<p><code>nettotalout('adapterindex')</code><br/>
+Total OutGoing Traffic since PC Start updated once a sec (fixed timeout, doesn't react on UpdateInterval)<br/>
+You can OPTIONALLY specify the adapter for the network traffic monitor.<br/>
+Default is always &quot;0&quot; (Nothing), if that isn't the correct one on your PC, try &quot;1&quot; and so on ...</p>
+<p><code>netinout('adapterindex')</code><br/>
+Combined (In&amp;Out) Traffic in KB/sec, updated once a sec (fixed timeout, doesn't react on UpdateInterval)<br/>
+
+You can OPTIONALLY specify the adapter for the network traffic monitor.<br/>
+Default is always &quot;0&quot; (Nothing), if that isn't the correct one on your PC, try &quot;1&quot; and so on ...</p>
+<p><code>nettotalinout('adapterindex')</code><br/>
+Total Combined (In&amp;Out) Traffic since PC Start updated once a sec (fixed timeout, doesn't react on UpdateInterval)<br/>
+You can OPTIONALLY specify the adapter for the network traffic monitor.<br/>
+
+Default is always &quot;0&quot; (Nothing), if that isn't the correct one on your PC, try &quot;1&quot; and so on ...</p>
+<p><code>online('www.host.com', '/file.ext')</code><br/>
+If you specify a valid &quot;Hostname&quot; and a &quot;Valid Online Path&quot; to a plain text online documents you can retrieve the content! Example:<br/>
+
+If you want the follwing: &quot;<a href="http://www.myhost.com/myfiles/log/daily.log" class="ExternalLink" target="_blank">http://www.myhost.com/myfiles/log/daily.log</a>&quot;</p>
+<pre>[online('www.myhost.com', '/myfiles/log/daily.log')]
+</pre>
+<p><strong>ATTENTION:</strong><br/>
+You need to allow Litestep.exe (that means xLabel) to access the internet!!</p>
+<p><code>os</code><br/>
+Name of the operating system running on this computer.</p>
+<p><code>osex</code><br/>
+&quot;Extended OS Information&quot;, just a little bit more detailed (longer) OS Info.</p>
+
+<p><code>powerSource('AC', 'Battery')</code><br/>
+Selects what text to display based on whether the system is running on AC or battery power. Defaults are 'AC' and 'Battery'.</p>
+<p><code>randomLine('file')</code><br/>
+Retrieves a randomly selected line from the given file.</p>
+<p><code>skblayout</code><br/>
+The abbreviated name of the language based entirely on the ISO Standard 639 values (2 letters).</p>
+<p><code>size('file', units)</code><br/>
+Size of the given file. Units is optional.</p>
+<p><code>swapAvailable(units)</code><br/>
+
+Amount of swap space currently available.</p>
+<p><code>swapInUse(units)</code><br/>
+Amount of swap space currently in use.</p>
+<p><code>swapTotal(units)</code><br/>
+Total amount of swap space in the system.</p>
+<p><code>tasks('separator')</code><br/>
+Shows the current runnning tasks in the label. &quot;separator&quot; is an optional spacer string between each task (best is ' '), default is ' - '.<br/>
+
+It's like !popuptasks in the popupmenu, the active task is the first, ....</p>
+<p><code>time('format')</code><br/>
+Current local time. Format is optional and is explained below.</p>
+<p><code>uptime('format')</code><br/>
+Current system uptime. Format is optional and is explained below.</p>
+<p><code>userName</code><br/>
+Name of the user currently logged on.</p>
+<p><code>volume('winamp')</code><br/>
+Master Speaker Volume in %, if used without option.<br/>
+
+Shows the current WinampVolume in %, if &quot;winamp&quot; is set as option.</p>
+<p><strong>Foobar2K:</strong><br/>
+You MUST download a component DLL (-&gt; Homepage) named &quot;foo<em>winamp</em>spam.dll&quot; and copy it to your ../Foobar2000/components/ folder. Done! All [winamp...] Escape Sequences work now also for Foobar v0.7+!</p>
+<p><code>winampSong('Default Value')</code><br/>
+
+Song currently loaded in Winamp (QCD or Foobar2K). If Winamp (and the other supported players) is not running or there is no song loaded this will show &quot;Default Value&quot;. &quot;Default Value&quot; is optional.</p>
+<p><code>winampArtist('Default Value')</code><br/>
+Artist of the currently loaded song in Winamp (QCD or Foobar2K). If Winamp (and the other supported players) is not running or there is no Artist Tag available this will show &quot;Default Value&quot;. &quot;Default Value&quot; is optional.</p>
+<p><code>winampTitle('Default Value')</code><br/>
+
+Title currently currently loaded song in Winamp (QCD or Foobar2K). If Winamp (and the other supported players) is not running or there is no Title Tag available this will show &quot;Default Value&quot;. &quot;Default Value&quot; is optional.</p>
+<p><code>winampTime('sec')</code><br/>
+Time elapsed on the current song in Winamp (QCD or Foobar2K). If Winamp (and the other supported players) is not running or there is no time info available this will show &quot;&quot;. &quot;sec&quot; is optional and shows time only in sec, not in min:sec.</p>
+<p><code>winampRemainTime('sec')</code><br/>
+
+Time remaining on the current song in Winamp (QCD or Foobar2K). If Winamp (and the other supported players) is not running or there is no time info available this will show &quot;&quot;. &quot;sec&quot; is optional and shows time only in sec, not in min:sec.</p>
+<p><code>winampTotalTime('sec')</code><br/>
+Length of the current song in Winamp (QCD or Foobar2K). If Winamp (and the other supported players) is not running or there is no time info available this will show &quot;&quot;. &quot;sec&quot; is optional and shows time only in sec, not in min:sec.</p>
+<p><code>winampBitrate</code><br/>
+Current BitRate of playing song.</p>
+
+<p><code>winampSamplerate</code><br/>
+Current SampleRate of playing song.</p>
+<p><code>winampStatus('Default Value')</code><br/>
+Current status of Winamp (or Foobar2K). If Winamp (or Foobar2000) is running this will be one of &quot;Playing&quot;, &quot;Paused&quot;, or &quot;Stopped&quot;. If Winamp (or Foobar2K) is not running this will show &quot;Default Value&quot;. &quot;Default Value&quot; is optional.</p>
+
+<p><code>windowTitle('class')</code><br/>
+Title of the window with the given class name.</p>
+<h2>Valid modifier functions and parameters</h2>
+<p>The following is the list of all valid modifier functions. These functions can be used to modify the output from any of the above data sources. For instance, the computer name is usually reported in all uppercase letters, so you could use lowerCase or capitalize to change that.</p>
+<p><strong>Examples:</strong></p>
+<pre>[after(winampSong,'-')]
+[afterLast(winamptime, ':')]
+[between(winampSong, '-', ';')]
+</pre>
+<p>And so on ...</p>
+<p><code>after(x, delim)</code><br/>
+Extracts the part of x after the first occurance of delim.</p>
+
+<p><code>afterLast(x, delim)</code><br/>
+Extracts the part of x after the last occurance of delim.</p>
+<p><code>before(x, delim)</code><br/>
+Extracts the part of x before the first occurance of delim.</p>
+<p><code>beforeLast(x, delim)</code><br/>
+Extracts the part of x before the last occurance of delim.</p>
+<p><code>between(x, delim1, delim2, 'Mode')</code><br/>
+Extracts the part of x that lies between the first occurance of delim1 and the last occurance of delim2.<br/>
+Supports also IndexNumbers for delim1 and delim2, as well as IndexNumber and LetterCount.<br/>
+
+'Mode' can be nothing (as before), or &quot;index&quot; or &quot;indexspan&quot;</p>
+<p><strong>Examples:</strong></p>
+<pre>[between('This is the text, which is modified', '6', '2')]
+</pre>
+<p>gives back: &quot;This is the text, which is modified&quot;<br/>
+Cause there is no '6' and '2' in the string (Normal Mode).</p>
+<pre>[between('This is the text, which is modified', '6', '11', 'index')]
+</pre>
+
+<p>gives back: &quot;is the&quot;<br/>
+All letters between 6th char and 11th char (including 6th and 11th) (6 letters, 6,7,8,9,10,11) are extracted.</p>
+<pre>[between('This is the text, which is modified', '6', '2', 'indexspan')]
+</pre>
+<p>gives back: &quot;is&quot;<br/>
+2 letters after 6th char (including 6th) are extracted.</p>
+<p><code>capitalize(x)</code><br/>
+Makes all characters lowercase except for the first which is uppercased.</p>
+<p><code>lowerCase(x)</code><br/>
+
+Makes all characters lowercase.</p>
+<p><code>remove('x', 'chars to remove')</code><br/>
+Removes a list of Chars (case sensitive!), which will be removed out of the text.</p>
+<p><code>replace('x', 'string to replace', 'new string')</code><br/>
+Replaces a string (case sensitive!) with the supplied new string.</p>
+<p><code>trim('x', 'chars to trim')</code><br/>
+Removes leading and trailing Whitespace, accepts a optional list of Chars (case sensitive!), which will be removed additionally to Whitespace.</p>
+<p><code>upperCase(x)</code><br/>
+Makes all characters uppercase.</p>
+
+<p><code>verticaldown(x)</code><br/>
+Converts a single line x in a vertical text. Readable from Top to Bottom.</p>
+<p><code>verticalup(x)</code><br/>
+Converts a single line x in a vertical text. Readable from Bottom to Top.</p>
+<h3>Valid formats for [date], [time], and [uptime]</h3>
+<p>The [date], [time], and [uptime] data sources can optionally take a format as a parameter. The following character sequences will be interpreted in the format (anything else is included verbatim):</p>
+<pre>m
+    month (1-12)
+mm
+    month with leading zero (01-12)
+mmm
+    abbreviated month name (Jan, Feb, etc)
+mmmm
+    full month name (January, February, etc)
+d
+    day (1-31)
+dd
+    day with leading zero (01-31)
+ddd
+    abbreviated weekday name (Sun, Mon, etc)
+dddd
+    full weekday name (Sunday, Monday, etc)
+y
+    day of the year
+yy
+    2-digit year
+yyyy
+    4-digit year
+h
+    hour (1-12)
+hh
+    hour with leading zero (01-12)
+i
+    hour (0-23)
+ii
+    hour with leading zero (00-23)
+n
+    minute (0-59)
+nn
+    minute with leading zero (00-59)
+s
+    second (0-59)
+ss
+    second with leading zero (00-59)
+am/pm
+    lowercase am/pm indicator
+AM/PM
+    capitalized AM/PM indicator
+</pre>
+<p>For [uptime] only the day, hour, minute, and second values are valid. The [date] and [time] data sources can also take a second parameter that modifies the timezone used.<br/>
+<strong>Here are some examples:</strong></p>
+
+<pre>[time('h:nn am/pm', '+4')]
+[time('h:nn am/pm', '-2:30')]
+[time('h:nn am/pm', 'UTC')]
+[time('h:nn am/pm', 'UTC+1')]
+</pre>
+<p>UTC means coordinated universal time and is loosely defined as the current date and time in Greenwich, England.</p>
+<h3>Valid units for data sources that return a size in bytes</h3>
+<p>Data sources that return a size in bytes (mem, swap, etc) take an optional parameter that specifies the units to use. Legal values are KB, MB, GB, and % (percent). If no units are given then the units are automatically selected based on the current value. For example, if 24 MB of memory are free (out of 64 MB total):</p>
+<pre>[memAvailable(bytes)] --&gt; 25165824
+[memAvailable(KB)] --&gt; 24576
+[memAvailable(MB)] --&gt; 24
+[memAvailable(GB)] --&gt; 0.02
+[memAvailable(%)] --&gt; 38
+
+</pre>
+<p>Note that when you use specific units, the unit labels are not added for you, but when the units are implicit they are.</p>
+<h3>MotherBoard Monitor</h3>
+<p>As of version 1.9 of Label the MBM data sources [mbm*] require MBM version 5.1 (or higher). Due to the nature of the changes this makes Label 1.9 incompatible with earlier versions of MBM.</p>
+<h1>Conditional Text Escape Sequences</h1>
+<p>Conditional text escapes let you display different information based on System Conditions and/or Value Evaluation. For example, you can have a label that displays Winamp information if Winamp is currently playing a song, or something else if it is not.</p>
+<p><strong>Here are some examples for the System Conditions:</strong></p>
+<pre>LabelText &quot;[if(cond1)]-- Text A --[endIf]&quot;
+LabelText &quot;[if(cond1)]-- Text A --[else]-- Text B --[endIf]&quot;
+
+LabelText &quot;[if(cond1)]-- Text A --[elseIf(cond2)]-- Text B --[else]-- Text C --[endIf]&quot;
+</pre>
+<p>In the first example, if cond1 is true (a condition can only be true or false) then text A is displayed otherwise nothing is displayed. In the second example, if cond1 is true then text A is displayed otherwise text B is displayed. In the third example, if cond1 is true then text A is displayed, if cond1 is false and cond2 is true then text B is displayed, if cond1 and cond2 are both false then text C is displayed. Yeah, that last one sounds pretty confusing but don't worry, it's not that likely you'll need to use it.</p>
+<p>A Condition (&quot;cond1&quot; for example) can contain up to three SubConditions, which MUST all be True to make the whole Condition TRUE. So you can make some kind of Nested If Conditions.</p>
+<h2>Here are some further examples for the Value Evaluation</h2>
+<p><strong>You can use the following modes (value1/2 can also be a System Condition of course):</strong></p>
+<pre>[ifeval('value1','value2')] or [elseifeval('value1','value2')]
+</pre>
+
+<p>TRUE, if both values are identical.</p>
+<pre>[ifeval('value1','=','value2')] or [elseifeval('value1','=','value2')]
+</pre>
+<p>TRUE, if both values are identical.</p>
+<pre>[ifeval('value1','&lt;&gt;','value2')] or [elseifeval('value1','&lt;&gt;','value2')]
+</pre>
+<p>TRUE, if both values are NOT identical.</p>
+<p><strong>Next Ones are used for Number Evaluation:</strong></p>
+<pre>[ifeval('value1','&lt;','value2')] or [elseifeval('value1','&lt;','value2')]
+
+</pre>
+<p>TRUE, if value1 is smaller then value2.</p>
+<pre>[ifeval('value1','&lt;=','value2')] or [elseifeval('value1','&lt;=','value2')]
+</pre>
+<p>TRUE, if if value1 is smaller or equal to value2.</p>
+<pre>[ifeval('value1','&gt;','value2')] or [elseifeval('value1','&gt;','value2')]
+</pre>
+<p>TRUE, if value1 is bigger then value 2.</p>
+<pre>[ifeval('value1','&gt;=','value2')] or [elseifeval('value1','&gt;=','value2')]
+
+</pre>
+<p>TRUE, if value1 is bigger or equal to value2.</p>
+<h2>Conditions</h2>
+<p>Now you're probably wondering what these conditions are, well here they are.<br/>
+<strong>Conditions always return:</strong><br/>
+&quot;1&quot; -&gt; TRUE or<br/>
+&quot;0&quot; -&gt; FALSE</p>
+
+<p><code>mute</code><br/>
+True, if MASTER Volume is mute.</p>
+<p><code>connected</code><br/>
+True, if there is an active network connection.</p>
+<p><code>empty(x)</code><br/>
+True, if x is an empty string.</p>
+<p><code>fileExists('file')</code><br/>
+True, if the given file exists.</p>
+<p><code>keyboardstate('key')</code><br/>
+
+True, if the given &quot;key&quot;board LED is ON.<br/>
+<strong>&quot;key&quot; can be:</strong><br/>
+Capslock<br/>
+NumLock<br/>
+ScrollLock</p>
+<p><code>mbmLoaded</code><br/>
+True, if MBM is loaded.</p>
+
+<p><code>notEmpty(x)</code><br/>
+True, if x is not an empty string.</p>
+<p><code>winampPlaying</code><br/>
+True, if Winamp is currently playing.</p>
+<p><code>winampPaused</code><br/>
+True, if Winamp is currently paused.</p>
+<p><code>winampStopped</code><br/>
+True, if Winamp is currently stopped.</p>
+<p><code>winampRepeat</code><br/>
+
+True if Winamp Setting &quot;Repeat&quot; is currently active.</p>
+<p><code>winampShuffle</code><br/>
+True, if Winamp Setting &quot;Shuffle&quot; is currently active.</p>
+<h2>So, let's do some concrete examples:</h2>
+<pre>LabelText &quot;[if(winampPlaying)]Playing: [winampSong][else][date][endIf]&quot;
+
+LabelText &quot;[if(winampPlaying,connected)]Playing: [winampSong] with Current IP [ip]
+     [elseif(winampplaying)]Playing: [winampSong][elseif(connected)]Current IP [ip]
+     [else][date][endIf]&quot;
+
+LabelText &quot;[ifeval('$resolutionx$','&gt;=','1152')]You have a good resolution![else]Hmm[endif]&quot;
+
+LabelText &quot;[ifeval(winampremaintime('sec'),'&lt;=','15')]Song is soon over![else][winampsong][endif]&quot;
+</pre>
+<div class="nav-top"><a href="#topglobal">&#8593;</a></div>
+
+
+
+
+
+</div>
+
+<!-- ======================================================================== -->
+
+</body>
+</html>

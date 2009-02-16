@@ -1,0 +1,33 @@
+;--> Clickonic is a destop module that provides you with
+; alot of the functionality that explorer gives you, including
+; drag + drop and repositioning your icons.
+
+IF ShowDesk = True
+;--> Creates a "Desktop" Called "DeskIcons".
+; you can have multiples, in different folders!
+*Clickonic DeskIcons
+
+;[ Size/Positon Settings
+DeskIconsX 						0
+DeskIconsY 						0
+DeskIconsWidth  				$ResolutionX$
+DeskIconsHeight 				$ResolutionY$
+;]
+
+;[ Icon Settings
+DeskIconsSpacingX 				64
+DeskIconsSpacingY 				64
+DeskIconsSnapToGrid 			True
+;]
+
+;[ Font Settings
+DeskIconsFont 					$Font$
+DeskIconsFontSize 				12
+DeskIconsFontColor				$FontColor$
+;]
+
+;[ Misc. Settings
+DeskIconsConfirmFileDelete 		True
+DeskIconsUseSelectionRectangle	True
+;]
+ENDIF

@@ -1,0 +1,34 @@
+;------------------------------------------------------------------------------
+;	define critical folder locations
+;------------------------------------------------------------------------------
+
+PersonalDir             "$LiteStepDir$personal\"
+ThemesDir               "$LiteStepDir$themes\"
+ModulesDir              "$LiteStepDir$modules\"
+
+;------------------------------------------------------------------------------
+;   define the drive letter. DO NOT TOUCH!!!
+;------------------------------------------------------------------------------
+include					"$Litestepdir$drive.rc"
+
+
+;------------------------------------------------------------------------------
+;	load personal settings and theme
+;------------------------------------------------------------------------------
+
+include                 "$ThemesDir$themeselect.rc"
+include                 "$ThemeDir$config\_compatibility_patch.rc"
+
+LoadModule              "$LiteStepDir$NLM\NetLoadModule2.dll"
+*NetLoadModuleSite      "http://www.modules.nbi-studio.com/"
+*NetLoadModuleSite      "http://modules.shellfront.org/"
+*NetLoadModuleSite      "http://www.modules.ls-universe.info/modules/"
+NetLoadModulePath       "$ModulesDir$"
+NetLoadModuleDocPath    "$ModulesDir$docs\"
+NetLoadModuleZipPath    "$ModulesDir$archive\"
+NetLoadModuleAliasFile  "$LiteStepDir$NLM\NetLoadModule.ini"
+
+include                 "$PersonalDir$personal.rc"
+include                 "$ThemeDir$theme.rc"
+
+LoadModule "G:\LiteStep\LSCP\settingsipc.dll" threaded ; LSCP2 library
