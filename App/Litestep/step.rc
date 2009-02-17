@@ -30,5 +30,3 @@ NetLoadModuleAliasFile  "$LiteStepDir$NLM\NetLoadModule.ini"
 
 include                 "$PersonalDir$personal.rc"
 include                 "$ThemeDir$theme.rc"
-
-LoadModule "G:\LiteStep\LSCP\settingsipc.dll" threaded ; LSCP2 library
