@@ -1,0 +1,78 @@
+;------------------------------------------------------------------------------
+;   sample popup config file: edit according to preference
+;------------------------------------------------------------------------------
+
+*Popup "$username$" !New !PopupBang ;DO NOT DELETE THIS LINE
+
+;the actaul popup
+;--> Include the programs (on left-hand side)
+include "$personaldir$Progs.rc"
+*Popup .icon="$PA$PortableAppsMenu\PortableAppsMenu.exe" "PortableApps" Folder %%SubMenu%%
+     *Popup "Refresh List" !alert "doesn't work yet"
+	 *Popup !Seperator
+	 include "$personaldir$PortableApps.rc"
+*Popup ~Folder
+
+*Popup !Separator
+;¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+
+; These lines add the program file folder to the popup menu
+*Popup "More Stuff!" Folder
+	*Popup .icon="$windir$system32/shell32.dll,165" "Settings" Folder
+		*Popup "Control Panel"						!PopupControlPanel %%SubMenu%%
+	*Popup ~Folder
+	*Popup "Exit..." Folder
+		*Popup .icon="$personaldir$Icons\Exit.ico" "Switch Shell" !execute ["$LiteStepDir$..\..\LitestepPortable.exe"]
+		IF WinXP
+			*Popup .icon="$personaldir$Icons\SwitchUser.ico" "Switch User" !SwitchUser
+		ENDIF
+		*Popup .icon="$windir$system32/shell32.dll,27" "Shutdown" !ShutDown
+		*Popup .icon="$windir$system32/shell32.dll,44" "Logoff"	 !LogOff
+	*Popup ~Folder
+	IF Win9x
+		*Popup "Programs"							!DynamicFolder:"$Programs$" %%SubMenu%%
+	ELSE
+		;*Popup 									!DynamicFolder:"$Programs$|$CommonPrograms$"
+		*Popup "Programs"							!DynamicFolder:"$Programs$|$CommonPrograms$|$startmenu$|$CommonStartMenu$" %%SubMenu%%
+		;*Popup "Admin Tools"						!DynamicFolder:"$AdminToolsDir$"
+	ENDIF
+
+
+	*Popup "Litestep" Folder %%SubMenu%%
+		*Popup "Litestep folder"				"$LiteStepDir$
+		*Popup "Themes folder"					"$ThemesDir$
+		*Popup !Separator
+		;   ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+		*Popup "About"							!About
+		*Popup .icon="$personaldir$Icons\Recycle.ico" "Recycle" !recycle
+		*Popup "Quit"							!execute ["$LiteStepDir$..\..\LitestepPortable.exe"]
+		*Popup !Separator
+		;	¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+
+		*Popup "Change themes" Folder
+			*Popup "Install Theme"				!execute ["$ThemesDir$ThemeSwitcher.exe /install"]
+			*Popup "Refresh List"     			!execute ["$ThemesDir$ThemeSwitcher.exe /refresh"]
+			*Popup !Separator
+	;		¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+			include "$ThemesDir$themeslist.rc"
+		*Popup ~Folder
+
+		*Popup "Utilities" Folder
+			*Popup "LOEC - Edit your Evars"		!execute ["$LiteStepDir$utilities\wxlua.exe" "$LiteStepDir$utilities\LOEC.lua"]
+			*Popup "Theme Manager"			"$LiteStepDir$utilities\ThemeSwitcher.exe"
+		*Popup ~Folder
+
+		*Popup "Edit config" Folder
+			*Popup "step.rc"					!execute ["$TxtEditor$" "$LiteStepDir$step.rc"]
+			*Popup "theme.rc"					!execute ["$TxtEditor$" "$ThemeDir$theme.rc"]
+;			*Popup "modules.ini"				!execute ["$TxtEditor$" "$LitestepDir$modules.ini"]
+			*Popup !Separator
+;			¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+			*Popup "Personal files" !PopupFolder:"$PersonalDir$"
+		*Popup ~Folder
+
+;		*Popup "Litestep Docs"					!PopupFolder:"$LitestepDir$lsdocs\*.html"
+		*Popup "Module Docs"					!PopupFolder:"$ModulesDir$docs\|$LitestepDir$NLM\*.html"
+	*Popup ~Folder
+*Popup ~Folder
+*Popup ~New ;DO NOT DELETE THIS LINE

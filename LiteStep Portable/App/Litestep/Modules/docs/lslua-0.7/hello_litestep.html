@@ -1,0 +1,69 @@
+<html><head><title>Hello Litestep</title>
+<style type="text/css">
+<!--
+@import url('lslua.css');
+//-->
+</style>
+</head><body>
+Copy the code below and save it.<br>
+Make sure you have "*NetLoadModule timer-1.0" in your theme.
+<h1>hello_litestep.lua</h1>
+<pre><code>--[[ load this file with
+*LuaFile "path/to/file/hello_litestep.lua"
+
+you need to have load the timer module too:
+*NetLoadModule timer-1.0
+
+then call "!hello" a few times ;-) (with lsxcommand, xlabel onclick events, etc. )
+
+]]--
+require "lsmodule" -- load the module
+function bang_hello()
+    -- our object ... it doesnt matter that the label does not exists, it doesn't even have a name we know!
+    local hellolabel = lsmodule.xlabel[lsmodule.getname()]
+    
+    -- but it has to look somehow:
+    hellolabel.paintingmode = ".singlecolor" 
+    hellolabel.colors = "#ff3322" -- i hope its not ugly
+    hellolabel.fontheight = 22
+    hellolabel.alwaysontop = true
+    hellolabel.starthidden = "True" --so it doesnt show immidiatly after we created it
+    hellolabel.text = '"Hello world of Litestep!"' -- setting evars with spaces takes extra quotes!
+    hellolabel.width = 400
+    hellolabel.height = 80
+    
+    -- lets have it do stuff ... like ... count up when clicked!
+    local x = 0                
+    local count = function( y )  -- a short lua function that counts how often it was called
+            x=x+1
+            if x==1 then lslua.message_box("Hello, nice to meet you!")
+            elseif x > y then lslua.message_box("Give up already!!") -- functions give up too
+            else lslua.message_box(("You can stop calling me now, you did that %i times already!"):format(x)) end
+    end
+    -- a callback is a litestep string that will run lua code! In this case it will run "count( 5 )" every time
+    hellolabel.OnLeftClick = lsmodule.callback( count, 5)
+    
+    -- the label is set up, lets create it
+    hellolabel:create() -- now it exists, but still hidden ( starthidden )
+    
+    -- position it
+    local xmouse, ymouse = lslua.mouse() --get the current mouse pos
+    hellolabel:move( xmouse-(hellolabel.width/2), ymouse-(hellolabel.height/2) ) -- center it under the mouse
+    hellolabel:show() -- show it
+    
+    -- lets play a bit with timers, too
+    local timer 
+    local ttl = 15
+    
+    -- calls a function every 1s
+    timer = lsmodule.every("1s", function() 
+                                            ttl = ttl-1 
+                                            hellolabel:settext(('Hello world of Litestep!<br>This label will autodestruct in %i secounds!'):format(ttl)) 
+                                          end
+    )
+    -- a 15 sec timer that will destroy the label and stop the update timer
+    lsmodule.after( "15s", function() timer:stop() hellolabel:destroy() end):start() -- start it first
+    timer:start() -- start the update timer
+end
+
+</code></pre></body></html>

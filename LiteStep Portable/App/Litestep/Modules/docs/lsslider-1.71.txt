@@ -1,0 +1,179 @@
+-----------------
+I. About LsSlider
+-----------------
+LsSlider is a general Slider loadmodule for Litestep. 
+You can use LsSlider to control Winamp and any given Channel
+of your Soundcard.
+
+
+----------------
+II. Installation
+----------------
+Just copy LsSlider.dll to your LS dir and add the following 
+line to your step.rc: 
+
+   Loadmodule C:\Litestep\LsSlider.dll
+(*assuming you have your LS stuff in C:\Litestep*)
+
+You can then add any number of Sliders to your Litestep Theme.
+
+------------------
+III. Configuration
+------------------
+
+LsSlider is used much like the Shortcut or the Dwharf loadmodule:
+
+*Slider "caption" <x> <y> <offset> background.bmp handle.bmp <Flags> [SLIDERMODE] options
+
+The Hooked LsBox Mode uses the same syntax:
+
+!SliderHook "caption" <x> <y> <offset> background.bmp handle.bmp <Flags> [SLIDERMODE] options
+
+
+
+"caption"	The text description that is displayed when the cursor hovers
+		over the slider.
+		
+<x>, <y>	The coordinates for the top-left corner of the slider. Can be
+		negative to place the slider relative to the right and/or
+		bottom edge of the screen.
+  
+<offset>        Offset of the SliderBar's handle from the edge of the slider.
+  
+*.bmp		The images used for the background and the handle of the Slider.
+
+<Flags>         Array of Flags that control the behavior of the Slider.
+		Use 'V' or 'H' to get either a Horizontal or a Vertical
+		  Slider. Either 'H' or 'V' have to be set to let the Slider
+		  function properly.
+		Use 'A' to make a Slider stay ontop of all windows.
+		Use 'T' to enable Magic Pink transparency.
+		Use 'I' to invert a Slider.
+		Use 'B' to start a Slider Hidden.
+		You can assign a Slider to a Slidergroup by setting a #+the 
+		groupnumber. All sliders are assigned to Group 0 by default.
+
+[SLIDERMODE]    Here you can define what kind of Slider the Slider should be.
+   		There are currently four kind of "Modes":
+   		[VOLUME] <channel> 
+   		[BALANCE] <channel>
+   		[WINAMP]
+
+   		<channel> can be any number from 0 (usually MainVolume) upto the 
+		number of channels your Soundcard has. You can also control the
+                "Winamp channel" by useing "W" for <channel> 
+		There are no Options for the [WINAMP] Mode.
+
+Examples:
+
+*Slider "Winamp" 340 2 1 "slider.bmp" "Slider_Handle.bmp" HI [WINAMP]
+*Slider "Main Volume" 356 2 1 "slider.bmp" "Slider_Handle.bmp" V [VOLUME] W
+*ModuleHook !SliderHook "MainVol" 33 3 3 slider_back.bmp slider_handle.bmp HI [VOLUME] 0
+
+
+-----------------
+IV. Bang Commands
+-----------------
+
+   -!HideSliderGroup <GroupID>
+    Hides a SliderGroup
+   -!ShowSliderGroup <GroupID>
+    Shows a SliderGroup
+   -!ToggleSliderGroup <GroupID>
+    Toggles a Slidergroup
+
+Examples:
+
+!ShowSliderGroup 0
+!ToggleSliderGroup 8
+
+These Bang Commands where originally part of V_Bang:
+
+   !SliderVolumeUp <channel>
+   !SliderVolumeDown <channel>
+   !SliderMute <channel>
+   !SliderBalanceLeft <channel>
+   !SliderBalanceRight <channel>
+   !SliderSetVolume <channel> <0-100>
+   !SliderSetBalance <channel> <-100-+100>
+
+   
+------------
+V. Versions 
+------------
+
+rel. 1.71
+     -Fixed the Position update problem
+     -Merged in all the V_Bang Bang Commands
+     
+rel. 1.7
+     -replaced the Handle dragging code with an amalgam of the code  
+      LsBox uses and the old one
+     -replaced some utility functions with newer versions from lsbox
+     -added !SliderHook - works like *Slider
+     -added LsSlider to the !about box
+     -Fixed problem with the Creative Audigy by raising the maximum 
+      number of sound channels
+     -Replaced the timer with a callback function - this means that the
+      Flag "U" is now defunct.
+     -Reshuffelt all code into more manageable submodules.
+     -Removed Slider-Dragging - hook it into a box if you want to drag 
+      it around.
+     -Removed support for loading into a Wharf (who runs a wharf nowadays 
+      anyway)  
+ 
+rel. 1.6
+    -Handle corruption ain't happening now anymore
+
+rel. 1.5
+    -Added a call in the Mainwinproc so the Slider handle position gets 
+     updated if LsSlider is loaded into an alpha-transparent lsbox.
+     There is still some kind of Wallpaper corruption when dragging the 
+     slider, but i'm not sure if thats LsSlider's or LsBox's fault.
+    -Did some codesharing with LsBox - I replaced some functions with 
+     the newer (better) functions from LsBox.
+      
+
+rel. 1.4
+    -Changed the grdAmp classname to "grdampclass" - LsSlider will now be 
+     able to control the newer versions of grdAmp 
+    -removed some useless Wharf Typedefs.
+
+rel. 1.3
+
+rel. 1.2
+   -Included with Lsbox
+
+rel. 1.1b
+   -Removed experimental code - didn't work like it should
+
+rel. 1.1a
+   -Added new flag to start Sliders Hidden
+   -Minor fixes to the Show/hide/toggle bangs
+   -Experimental code to load LsSlider in LsBox
+
+rel. 1.1
+   -Added a "WinAmp Volume" Mode 
+   -Removed "Error Closing Step.rc" Messagebox - Darkstep and purleLS 
+    should be able to run it without "Nag-box" on startup
+   -Fixed various issues with AlwaysOnTop and threaded Sliders
+   -I won't implement a [BANG] mode untill s.o. tells me he need it
+
+rel. 1.0
+   -total rewrite
+   -new Winamp mode
+   -new VolumeControl engine
+   -very small and resourcefriendly
+   -won't need v_bang anymore {was a stupid idea}
+   -[BANG] mode isn't implementet, but i don't think that anyone did ever use it.
+
+--------------
+VI: Contact me
+--------------
+you can always get the newest version from my homepage:
+  http://www.blkhawk.de or http://blkhawk.cjb.net
+
+If you have any Question, a Bug Report or a Suggestion mail me @:
+  blkhawk@blkhawk.de
+  
+ -Have Phun!
