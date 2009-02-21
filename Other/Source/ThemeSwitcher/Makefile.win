@@ -1,0 +1,60 @@
+# Project: ThemeSwitcher
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++.exe -D__DEBUG__
+CC   = gcc.exe -D__DEBUG__
+WINDRES = windres.exe
+RES  = ThemeSwitcher_private.res
+OBJ  = main.o GetSettings.o ArgProc.o SwitchTheme.o Error.o InstallTheme.o RefreshThemes.o FindLitestep.o SettingsDialog.o ProcessExist.o $(RES)
+LINKOBJ  = main.o GetSettings.o ArgProc.o SwitchTheme.o Error.o InstallTheme.o RefreshThemes.o FindLitestep.o SettingsDialog.o ProcessExist.o $(RES)
+LIBS =  -L"G:/PortableApps/Dev-CppPortable/App/devcpp/lib" -mwindows ../../PortableApps/Dev-CppPortable/App/devcpp/lib/libpsapi.a  -g3 
+INCS =  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/include" 
+CXXINCS =  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/lib/gcc/mingw32/3.4.2/include"  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/include/c++/3.4.2/backward"  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/include/c++/3.4.2/mingw32"  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/include/c++/3.4.2"  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/include" 
+BIN  = ThemeSwitcher.exe
+CXXFLAGS = $(CXXINCS)   -g3
+CFLAGS = $(INCS)   -g3
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before ThemeSwitcher.exe all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o "ThemeSwitcher.exe" $(LIBS)
+
+main.o: main.cpp
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
+
+GetSettings.o: GetSettings.cpp
+	$(CPP) -c GetSettings.cpp -o GetSettings.o $(CXXFLAGS)
+
+ArgProc.o: ArgProc.cpp
+	$(CPP) -c ArgProc.cpp -o ArgProc.o $(CXXFLAGS)
+
+SwitchTheme.o: SwitchTheme.cpp
+	$(CPP) -c SwitchTheme.cpp -o SwitchTheme.o $(CXXFLAGS)
+
+Error.o: Error.cpp
+	$(CPP) -c Error.cpp -o Error.o $(CXXFLAGS)
+
+InstallTheme.o: InstallTheme.cpp
+	$(CPP) -c InstallTheme.cpp -o InstallTheme.o $(CXXFLAGS)
+
+RefreshThemes.o: RefreshThemes.cpp
+	$(CPP) -c RefreshThemes.cpp -o RefreshThemes.o $(CXXFLAGS)
+
+FindLitestep.o: FindLitestep.cpp
+	$(CPP) -c FindLitestep.cpp -o FindLitestep.o $(CXXFLAGS)
+
+SettingsDialog.o: SettingsDialog.cpp
+	$(CPP) -c SettingsDialog.cpp -o SettingsDialog.o $(CXXFLAGS)
+
+ProcessExist.o: ProcessExist.cpp
+	$(CPP) -c ProcessExist.cpp -o ProcessExist.o $(CXXFLAGS)
+
+ThemeSwitcher_private.res: ThemeSwitcher_private.rc 
+	$(WINDRES) -i ThemeSwitcher_private.rc --input-format=rc -o ThemeSwitcher_private.res -O coff 

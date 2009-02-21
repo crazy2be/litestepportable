@@ -1,0 +1,37 @@
+/* THIS FILE WILL BE OVERWRITTEN BY DEV-C++ */
+/* DO NOT EDIT! */
+
+#include <windows.h> // include for version info constants
+
+
+A ICON MOVEABLE PURE LOADONCALL DISCARDABLE "ThemeSwitcher.ico"
+
+//
+// TO CHANGE VERSION INFORMATION, EDIT PROJECT OPTIONS...
+//
+1 VERSIONINFO
+FILEVERSION 1,0,0,1
+PRODUCTVERSION 1,0,0,1
+FILETYPE VFT_APP
+{
+  BLOCK "StringFileInfo"
+	 {
+		 BLOCK "040904E4"
+		 {
+			 VALUE "CompanyName", "crazy2be"
+			 VALUE "FileVersion", "1.0b"
+			 VALUE "FileDescription", "A Theme Switcher/Installer/Manager for LiteStep!"
+			 VALUE "InternalName", "ThemeSwitcher"
+			 VALUE "LegalCopyright", "GPL"
+			 VALUE "LegalTrademarks", "GPL"
+			 VALUE "OriginalFilename", "ThemeSwitcher.exe"
+			 VALUE "ProductName", "ThemeSwitcher"
+			 VALUE "ProductVersion", "1.0b"
+		 }
+	 }
+  BLOCK "VarFileInfo"
+	 {
+		 VALUE "Translation", 0x0409, 1252
+	 }
+}
+
