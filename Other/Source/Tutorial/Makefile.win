@@ -1,0 +1,57 @@
+# Project: Tutorial
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++.exe
+CC   = gcc.exe
+WINDRES = windres.exe
+RES  = Tutorial_private.res
+OBJ  = main.o HTMLWindow.o DocHostUiHandler.o OleClientSite.o OleInPlaceSite.o stdHelpers.o Tracer.o UrlHelper.o VariantHelper.o $(RES)
+LINKOBJ  = main.o HTMLWindow.o DocHostUiHandler.o OleClientSite.o OleInPlaceSite.o stdHelpers.o Tracer.o UrlHelper.o VariantHelper.o $(RES)
+LIBS =  -L"G:/PortableApps/Dev-CppPortable/App/devcpp/lib" -mwindows ../../PortableApps/Dev-CppPortable/App/devcpp/lib/libole32.a ../../PortableApps/Dev-CppPortable/App/devcpp/lib/libuuid.a ../../PortableApps/Dev-CppPortable/App/devcpp/lib/liboleaut32.a  -s 
+INCS =  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/include" 
+CXXINCS =  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/lib/gcc/mingw32/3.4.2/include"  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/include/c++/3.4.2/backward"  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/include/c++/3.4.2/mingw32"  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/include/c++/3.4.2"  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/include" 
+BIN  = Tutorial.exe
+CXXFLAGS = $(CXXINCS)  
+CFLAGS = $(INCS)  
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before Tutorial.exe all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o "Tutorial.exe" $(LIBS)
+
+main.o: main.cpp
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
+
+HTMLWindow.o: HTMLWindow.cpp
+	$(CPP) -c HTMLWindow.cpp -o HTMLWindow.o $(CXXFLAGS)
+
+DocHostUiHandler.o: DocHostUiHandler.cpp
+	$(CPP) -c DocHostUiHandler.cpp -o DocHostUiHandler.o $(CXXFLAGS)
+
+OleClientSite.o: OleClientSite.cpp
+	$(CPP) -c OleClientSite.cpp -o OleClientSite.o $(CXXFLAGS)
+
+OleInPlaceSite.o: OleInPlaceSite.cpp
+	$(CPP) -c OleInPlaceSite.cpp -o OleInPlaceSite.o $(CXXFLAGS)
+
+stdHelpers.o: stdHelpers.cpp
+	$(CPP) -c stdHelpers.cpp -o stdHelpers.o $(CXXFLAGS)
+
+Tracer.o: Tracer.cpp
+	$(CPP) -c Tracer.cpp -o Tracer.o $(CXXFLAGS)
+
+UrlHelper.o: UrlHelper.cpp
+	$(CPP) -c UrlHelper.cpp -o UrlHelper.o $(CXXFLAGS)
+
+VariantHelper.o: VariantHelper.cpp
+	$(CPP) -c VariantHelper.cpp -o VariantHelper.o $(CXXFLAGS)
+
+Tutorial_private.res: Tutorial_private.rc 
+	$(WINDRES) -i Tutorial_private.rc --input-format=rc -o Tutorial_private.res -O coff 
