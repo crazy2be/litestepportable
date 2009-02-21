@@ -5,10 +5,8 @@ body {
 	padding-bottom: 0px;
 	background-image: url('..\img\background.jpg');
 	background-repeat: no-repeat;
+	behavior: url('..\..\js\WH3.htc');
 	/*background-color: yellow;*/
-}
-h1 {
-	size: 500px;
 }
 .ContentDiv {
 	overflow-y: scroll;
@@ -35,4 +33,27 @@ h1 {
 	border-style: dashed;
 	border-color: black;
 	border-width: 1;
+}
+.TutorialSelector {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100px;
+	/*height: -20px;*/
+	margin-bottom: 20px;
+	display: none;
+}
+.ClassToggleTutorialSelector {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100px;
+	height: 5px;
+	z-index: 1;
+	background-color: blue;
+	overflow: hidden;
+}
+.ClassToggleTutorialSelector:hover {
+	background-color: red;
+	display: inline;
 }

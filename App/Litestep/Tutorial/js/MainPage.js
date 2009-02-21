@@ -1,6 +1,10 @@
 // Global Variables
 var PageNumber = 1; //The tutorial page we are on
 var MaxPages = 4; //The number of pages in the turorial
+var Lang = "Eng"; // The language
+
+// Handlers
+//window.onerror=handleErr;
 
 function ExitCode() {
 	if (confirm("Are you sure you wish to exit?\n"
@@ -16,7 +20,7 @@ function NextPage() {
 		GotoPage();
 		if (PageNumber == MaxPages) {
 			CancelButton.style.display = "none";
-			NextButton.src = "..\\img\\Finish.png";
+			NextButton.src = "..\\..\\" + Lang + "\\img\\Finish.png";
 		}
 	} else if (PageNumber == MaxPages) {
 		window.close();
@@ -32,19 +36,59 @@ function PrevPage() {
 	}
 	if (PageNumber < MaxPages) {
 		CancelButton.style.display = "inline";
-		NextButton.src = "..\\img\\Next.png";
+		NextButton.src = "..\\..\\" + Lang + "\\img\\Next.png";
 	}
 }
 
 function FirstPage() {
+	ToggleTutorialSelector()
 	PageNumber=1;
 	GotoPage();
+	if (PageNumber < MaxPages) {
+		CancelButton.style.display = "inline";
+		NextButton.src = "..\\..\\" + Lang + "\\img\\Next.png";
+	}
 }
 
 function GotoPage() {
 	var xmlHttpReq = new ActiveXObject("MSXML2.XMLHTTP.3.0");
-	xmlHttpReq.open("GET", "Page" + PageNumber + ".html", false);
-	xmlHttpReq.send();
+	xmlHttpReq.open("GET", "..\\..\\" + Lang + "\\html\\Page" + PageNumber + ".html", false);
+	try {
+		xmlHttpReq.send();
+		ContentDiv.innerHTML = xmlHttpReq.responseText;
+	} catch (error) {
+		alert('Error occured while attempting to retreive page:\n'
+			+ error.message + '\n');
+	}
 	//alert(xmlHttpReq.responseText);
-	ContentDiv.innerHTML = xmlHttpReq.responseText;
 }
+
+function ChangeLang() {
+	Lang = LangSelector.value;
+	BegginingButton.src = "..\\..\\" + Lang + "\\img\\Beggining.png";
+	BackButton.src = "..\\..\\" + Lang + "\\img\\Back.png";
+	NextButton.src = "..\\..\\" + Lang + "\\img\\Next.png";
+	CancelButton.src = "..\\..\\" + Lang + "\\img\\Cancel.png";
+	GotoPage();
+}
+
+function ToggleTutorialSelector() {
+	//Toggler = TutorialSelectorDiv.style.display;
+	TutorialSelectorDiv.style.display = 
+		(TutorialSelectorDiv.style.display == "none")
+			? ("block") : ("none");
+	ContentDiv.style.width =
+		(ContentDiv.style.width == "585px")
+			? ("485px") : ("585px");
+	ContentDiv.style.left =
+		(ContentDiv.style.left == "5px")
+			? ("105px") : ("5px");
+}
+/*function handleErr(msg, url, l) {
+	alert('SOMETHING WENT WRONG');
+	alert('Something whent wrong :(\n'
+		+ msg
+		+ '\nline: ' + url
+		+ '\npage: ' + l);
+	return false;
+}*/
