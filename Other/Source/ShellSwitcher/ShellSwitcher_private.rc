@@ -1,0 +1,44 @@
+/* THIS FILE WILL BE OVERWRITTEN BY DEV-C++ */
+/* DO NOT EDIT! */
+
+#include <windows.h> // include for version info constants
+
+
+A ICON MOVEABLE PURE LOADONCALL DISCARDABLE "ShellSwitcher.ico"
+
+//
+// SUPPORT FOR WINDOWS XP THEMES:
+// THIS WILL MAKE THE PROGRAM USE THE COMMON CONTROLS
+// LIBRARY VERSION 6.0 (IF IT IS AVAILABLE)
+//
+1 24 "ShellSwitcher.exe.Manifest"
+
+//
+// TO CHANGE VERSION INFORMATION, EDIT PROJECT OPTIONS...
+//
+1 VERSIONINFO
+FILEVERSION 0,2,1,14
+PRODUCTVERSION 0,2,1,14
+FILETYPE VFT_APP
+{
+  BLOCK "StringFileInfo"
+	 {
+		 BLOCK "040904E4"
+		 {
+			 VALUE "CompanyName", "crazy2be"
+			 VALUE "FileVersion", ""
+			 VALUE "FileDescription", "ShellSwitcher for LiteStep, a.k.a. Litestep Portable"
+			 VALUE "InternalName", "LiteStep Portable"
+			 VALUE "LegalCopyright", "GPL"
+			 VALUE "LegalTrademarks", "GPL"
+			 VALUE "OriginalFilename", ""
+			 VALUE "ProductName", "LiteStep Portable"
+			 VALUE "ProductVersion", ""
+		 }
+	 }
+  BLOCK "VarFileInfo"
+	 {
+		 VALUE "Translation", 0x0409, 1252
+	 }
+}
+

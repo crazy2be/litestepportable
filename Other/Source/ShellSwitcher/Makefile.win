@@ -1,0 +1,57 @@
+# Project: ShellSwitcher
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++.exe
+CC   = gcc.exe
+WINDRES = windres.exe
+RES  = ShellSwitcher_private.res
+OBJ  = main.o GetSettings.o ProcessExist.o Error.o Switcher.o GlobalVars.o UpdateIcons.o FindLitestep.o ArgProc.o $(RES)
+LINKOBJ  = main.o GetSettings.o ProcessExist.o Error.o Switcher.o GlobalVars.o UpdateIcons.o FindLitestep.o ArgProc.o $(RES)
+LIBS =  -L"G:/PortableApps/Dev-CppPortable/App/devcpp/lib" -mwindows ../../PortableApps/Dev-CppPortable/App/devcpp/lib/libpsapi.a ../../PortableApps/Dev-CppPortable/App/devcpp/lib/libshlwapi.a ../../PortableApps/Dev-CppPortable/App/devcpp/lib/libole32.a ../../PortableApps/Dev-CppPortable/App/devcpp/lib/libuuid.a ../../PortableApps/Dev-CppPortable/App/devcpp/lib/libshell32.a  -s 
+INCS =  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/include" 
+CXXINCS =  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/lib/gcc/mingw32/3.4.2/include"  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/include/c++/3.4.2/backward"  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/include/c++/3.4.2/mingw32"  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/include/c++/3.4.2"  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/include" 
+BIN  = ShellSwitcher.exe
+CXXFLAGS = $(CXXINCS)  
+CFLAGS = $(INCS)  
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before ShellSwitcher.exe all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o "ShellSwitcher.exe" $(LIBS)
+
+main.o: main.cpp
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
+
+GetSettings.o: GetSettings.cpp
+	$(CPP) -c GetSettings.cpp -o GetSettings.o $(CXXFLAGS)
+
+ProcessExist.o: ProcessExist.cpp
+	$(CPP) -c ProcessExist.cpp -o ProcessExist.o $(CXXFLAGS)
+
+Error.o: Error.cpp
+	$(CPP) -c Error.cpp -o Error.o $(CXXFLAGS)
+
+Switcher.o: Switcher.cpp
+	$(CPP) -c Switcher.cpp -o Switcher.o $(CXXFLAGS)
+
+GlobalVars.o: GlobalVars.cpp
+	$(CPP) -c GlobalVars.cpp -o GlobalVars.o $(CXXFLAGS)
+
+UpdateIcons.o: UpdateIcons.cpp
+	$(CPP) -c UpdateIcons.cpp -o UpdateIcons.o $(CXXFLAGS)
+
+FindLitestep.o: FindLitestep.cpp
+	$(CPP) -c FindLitestep.cpp -o FindLitestep.o $(CXXFLAGS)
+
+ArgProc.o: ArgProc.cpp
+	$(CPP) -c ArgProc.cpp -o ArgProc.o $(CXXFLAGS)
+
+ShellSwitcher_private.res: ShellSwitcher_private.rc 
+	$(WINDRES) -i ShellSwitcher_private.rc --input-format=rc -o ShellSwitcher_private.res -O coff 
