@@ -20,7 +20,7 @@ function NextPage() {
 		GotoPage();
 		if (PageNumber == MaxPages) {
 			CancelButton.style.display = "none";
-			NextButton.src = "..\\..\\" + Lang + "\\img\\Finish.png";
+			NextButton.src = "..\\img\\Finish.png";
 		}
 	} else if (PageNumber == MaxPages) {
 		window.close();
@@ -36,23 +36,23 @@ function PrevPage() {
 	}
 	if (PageNumber < MaxPages) {
 		CancelButton.style.display = "inline";
-		NextButton.src = "..\\..\\" + Lang + "\\img\\Next.png";
+		NextButton.src = "..\\img\\Next.png";
 	}
 }
 
 function FirstPage() {
-	ToggleTutorialSelector()
+	//ToggleTutorialSelector()
 	PageNumber=1;
 	GotoPage();
 	if (PageNumber < MaxPages) {
 		CancelButton.style.display = "inline";
-		NextButton.src = "..\\..\\" + Lang + "\\img\\Next.png";
+		NextButton.src = "..\\img\\Next.png";
 	}
 }
 
 function GotoPage() {
 	var xmlHttpReq = new ActiveXObject("MSXML2.XMLHTTP.3.0");
-	xmlHttpReq.open("GET", "..\\..\\" + Lang + "\\html\\Page" + PageNumber + ".html", false);
+	xmlHttpReq.open("GET", "..\\" + Lang + "\\html\\Page" + PageNumber + ".html", false);
 	try {
 		xmlHttpReq.send();
 		ContentDiv.innerHTML = xmlHttpReq.responseText;
@@ -65,24 +65,27 @@ function GotoPage() {
 
 function ChangeLang() {
 	Lang = LangSelector.value;
-	BegginingButton.src = "..\\..\\" + Lang + "\\img\\Beggining.png";
-	BackButton.src = "..\\..\\" + Lang + "\\img\\Back.png";
-	NextButton.src = "..\\..\\" + Lang + "\\img\\Next.png";
-	CancelButton.src = "..\\..\\" + Lang + "\\img\\Cancel.png";
+	/*BegginingButton.src = "..\\img\\Beggining.png";
+	BackButton.src = "..\\img\\Back.png";
+	NextButton.src = "..\\img\\Next.png";
+	CancelButton.src = "..\\img\\Cancel.png";*/
 	GotoPage();
 }
 
-function ToggleTutorialSelector() {
+function ToggleTutorialSelectorFunc() {
 	//Toggler = TutorialSelectorDiv.style.display;
 	TutorialSelectorDiv.style.display = 
 		(TutorialSelectorDiv.style.display == "none")
 			? ("block") : ("none");
 	ContentDiv.style.width =
-		(ContentDiv.style.width == "585px")
-			? ("485px") : ("585px");
+		(ContentDiv.style.width == "580px")
+			? ("480px") : ("580px");
 	ContentDiv.style.left =
-		(ContentDiv.style.left == "5px")
-			? ("105px") : ("5px");
+		(ContentDiv.style.left == "10px")
+			? ("110px") : ("10px");
+	ToggleTutorialSelector.style.left =
+		(ToggleTutorialSelector.style.left == "0px")
+			? ("100px") : ("0px");
 }
 /*function handleErr(msg, url, l) {
 	alert('SOMETHING WENT WRONG');

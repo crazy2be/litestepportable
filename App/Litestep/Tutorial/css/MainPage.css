@@ -5,20 +5,22 @@ body {
 	padding-bottom: 0px;
 	background-image: url('..\img\background.jpg');
 	background-repeat: no-repeat;
-	behavior: url('..\..\js\WH3.htc');
+	behavior: url('..\js\WH3.htc');
+	overflow: hidden;
+	
 	/*background-color: yellow;*/
 }
 .ContentDiv {
 	overflow-y: scroll;
 	position: absolute;
-	top: 0px;
-	left: 5px;
+	bottom: 0px;
+	left: 10px;
 	height: 360px;
 	width: 585px;
 }
 .ControlDiv {
 	position: absolute;
-	bottom: 0px;
+	top: 0px;
 	left: 5px;
 	width: 600px;
 	height: 20px;
@@ -37,23 +39,25 @@ body {
 .TutorialSelector {
 	position: absolute;
 	left: 0px;
-	top: 0px;
+	top: 20px;
 	width: 100px;
 	/*height: -20px;*/
 	margin-bottom: 20px;
 	display: none;
 }
-.ClassToggleTutorialSelector {
+.ToggleTutorialSelector {
 	position: absolute;
 	left: 0px;
-	top: 0px;
-	width: 100px;
-	height: 5px;
+	top: 20px;
+	/*bottom: 0px;*/
+	width: 5px;
+	height: 100%;
+	margin-bottom: 20px;
 	z-index: 1;
 	background-color: blue;
 	overflow: hidden;
 }
-.ClassToggleTutorialSelector:hover {
+.ToggleTutorialSelector:hover {
 	background-color: red;
 	display: inline;
 }

@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<title>Loading...</title>
+		<script type="text/javascript" language="javascript" src="..\js\MainPage.js"></script>
+		<link href="..\css\MainPage.css" rel="stylesheet" type="text/css" media="all" />
+	</head>
+	<body onLoad="FirstPage();">
+		<div class="ToggleTutorialSelector" id="ToggleTutorialSelector" onclick="ToggleTutorialSelectorFunc()">
+		</div>
+		<div class="TutorialSelector" id="TutorialSelectorDiv">
+			test1<br>
+			test2<br>
+			test3<br>
+		</div>
+		<div class="ContentDiv" id="ContentDiv">
+		</div>
+		<div class="ControlDiv">
+			<input type="image" src="..\img\Beggining.png" onClick="FirstPage();" id="BegginingButton">
+			<input type="image" src="..\img\Back.png" onClick="PrevPage();" id="BackButton">
+			<input type="image" src="..\img\Next.png" onClick="NextPage();" id="NextButton">
+			<input type="image" src="..\img\Cancel.png" onClick="ExitCode();" id="CancelButton">
+		</div>
+	</body>
+</html>
