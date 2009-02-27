@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
         PromptAction();
     } else {
         Warning("\"PromptLevel\" is set to an invalid setting!\nDefaulting to allways prompting ( setting 2 )\nDefine it in Settings.ini, \"PromptLevel=[1-3]\"");
-        PromptLevel = 3;
+        SetIntValue("PromptLevel",3);
         //UpdateIcons();
         PromptAction();
     }

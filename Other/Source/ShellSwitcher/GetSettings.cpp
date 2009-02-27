@@ -12,9 +12,15 @@ bool GetBoolValue(string ValueToGet) {
         || ReturnString == "0") {
             return false;
     } else {
-        Warning("Attempted retreval of a bool value resulted in\n"
-            "the retreival of a non-bool value. Returning false\n"
-            "to the caller function.");
+        Warning("Attempted retreval of bool value,\n" 
+            + ValueToGet + 
+            "\nresulted in the retreival of a non-bool\n"
+            "value. Returning false to the caller function.\n"
+            "\n"
+            "In other words, you should either change the\n"
+            "setting's value in Data\\Settings.ini, or\n"
+            "maybe you need to define it :P Like this:\n"
+            + ValueToGet + "=true");
         return false;
     }
 }
@@ -46,7 +52,7 @@ string GetValue(string ValueToGet) {
                 }
             }
         } else {
-            Error("Unable to open Settings.ini for reading!");
+            Error("Unable to open Data\\Settings.ini for reading!");
         }
         SetRead.close();
         return GetDefaultValue(ValueToGet);
@@ -105,7 +111,15 @@ void SetValue(string Setting, string Value) {
             }
             SetWrite.close();
         } else {
-            Error("Unable to open Data\\Settings.ini for reading!");
+            Error("Unable to open Data\\Settings.ini for reading!\n"
+                "Attemping to open for writing...");
+            ofstream SetWrite ("Data\\Settings.ini");
+            if (SetWrite.is_open()) {
+                SetWrite << Setting << "=" << Value << "\n";
+            } else {
+                 Error("Unable to open Data\\Settings.ini for writing!");
+            }
+            SetWrite.close();  
         }
 
     } catch (...) {
