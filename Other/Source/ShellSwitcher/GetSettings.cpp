@@ -15,12 +15,15 @@ bool GetBoolValue(string ValueToGet) {
         Warning("Attempted retreval of bool value,\n" 
             + ValueToGet + 
             "\nresulted in the retreival of a non-bool\n"
-            "value. Returning false to the caller function.\n"
+            "value. Returning false to the caller function,\n"
+            "and attempting to set it to false to avoid this\n"
+            "error in the future.\n"
             "\n"
             "In other words, you should either change the\n"
             "setting's value in Data\\Settings.ini, or\n"
             "maybe you need to define it :P Like this:\n"
             + ValueToGet + "=true");
+        SetBoolValue(ValueToGet, false);
         return false;
     }
 }
