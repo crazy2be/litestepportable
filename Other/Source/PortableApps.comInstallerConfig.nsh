@@ -31,9 +31,9 @@
 ;== Basic Information.  Basic information about the portable app
 !define NAME "LiteStep Portable"
 !define SHORTNAME "LiteStepPortable"
-!define VERSION "0.5.1.0"
-!define FILENAME "LiteStep_Portable_0.5.1"
-!define CHECKRUNNING "LiteStepPortable.exe"
+!define VERSION "0.5.1.2"
+!define FILENAME "LiteStep_Portable_0.5.1.2"
+!define CHECKRUNNING "LiteStep.exe"
 !define CLOSENAME "LiteStep Portable "
 !define ADDONSDIRECTORYPRESERVE "NONE" ;use "NONE" for no plugins directory or relative to install directory: App\AppName\plugins
 !define INSTALLERCOMMENTS "For additional details, visit PortableApps.com"
@@ -108,12 +108,12 @@
 ;!define LICENSEAGREEMENT "eula.rtf"
 
 ;== Multi-Installer.  If making an installer with no options (like additional languages), comment out the next line by placing a semicolon at the start of it
-;!define MAINSECTIONTITLE "AppName Portable (English) [Required]"
+!define MAINSECTIONTITLE "AppName Portable (English) [Required]"
 !ifdef MAINSECTIONTITLE
 	!define MAINSECTIONDESCRIPTION "Install the portable app"
-	!define OPTIONALSECTIONTITLE "Additional Languages"
-	!define OPTIONALSECTIONDESCRIPTION "Add multilingual support for this app"
-	!define OPTIONALSECTIONSELECTEDAPPINFOSUFFIX "(Multilingual)"
+	!define OPTIONALSECTIONTITLE "Source"
+	!define OPTIONALSECTIONDESCRIPTION "Include the source files used in this app. If you don't know what this is, you don't want it."
+	!define OPTIONALSECTIONSELECTEDAPPINFOSUFFIX "(Source)"
 	!define OPTIONALSECTIONNOTSELECTEDAPPINFOSUFFIX "(English)"
 	;!define OPTIONALSECTIONPRESELECTEDIFNONENGLISHINSTALL "true" ;Uncomment this line if you want the optional piece selected by default if the user chooses an install language other than English
 !endif
@@ -151,7 +151,7 @@
 ;!define PRESERVEFILE10 ""
 
 ;== Remove Specific Directories.  If you wish to remove specific directories and all files within, define them here.
-;!define REMOVEDIRECTORY1 "App\Example"
+!define REMOVEDIRECTORY1 "*\.svn\*"
 ;!define REMOVEDIRECTORY2 ""
 ;!define REMOVEDIRECTORY3 ""
 ;!define REMOVEDIRECTORY4 ""
