@@ -16,7 +16,7 @@ body {
 	bottom: 0px;
 	left: 10px;
 	height: 360px;
-	width: 585px;
+	width: 581px;
 }
 .ControlDiv {
 	position: absolute;
@@ -24,6 +24,7 @@ body {
 	left: 5px;
 	width: 600px;
 	height: 20px;
+	overflow: hidden;
 }
 .CancelButton {
 	position: absolute;

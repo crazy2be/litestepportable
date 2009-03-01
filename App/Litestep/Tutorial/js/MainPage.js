@@ -5,7 +5,6 @@ var Lang = "Eng"; // The language
 
 // Handlers
 //window.onerror=handleErr;
-
 function ExitCode() {
 	if (confirm("Are you sure you wish to exit?\n"
 		+ "This tutorial covers only the basics, and will likely reduce frustration later...\n"
@@ -17,7 +16,7 @@ function ExitCode() {
 function NextPage() {
 	if (PageNumber < MaxPages) {
 		PageNumber++;
-		GotoPage();
+		GotoTutorialPage();
 		if (PageNumber == MaxPages) {
 			CancelButton.style.display = "none";
 			NextButton.src = "..\\img\\Finish.png";
@@ -30,7 +29,7 @@ function NextPage() {
 function PrevPage() {
 	PageNumber--;
 	if (PageNumber > 1) {
-		GotoPage();
+		GotoTutorialPage();
 	} else {
 		FirstPage();
 	}
@@ -43,23 +42,51 @@ function PrevPage() {
 function FirstPage() {
 	//ToggleTutorialSelector()
 	PageNumber=1;
-	GotoPage();
+	GotoTutorialPage();
 	if (PageNumber < MaxPages) {
 		CancelButton.style.display = "inline";
 		NextButton.src = "..\\img\\Next.png";
 	}
 }
 
-function GotoPage() {
+function GotoTutorialPage() {
+	GotoPage("..\\" + Lang + "\\html\\Page" + PageNumber + ".html");
+}
+
+function GotoPage(Path) {
 	var xmlHttpReq = new ActiveXObject("MSXML2.XMLHTTP.3.0");
-	xmlHttpReq.open("GET", "..\\" + Lang + "\\html\\Page" + PageNumber + ".html", false);
 	try {
+		xmlHttpReq.open("GET", Path, false);
 		xmlHttpReq.send();
 		ContentDiv.innerHTML = xmlHttpReq.responseText;
 	} catch (error) {
 		alert('Error occured while attempting to retreive page:\n'
+			+ '(' + Path + ')\n'
 			+ error.message + '\n');
 	}
+	// Find all the images in the loaded document, and correct their paths.
+	var Images = ContentDiv.getElementsByTagName('img');
+	for (i = 0; i < Images.length; i++) {
+		var Image = Images[i].src;
+		var FileName = Image.substring(
+			Image.lastIndexOf('/')+1);
+		var Path = Image.substring(
+			0, Image.lastIndexOf('/'));
+		Path = Path.substring(
+			0, Path.lastIndexOf('/')+1);
+		//alert(Path);
+		Images[i].src = Path
+			+ Lang + '/img/' + FileName;
+		//alert(Images[i]);
+	}
+	/*var Codes = getElementsByClass('Code', ContentDiv, 'Div');
+	for (i = 0; i < Codes.length; i++) {
+		var Code = Codes[i].innerHTML;
+		var LastLineFeed = Code.lastIndexOf('\n');
+		for (j = 0; j < LastLineFeed; j = Code.indexOf('\n')) {
+			
+		}
+	}*/
 	//alert(xmlHttpReq.responseText);
 }
 
@@ -69,7 +96,7 @@ function ChangeLang() {
 	BackButton.src = "..\\img\\Back.png";
 	NextButton.src = "..\\img\\Next.png";
 	CancelButton.src = "..\\img\\Cancel.png";*/
-	GotoPage();
+	GotoTutorialPage();
 }
 
 function ToggleTutorialSelectorFunc() {
@@ -78,8 +105,8 @@ function ToggleTutorialSelectorFunc() {
 		(TutorialSelectorDiv.style.display == "none")
 			? ("block") : ("none");
 	ContentDiv.style.width =
-		(ContentDiv.style.width == "580px")
-			? ("480px") : ("580px");
+		(ContentDiv.style.width == "581px")
+			? ("481px") : ("581px");
 	ContentDiv.style.left =
 		(ContentDiv.style.left == "10px")
 			? ("110px") : ("10px");
@@ -95,3 +122,21 @@ function ToggleTutorialSelectorFunc() {
 		+ '\npage: ' + l);
 	return false;
 }*/
+
+function getElementsByClass(searchClass,node,tag) {
+	var classElements = new Array();
+	if ( node == null )
+		node = document;
+	if ( tag == null )
+		tag = '*';
+	var els = node.getElementsByTagName(tag);
+	var elsLen = els.length;
+	var pattern = new RegExp("(^|\\s)"+searchClass+"(\\s|$)");
+	for (i = 0, j = 0; i < elsLen; i++) {
+		if ( pattern.test(els[i].className) ) {
+			classElements[j] = els[i];
+			j++;
+		}
+	}
+	return classElements;
+}
