@@ -58,7 +58,7 @@ function GotoPage(Path) {
 	try {
 		xmlHttpReq.open("GET", Path, false);
 		xmlHttpReq.send();
-		ContentDiv.innerHTML = xmlHttpReq.responseText;
+		ContentDiv.innerHTML = ParseForCode(xmlHttpReq.responseText);
 	} catch (error) {
 		alert('Error occured while attempting to retreive page:\n'
 			+ '(' + Path + ')\n'
@@ -122,6 +122,31 @@ function ToggleTutorialSelectorFunc() {
 		+ '\npage: ' + l);
 	return false;
 }*/
+
+function ParseForCode(ToParse) {
+	EndLines = '';
+	Lines = new Array();
+	Lines = ToParse.split('\n');
+	CodeLinePattern = new RegExp('<div(\\s+)class="(\\s*)code(\\s*)"(.*?)>');
+	EndCodeBlock = new RegExp('</div>');
+	InCodeDiv = false;
+	for (i = 1; i < Lines.length; i++) {
+		EndLines += Lines[i];
+		EndLines += '\n';
+		if (InCodeDiv) {
+			if (EndCodeBlock.test(Lines[i])) {
+				InCodeDiv = false;
+			} else {
+				EndLines += '<BR />';
+			}
+		}
+	    if (CodeLinePattern.test(Lines[i])) {
+			InCodeDiv = true;
+			//alert(Lines[i] + '\nMatched!');
+		}
+	}
+	return EndLines;
+}
 
 function getElementsByClass(searchClass,node,tag) {
 	var classElements = new Array();
