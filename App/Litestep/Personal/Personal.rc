@@ -62,14 +62,14 @@ DeskIconsIconPositionFile		"$PersonalDir$positions.ini"
 
 ;--> Uncomment to set a Backround in Most Themes. Change "Backround.jpg" to the
 ;    name and path to the image you want to use.
-;Backround						"Backround.jpg"
-;DeskIconsBackround				$Backround$
-;DeskIconsBackround				"$litestepdir$Images\white.bmp"
+Background						"$litestepdir$Images\Background.jpg"
+;DeskIconsBackground				$Background$
+;DeskIconsBackground				"$litestepdir$Images\white.bmp"
 
 ;set the BG color
-xDeskHueColor					FFFFFF
-xDeskHueIntensity				100
-DeskiconsBackgroundColor		FFFFFF
+;xDeskHueColor					FFFFFF
+;xDeskHueIntensity				100
+;DeskiconsBackgroundColor		FFFFFF
 ;------------------------------------------------------------------------------
 ;   personal settings: jDesk
 ;------------------------------------------------------------------------------

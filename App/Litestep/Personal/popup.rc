@@ -8,7 +8,7 @@
 ;--> Include the programs (on left-hand side)
 include "$personaldir$Progs.rc"
 *Popup .icon="$PA$PortableAppsMenu\PortableAppsMenu.exe" "PortableApps" Folder %%SubMenu%%
-     *Popup "Refresh List" !alert "doesn't work yet"
+     *Popup "Refresh List" "$PA$\LiteStepPortable.exe /refresh"
 	 *Popup !Seperator
 	 include "$personaldir$PortableApps.rc"
 *Popup ~Folder
