@@ -1,3 +1,4 @@
+
 <html>
 	<head>
 		<title>Loading...</title>
@@ -8,9 +9,7 @@
 		<div class="ToggleTutorialSelector" id="ToggleTutorialSelector" onclick="ToggleTutorialSelectorFunc()">
 		</div>
 		<div class="TutorialSelector" id="TutorialSelectorDiv">
-			test1<br>
-			test2<br>
-			test3<br>
+			Loading...
 		</div>
 		<div class="ContentDiv" id="ContentDiv">
 		</div>
@@ -19,6 +18,13 @@
 			<input type="image" src="..\img\Back.png" onClick="PrevPage();" id="BackButton">
 			<input type="image" src="..\img\Next.png" onClick="NextPage();" id="NextButton">
 			<input type="image" src="..\img\Cancel.png" onClick="ExitCode();" id="CancelButton">
+			<select onchange="ChangeLang()" id="LangSelector">
+				<option value="">Loading...</option>
+				<option value="Eng">English</option>
+				<option value="Fr">French</option>
+				<option value="Sp">Spanish</option>
+				<option value="Swedish">Swedish</option>
+			</select>
 		</div>
 	</body>
 </html>
