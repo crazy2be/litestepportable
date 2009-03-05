@@ -1,34 +1,41 @@
 #include <windows.h>
-#include "HTMLWindow.h"
+#include <string>
+using namespace std;
 
-int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE unused__, LPSTR lpszCmdLine, int nCmdShow) {
+void Error(string Message);
 
-  HTMLWindow* html_window = new HTMLWindow (
-
-      "<html><head>"
-      "<title>MSHTMLTest</title>"   // seems a little useless in this context
-      "</head><body>"
-      "<h1>This is a test</h1>"
-      "I offer the following links:"
-      "<ul>"
-      "<li><a href='http://www.google.com'>www.google.com</a>"
-      "<li><a href='http://www.adp-gmbh.ch'>www.adp-gmbh.ch</a>"
-      "<li><a href='http://www.yahoo.com'>www.yahoo.com</a>"
-      "</ul>"
-      "</body></html>",
-       "MSHTMLTest", hInstance,
-      false  // not an url 
-       );
-
-  MSG msg;
-  while (GetMessage(&msg, 0, 0, 0)) {
-    TranslateMessage(&msg);
-    if (msg.message >= WM_KEYFIRST && 
-        msg.message <= WM_KEYLAST) {
-      ::SendMessage(html_window->hwnd_, msg.message, msg.wParam, msg.lParam);
+int main(int argc, char *argv[]) {
+    string WD;
+	WD = argv[0];
+	WD = WD.substr(0, WD.rfind("\\"));
+	SetCurrentDirectory(WD.c_str());
+	
+    int ErrorCode = (int) ShellExecute(
+        NULL,
+        "open",
+        "html\\Tutorial.hta",
+        NULL,
+        NULL,
+        SW_SHOW);
+    if (ErrorCode > 32) {
+        exit(EXIT_SUCCESS);
     }
-    DispatchMessage(&msg);
-  }
+    switch (ErrorCode) {
+        case 0:
+            Error("Out of memory");
+            break;
+        case ERROR_FILE_NOT_FOUND:
+            Error("html\\Tutorial.hta not found");
+            break;
+        case ERROR_PATH_NOT_FOUND:
+            Error("folder \\html was not found");
+            break;
+        default:
+            Error("An unknown error occured");
+            break;
+    }
+}
 
-  return 0;
+void Error(string Message) {
+    MessageBox(NULL, Message.c_str(), "Fatal Error", MB_ICONERROR);
 }

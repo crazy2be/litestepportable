@@ -1,7 +1,7 @@
 [Project]
 FileName=Tutorial.dev
 Name=Tutorial
-UnitCount=19
+UnitCount=1
 Type=0
 Ver=1
 ObjFiles=
@@ -15,7 +15,7 @@ CppCompiler=
 Linker=../../PortableApps/Dev-CppPortable/App/devcpp/lib/libole32.a_@@_../../PortableApps/Dev-CppPortable/App/devcpp/lib/libuuid.a_@@_../../PortableApps/Dev-CppPortable/App/devcpp/lib/liboleaut32.a_@@_
 IsCpp=1
 Icon=Tutorial.ico
-ExeOutput=
+ExeOutput=..\..\PortableApps\LitestepPortable\App\Litestep\Tutorial
 ObjectOutput=
 OverrideOutput=0
 OverrideOutputName=Tutorial.exe
@@ -57,28 +57,8 @@ ProductName=
 ProductVersion=
 AutoIncBuildNr=0
 
-[Unit2]
-FileName=HTMLWindow.cpp
-CompileCpp=1
-Folder=Tutorial
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
 [Unit3]
 FileName=HTMLWindow.h
-CompileCpp=1
-Folder=Tutorial
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit4]
-FileName=DocHostUiHandler.cpp
 CompileCpp=1
 Folder=Tutorial
 Compile=1
