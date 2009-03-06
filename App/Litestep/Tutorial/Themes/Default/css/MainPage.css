@@ -5,7 +5,7 @@ body {
 	padding-bottom: 0px;
 	background-image: url('..\img\background.jpg');
 	background-repeat: no-repeat;
-	behavior: url('..\js\WH3.htc');
+	/*behavior: url('WH3.htc');*/
 	overflow: hidden;
 	
 	/*background-color: yellow;*/
@@ -23,7 +23,7 @@ body {
 	top: 0px;
 	left: 5px;
 	width: 600px;
-	height: 20px;
+	height: 100px;
 	overflow: hidden;
 }
 .CancelButton {
@@ -61,4 +61,19 @@ body {
 .ToggleTutorialSelector:hover {
 	background-color: red;
 	display: inline;
+}
+.DropDownList {
+	position: absolute;
+	top: 0px;
+	right: 15px;
+}
+.DropDownListTitle {
+	text-align: right;
+}
+.DropDownListItems {
+	display: none;
+	text-align: right;
+}
+.DropDownListTitle:hover .DropDownListItems { 
+	display: block; 
 }

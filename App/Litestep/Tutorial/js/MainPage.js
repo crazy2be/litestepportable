@@ -2,9 +2,57 @@
 var PageNumber = 1; //The tutorial page we are on
 var MaxPages = 4; //The number of pages in the turorial
 var Lang = "Eng"; // The language
+var Them = "Default"; //The theme
 
 // Handlers
 //window.onerror=handleErr;
+function LoadingCode() {
+	FirstPage();
+	LoadIndex();
+	LoadLangs();
+	LoadTheme();
+}
+
+function LoadIndex() {
+	var xmlHttpReq = new ActiveXObject("MSXML2.XMLHTTP.3.0");
+	try {
+		Path = '..\\Lang\\' + Lang + '\\html\\Index.html';
+		xmlHttpReq.open("GET", Path, false);
+		xmlHttpReq.send();
+		//alert(xmlHttpReq.responseText);
+		TutorialSelector.innerHTML = xmlHttpReq.responseText;
+	} catch (error) {
+		alert('Error occured while attempting to retreive index:\n'
+			+ '(' + Path + ')\n'
+			+ error.message + '\n');
+	}
+}
+
+function LoadLangs() {
+
+}
+
+function LoadTheme() {
+	document.getElementsByTagName('body')[0]
+		.style.behavior = 'url(\'..\\js\\WH3.htc\')'
+	//var Stuff = '';
+	var CSS = document.getElementsByTagName('link');
+	CSS[0].href = '..\\Themes\\' + Them + '\\css\\MainPage.css';
+	//Stuff += CSS[0].href;
+	//Stuff += '\n';
+	var Images = ControlDiv.getElementsByTagName('input');
+	for (i = 0; i < Images.length; i++) {
+		if (Images[i].src != null) {
+			var FileName = Images[i].src.substring(
+				Images[i].src.lastIndexOf('/')+1);
+			Images[i].src = '..\\Themes\\' + Them + '\\img\\' + FileName;
+		}
+		//Stuff += Images[i].src;
+		//Stuff += '\n';
+	}
+	//alert(Stuff);
+}
+
 function ExitCode() {
 	if (confirm("Are you sure you wish to exit?\n"
 		+ "This tutorial covers only the basics, and will likely reduce frustration later...\n"
@@ -19,7 +67,7 @@ function NextPage() {
 		GotoTutorialPage();
 		if (PageNumber == MaxPages) {
 			CancelButton.style.display = "none";
-			NextButton.src = "..\\img\\Finish.png";
+			NextButton.src = '..\\Themes\\' + Them + '\\img\\Finish.png';
 		}
 	} else if (PageNumber == MaxPages) {
 		window.close();
@@ -35,7 +83,7 @@ function PrevPage() {
 	}
 	if (PageNumber < MaxPages) {
 		CancelButton.style.display = "inline";
-		NextButton.src = "..\\img\\Next.png";
+		NextButton.src = '..\\Themes\\' + Them + '\\img\\Next.png';
 	}
 }
 
@@ -45,12 +93,17 @@ function FirstPage() {
 	GotoTutorialPage();
 	if (PageNumber < MaxPages) {
 		CancelButton.style.display = "inline";
-		NextButton.src = "..\\img\\Next.png";
+		NextButton.src = '..\\Themes\\' + Them + '\\img\\Next.png';
 	}
 }
 
+function Page(number) {
+	PageNumber = number;
+	GotoTutorialPage();
+}
+
 function GotoTutorialPage() {
-	GotoPage("..\\" + Lang + "\\html\\Page" + PageNumber + ".html");
+	GotoPage("..\\Lang\\" + Lang + "\\html\\Page" + PageNumber + ".html");
 }
 
 function GotoPage(Path) {
@@ -58,6 +111,7 @@ function GotoPage(Path) {
 	try {
 		xmlHttpReq.open("GET", Path, false);
 		xmlHttpReq.send();
+		//alert(xmlHttpReq.responseText);
 		ContentDiv.innerHTML = ParseForCode(xmlHttpReq.responseText);
 	} catch (error) {
 		alert('Error occured while attempting to retreive page:\n'
@@ -101,8 +155,8 @@ function ChangeLang() {
 
 function ToggleTutorialSelectorFunc() {
 	//Toggler = TutorialSelectorDiv.style.display;
-	TutorialSelectorDiv.style.display = 
-		(TutorialSelectorDiv.style.display == "none")
+	TutorialSelector.style.display = 
+		(TutorialSelector.style.display == "none")
 			? ("block") : ("none");
 	ContentDiv.style.width =
 		(ContentDiv.style.width == "581px")
@@ -127,12 +181,20 @@ function ParseForCode(ToParse) {
 	EndLines = '';
 	Lines = new Array();
 	Lines = ToParse.split('\n');
-	CodeLinePattern = new RegExp('<div(\\s+)class="(\\s*)code(\\s*)"(.*?)>');
-	EndCodeBlock = new RegExp('</div>');
+	CodeLinePattern = new RegExp('/<div(\\s+)class="(\\s*)code(\\s*)"(.*?)>/i');
+	EndCodeBlock = new RegExp('/<\/div>/i');
+	TitleMatch = new RegExp('<title>(.*?)</title>');
 	InCodeDiv = false;
-	for (i = 1; i < Lines.length; i++) {
-		EndLines += Lines[i];
-		EndLines += '\n';
+	for (i = 0; i < Lines.length; i++) {
+		//alert(Lines[i]);
+		if (TitleMatch.test(Lines[i])) {
+			document.title = Lines[i].substring(
+				Lines[i].indexOf(">")+1,
+				Lines[i].lastIndexOf("<"));
+		} else {
+			EndLines += Lines[i];
+			EndLines += '\n';
+		}
 		if (InCodeDiv) {
 			if (EndCodeBlock.test(Lines[i])) {
 				InCodeDiv = false;

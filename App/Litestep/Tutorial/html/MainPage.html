@@ -3,28 +3,43 @@
 	<head>
 		<title>Loading...</title>
 		<script type="text/javascript" language="javascript" src="..\js\MainPage.js"></script>
-		<link href="..\css\MainPage.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="..\Themes\Default\css\MainPage.css" rel="stylesheet" type="text/css" media="all" />
 	</head>
-	<body onLoad="FirstPage();">
+	<body onLoad="LoadingCode();">
 		<div class="ToggleTutorialSelector" id="ToggleTutorialSelector" onclick="ToggleTutorialSelectorFunc()">
 		</div>
-		<div class="TutorialSelector" id="TutorialSelectorDiv">
+		<div class="TutorialSelector" id="TutorialSelector">
 			Loading...
 		</div>
 		<div class="ContentDiv" id="ContentDiv">
 		</div>
-		<div class="ControlDiv">
-			<input type="image" src="..\img\Beggining.png" onClick="FirstPage();" id="BegginingButton">
-			<input type="image" src="..\img\Back.png" onClick="PrevPage();" id="BackButton">
-			<input type="image" src="..\img\Next.png" onClick="NextPage();" id="NextButton">
-			<input type="image" src="..\img\Cancel.png" onClick="ExitCode();" id="CancelButton">
-			<select onchange="ChangeLang()" id="LangSelector">
+		<div class="ControlDiv" id="ControlDiv">
+			<input type="image" src="Beggining.png" onClick="FirstPage();" id="BegginingButton">
+			<input type="image" src="Back.png" onClick="PrevPage();" id="BackButton">
+			<input type="image" src="Next.png" onClick="NextPage();" id="NextButton">
+			<input type="image" src="Cancel.png" onClick="ExitCode();" id="CancelButton">
+			<!--<select onchange="ChangeLang()" id="LangSelector">
 				<option value="">Loading...</option>
 				<option value="Eng">English</option>
 				<option value="Fr">French</option>
 				<option value="Sp">Spanish</option>
 				<option value="Swedish">Swedish</option>
-			</select>
+			</select>-->
+			<div class="DropDownList">
+				<div class="DropDownListTitle">English
+				<div class="DropDownListItems">
+					Loading...
+				</div>
+				</div>
+			</div>
+			<!--<div class="DropDownList">
+				<li><a href="#">English</a>
+					<ul>
+						<li><a href="#">Spanish</a></li>
+						<li><a href="#">Something</a></li>
+					</ul>
+				</li>
+			</div>-->
 		</div>
 	</body>
 </html>
