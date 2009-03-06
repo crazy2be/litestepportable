@@ -29,7 +29,37 @@ function LoadIndex() {
 }
 
 function LoadLangs() {
-
+	var xmlHttpReq = new ActiveXObject("MSXML2.XMLHTTP.3.0");
+	try {
+		Path = '..\\Lang\\Index.xml';
+		xmlHttpReq.open("GET", Path, false);
+		xmlHttpReq.send();
+		var LangsText = xmlHttpReq.responseText.split('\n');
+		var LangCode = '';
+		var LangName = '';
+		var EndHTML = '';
+		for (i = 0; i < LangsText.length; i++) {
+			LangName = LangsText[i].substring(
+				LangsText[i].indexOf('>')+1,
+				LangsText[i].lastIndexOf('<'));
+			var CodeIndex = LangsText[i].indexOf('code=')+6;
+			LangCode = LangsText[i].substring(
+				CodeIndex,
+				LangsText[i].substring(
+					CodeIndex)
+					.indexOf('"')+CodeIndex);
+			EndHTML += '<a href="#" onclick="ChangeLang(\'';
+			EndHTML += LangCode;
+			EndHTML += '\')">';
+			EndHTML += LangName;
+			EndHTML += '</a><br />';
+		}
+		LangSelector.innerHTML = EndHTML;
+	} catch (error) {
+		alert('Error occured while attempting to retreive language list:\n'
+			+ '(' + Path + ')\n'
+			+ error.message + '\n');
+	}
 }
 
 function LoadTheme() {
@@ -129,7 +159,7 @@ function GotoPage(Path) {
 		Path = Path.substring(
 			0, Path.lastIndexOf('/')+1);
 		//alert(Path);
-		Images[i].src = Path
+		Images[i].src = Path + 'Lang/'
 			+ Lang + '/img/' + FileName;
 		//alert(Images[i]);
 	}
@@ -144,8 +174,8 @@ function GotoPage(Path) {
 	//alert(xmlHttpReq.responseText);
 }
 
-function ChangeLang() {
-	Lang = LangSelector.value;
+function ChangeLang(LanguageCode) {
+	Lang = LanguageCode;
 	/*BegginingButton.src = "..\\img\\Beggining.png";
 	BackButton.src = "..\\img\\Back.png";
 	NextButton.src = "..\\img\\Next.png";
