@@ -63,6 +63,10 @@ body {
 	display: inline;
 }
 .DropDownList {
+	float: right;
+	padding-left: 5px;
+}
+.DropDownListContainer {
 	position: absolute;
 	top: 0px;
 	right: 15px;
@@ -74,6 +78,6 @@ body {
 	display: none;
 	text-align: right;
 }
-.DropDownListTitle:hover .DropDownListItems { 
+.DropDownList:hover .DropDownListItems { 
 	display: block; 
 }

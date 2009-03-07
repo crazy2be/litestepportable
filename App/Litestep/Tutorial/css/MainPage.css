@@ -1,0 +1,4 @@
+/* This stylesheet is global, across all themes. Only add things that you have to! */
+body {
+	behavior: url('..\css\WH3.htc');
+}

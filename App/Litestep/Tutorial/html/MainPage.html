@@ -3,6 +3,7 @@
 	<head>
 		<title>Loading...</title>
 		<script type="text/javascript" language="javascript" src="..\js\MainPage.js"></script>
+		<!--<link href="..\css\MainPage.css" rel="stylesheet" type="text/css" media="all">-->
 		<link href="..\Themes\Default\css\MainPage.css" rel="stylesheet" type="text/css" media="all" />
 	</head>
 	<body onLoad="LoadingCode();">
@@ -25,12 +26,19 @@
 				<option value="Sp">Spanish</option>
 				<option value="Swedish">Swedish</option>
 			</select>-->
+			<div class="DropDownListContainer">
 			<div class="DropDownList">
-				<div class="DropDownListTitle">English
+				<div class="DropDownListTitle">Default</div>
+				<div class="DropDownListItems" id="ThemeSelector">
+					Loading...
+				</div>
+			</div>
+			<div class="DropDownList">
+				<div class="DropDownListTitle">English</div>
 				<div class="DropDownListItems" id="LangSelector">
 					Loading...
 				</div>
-				</div>
+			</div>
 			</div>
 			<!--<div class="DropDownList">
 				<li><a href="#">English</a>

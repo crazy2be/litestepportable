@@ -7,9 +7,12 @@ var Them = "Default"; //The theme
 // Handlers
 //window.onerror=handleErr;
 function LoadingCode() {
+	//document.getElementsByTagName('body')[0]
+	//	.style.behavior = 'url(\'..\\css\\WH3.htc\')'
 	FirstPage();
 	LoadIndex();
 	LoadLangs();
+	LoadThemes();
 	LoadTheme();
 }
 
@@ -62,12 +65,48 @@ function LoadLangs() {
 	}
 }
 
+function LoadThemes() {
+	var xmlHttpReq = new ActiveXObject("MSXML2.XMLHTTP.3.0");
+	try {
+		Path = '..\\Themes\\Index.xml';
+		xmlHttpReq.open("GET", Path, false);
+		xmlHttpReq.send();
+		var ThemesText = xmlHttpReq.responseText.split('\n');
+		var ThemeCode = '';
+		var ThemeName = '';
+		var EndHTML = '';
+		for (i = 0; i < ThemesText.length; i++) {
+			ThemeCode = ThemesText[i].substring(
+				ThemesText[i].indexOf('>')+1,
+				ThemesText[i].lastIndexOf('<'));
+			var NameIndex = ThemesText[i].indexOf('name=')+6;
+			ThemeName = ThemesText[i].substring(
+				NameIndex,
+				ThemesText[i].substring(
+					NameIndex)
+					.indexOf('"')+NameIndex);
+			EndHTML += '<a href="#" onclick="ChangeTheme(\'';
+			EndHTML += ThemeName;
+			EndHTML += '\')">';
+			EndHTML += ThemeCode;
+			EndHTML += '</a><br />';
+		}
+		ThemeSelector.innerHTML = EndHTML;
+	} catch (error) {
+		alert('Error occured while attempting to retreive theme list:\n'
+			+ '(' + Path + ')\n'
+			+ error.message + '\n');
+	}
+}
+
 function LoadTheme() {
-	document.getElementsByTagName('body')[0]
-		.style.behavior = 'url(\'..\\js\\WH3.htc\')'
+	//document.getElementsByTagName('body')[0]
+	//	.style.behavior = 'url(\'..\\css\\WH3.htc\')'
 	//var Stuff = '';
 	var CSS = document.getElementsByTagName('link');
 	CSS[0].href = '..\\Themes\\' + Them + '\\css\\MainPage.css';
+	document.getElementsByTagName('body')[0]
+		.style.behavior = 'url(\'..\\css\\WH3.htc\')'
 	//Stuff += CSS[0].href;
 	//Stuff += '\n';
 	var Images = ControlDiv.getElementsByTagName('input');
@@ -181,6 +220,11 @@ function ChangeLang(LanguageCode) {
 	NextButton.src = "..\\img\\Next.png";
 	CancelButton.src = "..\\img\\Cancel.png";*/
 	GotoTutorialPage();
+}
+
+function ChangeTheme(ThemeName) {
+	Them = ThemeName;
+	LoadTheme();
 }
 
 function ToggleTutorialSelectorFunc() {
