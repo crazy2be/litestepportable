@@ -3,6 +3,7 @@ var PageNumber = 1; //The tutorial page we are on
 var MaxPages = 4; //The number of pages in the turorial
 var Lang = "Eng"; // The language
 var Them = "Default"; //The theme
+var CurTut = "LiteStepPortable Introduction"; //The Tutorial name
 
 // Handlers
 //window.onerror=handleErr;
@@ -13,13 +14,14 @@ function LoadingCode() {
 	LoadIndex();
 	LoadLangs();
 	LoadThemes();
+	LoadTuts();
 	LoadTheme();
 }
 
 function LoadIndex() {
 	var xmlHttpReq = new ActiveXObject("MSXML2.XMLHTTP.3.0");
 	try {
-		Path = '..\\Lang\\' + Lang + '\\html\\Index.html';
+		Path = '..\\Lang\\' + Lang + '\\' + CurTut + '\\html\\Index.html';
 		xmlHttpReq.open("GET", Path, false);
 		xmlHttpReq.send();
 		//alert(xmlHttpReq.responseText);
@@ -99,6 +101,40 @@ function LoadThemes() {
 	}
 }
 
+function LoadTuts() {
+	var xmlHttpReq = new ActiveXObject("MSXML2.XMLHTTP.3.0");
+	try {
+		Path = '..\\Lang\\' + Lang +'\\Index.xml';
+		xmlHttpReq.open("GET", Path, false);
+		xmlHttpReq.send();
+		var TutsText = xmlHttpReq.responseText.split('\n');
+		var TutCode = '';
+		var TutName = '';
+		var EndHTML = '';
+		for (i = 0; i < TutsText.length; i++) {
+			TutCode = TutsText[i].substring(
+				TutsText[i].indexOf('>')+1,
+				TutsText[i].lastIndexOf('<'));
+			var NameIndex = TutsText[i].indexOf('name=')+6;
+			TutName = TutsText[i].substring(
+				NameIndex,
+				TutsText[i].substring(
+					NameIndex)
+					.indexOf('"')+NameIndex);
+			EndHTML += '<a href="#" onclick="ChangeTut(\'';
+			EndHTML += TutName;
+			EndHTML += '\')">';
+			EndHTML += TutCode;
+			EndHTML += '</a><br />';
+		}
+		TutSelector.innerHTML = EndHTML;
+	} catch (error) {
+		alert('Error occured while attempting to retreive tutorial list:\n'
+			+ '(' + Path + ')\n'
+			+ error.message + '\n');
+	}
+}
+
 function LoadTheme() {
 	//document.getElementsByTagName('body')[0]
 	//	.style.behavior = 'url(\'..\\css\\WH3.htc\')'
@@ -172,7 +208,7 @@ function Page(number) {
 }
 
 function GotoTutorialPage() {
-	GotoPage("..\\Lang\\" + Lang + "\\html\\Page" + PageNumber + ".html");
+	GotoPage("..\\Lang\\" + Lang + '\\' + CurTut + "\\html\\Page" + PageNumber + ".html");
 }
 
 function GotoPage(Path) {
@@ -199,7 +235,7 @@ function GotoPage(Path) {
 			0, Path.lastIndexOf('/')+1);
 		//alert(Path);
 		Images[i].src = Path + 'Lang/'
-			+ Lang + '/img/' + FileName;
+			+ Lang + '\\' + CurTut + '/img/' + FileName;
 		//alert(Images[i]);
 	}
 	/*var Codes = getElementsByClass('Code', ContentDiv, 'Div');
@@ -211,6 +247,11 @@ function GotoPage(Path) {
 		}
 	}*/
 	//alert(xmlHttpReq.responseText);
+}
+
+function ChangeTut(TutorialName) {
+	CurTut = TutorialName;
+	GotoTutorialPage();
 }
 
 function ChangeLang(LanguageCode) {

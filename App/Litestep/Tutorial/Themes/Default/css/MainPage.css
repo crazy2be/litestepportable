@@ -64,7 +64,12 @@ body {
 }
 .DropDownList {
 	float: right;
-	padding-left: 5px;
+	margin-left: 5px;
+	padding-left: 1px;
+	padding-right: 1px;
+	border-width: 1;
+	border-color: black;
+	border-style: solid;
 }
 .DropDownListContainer {
 	position: absolute;
@@ -73,6 +78,7 @@ body {
 }
 .DropDownListTitle {
 	text-align: right;
+
 }
 .DropDownListItems {
 	display: none;
