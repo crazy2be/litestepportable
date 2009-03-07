@@ -34,102 +34,51 @@ function LoadIndex() {
 }
 
 function LoadLangs() {
-	var xmlHttpReq = new ActiveXObject("MSXML2.XMLHTTP.3.0");
-	try {
-		Path = '..\\Lang\\Index.xml';
-		xmlHttpReq.open("GET", Path, false);
-		xmlHttpReq.send();
-		var LangsText = xmlHttpReq.responseText.split('\n');
-		var LangCode = '';
-		var LangName = '';
-		var EndHTML = '';
-		for (i = 0; i < LangsText.length; i++) {
-			LangName = LangsText[i].substring(
-				LangsText[i].indexOf('>')+1,
-				LangsText[i].lastIndexOf('<'));
-			var CodeIndex = LangsText[i].indexOf('code=')+6;
-			LangCode = LangsText[i].substring(
-				CodeIndex,
-				LangsText[i].substring(
-					CodeIndex)
-					.indexOf('"')+CodeIndex);
-			EndHTML += '<a href="#" onclick="ChangeLang(\'';
-			EndHTML += LangCode;
-			EndHTML += '\')">';
-			EndHTML += LangName;
-			EndHTML += '</a><br />';
-		}
-		LangSelector.innerHTML = EndHTML;
-	} catch (error) {
-		alert('Error occured while attempting to retreive language list:\n'
-			+ '(' + Path + ')\n'
-			+ error.message + '\n');
-	}
+	LangSelector.innerHTML = LoadSomeXMLFile(
+		'..\\Lang\\Index.xml', 'code', 'ChangeLang');
 }
 
 function LoadThemes() {
-	var xmlHttpReq = new ActiveXObject("MSXML2.XMLHTTP.3.0");
-	try {
-		Path = '..\\Themes\\Index.xml';
-		xmlHttpReq.open("GET", Path, false);
-		xmlHttpReq.send();
-		var ThemesText = xmlHttpReq.responseText.split('\n');
-		var ThemeCode = '';
-		var ThemeName = '';
-		var EndHTML = '';
-		for (i = 0; i < ThemesText.length; i++) {
-			ThemeCode = ThemesText[i].substring(
-				ThemesText[i].indexOf('>')+1,
-				ThemesText[i].lastIndexOf('<'));
-			var NameIndex = ThemesText[i].indexOf('name=')+6;
-			ThemeName = ThemesText[i].substring(
-				NameIndex,
-				ThemesText[i].substring(
-					NameIndex)
-					.indexOf('"')+NameIndex);
-			EndHTML += '<a href="#" onclick="ChangeTheme(\'';
-			EndHTML += ThemeName;
-			EndHTML += '\')">';
-			EndHTML += ThemeCode;
-			EndHTML += '</a><br />';
-		}
-		ThemeSelector.innerHTML = EndHTML;
-	} catch (error) {
-		alert('Error occured while attempting to retreive theme list:\n'
-			+ '(' + Path + ')\n'
-			+ error.message + '\n');
-	}
+	ThemeSelector.innerHTML = LoadSomeXMLFile(
+		'..\\Themes\\Index.xml', 'name', 'ChangeTheme');
 }
 
 function LoadTuts() {
+	TutSelector.innerHTML = LoadSomeXMLFile(
+		'..\\Lang\\' + Lang + '\\Index.xml', 'name', 'ChangeTut');
+}
+
+function LoadSomeXMLFile(Path, PropertyToPass, Method) {
 	var xmlHttpReq = new ActiveXObject("MSXML2.XMLHTTP.3.0");
 	try {
-		Path = '..\\Lang\\' + Lang +'\\Index.xml';
 		xmlHttpReq.open("GET", Path, false);
 		xmlHttpReq.send();
-		var TutsText = xmlHttpReq.responseText.split('\n');
-		var TutCode = '';
-		var TutName = '';
+		var XMLText = xmlHttpReq.responseText.split('\n');
+		var XMLCode = '';
+		var XMLName = '';
 		var EndHTML = '';
-		for (i = 0; i < TutsText.length; i++) {
-			TutCode = TutsText[i].substring(
-				TutsText[i].indexOf('>')+1,
-				TutsText[i].lastIndexOf('<'));
-			var NameIndex = TutsText[i].indexOf('name=')+6;
-			TutName = TutsText[i].substring(
+		for (i = 0; i < XMLText.length; i++) {
+			XMLCode = XMLText[i].substring(
+				XMLText[i].indexOf('>')+1,
+				XMLText[i].lastIndexOf('<'));
+			var NameIndex = XMLText[i].indexOf(PropertyToPass + '=') 
+			+ PropertyToPass.length + 1;
+			XMLName = XMLText[i].substring(
 				NameIndex,
-				TutsText[i].substring(
+				XMLText[i].substring(
 					NameIndex)
 					.indexOf('"')+NameIndex);
-			EndHTML += '<a href="#" onclick="ChangeTut(\'';
-			EndHTML += TutName;
+			EndHTML += '<a href="#" onclick="';
+			EndHTML += Method;
+			EndHTML += '(\'';
+			EndHTML += XMLName;
 			EndHTML += '\')">';
-			EndHTML += TutCode;
+			EndHTML += XMLCode;
 			EndHTML += '</a><br />';
 		}
-		TutSelector.innerHTML = EndHTML;
+		return EndHTML;
 	} catch (error) {
-		alert('Error occured while attempting to retreive tutorial list:\n'
+		alert('Error occured while attempting to retreive XML file:\n'
 			+ '(' + Path + ')\n'
 			+ error.message + '\n');
 	}
