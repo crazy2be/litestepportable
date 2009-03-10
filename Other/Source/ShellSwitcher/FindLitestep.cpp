@@ -237,27 +237,27 @@ int FindFile(string FilesToFind[], unsigned int Length) {
 
 void CreateSettingsini() {
     string ToWrite =
-    "; Set \"PromptLevel\" to:"
-    "; 1 for no prompts"
-    "; 2 for selective prompts"
-    "; 3 for all prompts"
-    ";  (in the form of \"PromptLevel=#\")"
-    "PromptLevel=2"
-    "; The portableapps directory"
-    "PortableAppsDir=..\\..\\PortableApps\\"
-    "; the relitive path to the file to write the portableapps info to"
-    "PortableApps popup file=App\\LiteStep\\Personal\\PortableApps.rc"
-    "; The path to the desktop folder"
-    "DesktopFolderPath=App\\Litestep\\Personal\\Desktop\\"
-    "; Should the app create desktop shortcuts on each load?"
-    "; this insures that your portableapps are allways up to date,"
-    "; but it will make the loading time significantly longer."
-    "; (it will still update the popup list, just not the desktop)"
-    "CreateDesktopShortcuts=true"
-    "; The path to litestep.exe"
-    "Litestep=App\\Litestep\\Litestep.exe"
-    "; Detect installed portable apps? set to false if you don't use Portableapps"
-    "DetectPortableApps=true";
+    "; Set \"PromptLevel\" to:\n"
+    "; 1 for no prompts\n"
+    "; 2 for selective prompts\n"
+    "; 3 for all prompts\n"
+    ";  (in the form of \"PromptLevel=#\")\n"
+    "PromptLevel=2\n"
+    "; The portableapps directory\n"
+    "PortableAppsDir=..\\..\\PortableApps\\\n"
+    "; the relitive path to the file to write the portableapps info to\n"
+    "PortableApps popup file=App\\LiteStep\\Personal\\PortableApps.rc\n"
+    "; The path to the desktop folder\n"
+    "DesktopFolderPath=App\\Litestep\\Personal\\Desktop\\\n"
+    "; Should the app create desktop shortcuts on each load?\n"
+    "; this insures that your portableapps are allways up to date,\n"
+    "; but it will make the loading time significantly longer.\n"
+    "; (it will still update the popup list, just not the desktop)\n"
+    "CreateDesktopShortcuts=true\n"
+    "; The path to litestep.exe\n"
+    "Litestep=App\\Litestep\\Litestep.exe\n"
+    "; Detect installed portable apps? set to false if you don't use Portableapps\n"
+    "DetectPortableApps=true\n";
     try {
         ofstream iniWrite ("Data\\Settings.ini");
         if (iniWrite.is_open()) {
