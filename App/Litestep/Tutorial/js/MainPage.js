@@ -34,21 +34,26 @@ function LoadIndex() {
 }
 
 function LoadLangs() {
+	var XMLProperties = ['code'];
 	LangSelector.innerHTML = LoadSomeXMLFile(
-		'..\\Lang\\Index.xml', 'code', 'ChangeLang');
+		'..\\Lang\\Index.xml', XMLProperties, 'ChangeLang');
+	
+	//ParseSomeXMLFile('..\\Lang\\Index.xml', RandomProperties);
 }
 
 function LoadThemes() {
+	var XMLProperties = ['name'];
 	ThemeSelector.innerHTML = LoadSomeXMLFile(
-		'..\\Themes\\Index.xml', 'name', 'ChangeTheme');
+		'..\\Themes\\Index.xml', XMLProperties, 'ChangeTheme');
 }
 
 function LoadTuts() {
+var XMLProperties = ['name', 'pages'];
 	TutSelector.innerHTML = LoadSomeXMLFile(
-		'..\\Lang\\' + Lang + '\\Index.xml', 'name', 'ChangeTut');
+		'..\\Lang\\' + Lang + '\\Index.xml', XMLProperties, 'ChangeTut');
 }
 
-function LoadSomeXMLFile(Path, PropertyToPass, Method) {
+function ParseSomeXMLFile(Path, Properties) {
 	var xmlHttpReq = new ActiveXObject("MSXML2.XMLHTTP.3.0");
 	try {
 		xmlHttpReq.open("GET", Path, false);
@@ -56,32 +61,66 @@ function LoadSomeXMLFile(Path, PropertyToPass, Method) {
 		var XMLText = xmlHttpReq.responseText.split('\n');
 		var XMLCode = '';
 		var XMLName = '';
-		var EndHTML = '';
+		var EndPropertyArray = new Array();
 		for (i = 0; i < XMLText.length; i++) {
+			EndPropertyArray[i] = new Array(Properties.length + 1);
 			XMLCode = XMLText[i].substring(
 				XMLText[i].indexOf('>')+1,
 				XMLText[i].lastIndexOf('<'));
-			var NameIndex = XMLText[i].indexOf(PropertyToPass + '=') 
-			+ PropertyToPass.length + 1;
-			XMLName = XMLText[i].substring(
-				NameIndex,
-				XMLText[i].substring(
-					NameIndex)
-					.indexOf('"')+NameIndex);
-			EndHTML += '<a href="#" onclick="';
-			EndHTML += Method;
-			EndHTML += '(\'';
-			EndHTML += XMLName;
-			EndHTML += '\')">';
-			EndHTML += XMLCode;
-			EndHTML += '</a><br />';
+			EndPropertyArray[i][0] = XMLCode;
+			//alert(XMLCode + '\n' + EndPropertyArray);
+			var NameIndex = 0;
+			for (j = 0; j < Properties.length; j++) {
+				NameIndex = XMLText[i].indexOf(Properties[j] + '=') 
+				if (NameIndex > 0) {
+					NameIndex += Properties[j].length + 2;
+					//alert(XMLText[i] + '\n' + Properties[j] + '\n' + NameIndex);
+					EndPropertyArray[i][j+1] = XMLText[i].substring(
+						NameIndex,
+						XMLText[i].substring(
+							NameIndex)
+							.indexOf('"')+NameIndex);
+				}
+			}
 		}
-		return EndHTML;
+		// For debugging...
+		/*var EndText = '';
+		for (i = 0; i < EndPropertyArray.length; i++) {
+			EndText += EndPropertyArray[i] + '\n';
+			for (j = 0; j < EndPropertyArray[i].length; j++) {
+				EndText += '	' + EndPropertyArray[i][j] + '\n';
+			}
+		}
+		alert(EndText);*/
+		return EndPropertyArray;
 	} catch (error) {
 		alert('Error occured while attempting to retreive XML file:\n'
 			+ '(' + Path + ')\n'
 			+ error.message + '\n');
 	}
+}
+
+function LoadSomeXMLFile(Path, PropertiesToPass, Method) {
+	var EndHTML = '';
+	//var XMLProperty = PropertiesToPass;
+	//alert(PropertiesToPass + '\n' + PropertiesToPass.length);
+	var XMLProperties = ParseSomeXMLFile(Path, PropertiesToPass);
+	for (i = 0; i < XMLProperties.length; i++) {
+		EndHTML += '<a href="#" onclick="';
+		EndHTML += Method;
+		EndHTML += '(\'';
+		for (j = 1; j < PropertiesToPass.length+1; j++) {
+			EndHTML += XMLProperties[i][j];
+			if (!(j == PropertiesToPass.length)) {
+				EndHTML += '\',\'';
+			}
+		}
+		EndHTML += '\')">';
+		EndHTML += XMLProperties[i][0];
+		EndHTML += '</a><br />';
+	}
+	//alert(EndHTML);
+	return EndHTML;
 }
 
 function LoadTheme() {
@@ -187,28 +226,17 @@ function GotoPage(Path) {
 			+ Lang + '\\' + CurTut + '/img/' + FileName;
 		//alert(Images[i]);
 	}
-	/*var Codes = getElementsByClass('Code', ContentDiv, 'Div');
-	for (i = 0; i < Codes.length; i++) {
-		var Code = Codes[i].innerHTML;
-		var LastLineFeed = Code.lastIndexOf('\n');
-		for (j = 0; j < LastLineFeed; j = Code.indexOf('\n')) {
-			
-		}
-	}*/
-	//alert(xmlHttpReq.responseText);
 }
 
-function ChangeTut(TutorialName) {
+function ChangeTut(TutorialName, Pages) {
 	CurTut = TutorialName;
+	PageNumber = 1;
+	MaxPages = Pages
 	GotoTutorialPage();
 }
 
 function ChangeLang(LanguageCode) {
 	Lang = LanguageCode;
-	/*BegginingButton.src = "..\\img\\Beggining.png";
-	BackButton.src = "..\\img\\Back.png";
-	NextButton.src = "..\\img\\Next.png";
-	CancelButton.src = "..\\img\\Cancel.png";*/
 	GotoTutorialPage();
 }
 
@@ -218,7 +246,6 @@ function ChangeTheme(ThemeName) {
 }
 
 function ToggleTutorialSelectorFunc() {
-	//Toggler = TutorialSelectorDiv.style.display;
 	TutorialSelector.style.display = 
 		(TutorialSelector.style.display == "none")
 			? ("block") : ("none");
