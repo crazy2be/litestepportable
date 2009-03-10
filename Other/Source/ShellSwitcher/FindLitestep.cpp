@@ -7,6 +7,10 @@ void ValidatePaths() {
     string Returned;
     bool ErrorHappened;
     string FilesToFind[1];
+    FilesToFind[0] = "Data\\Settings.ini";
+    if (FindFile(FilesToFind, 1) == 1) {
+        CreateSettingsini();
+    }
     FilesToFind[0] = GetValue("Litestep");
 	if (FindFile(FilesToFind, 1) == 1) {
         Returned = FindLiteStepExe();
@@ -229,4 +233,40 @@ int FindFile(string FilesToFind[], unsigned int Length) {
         }
     }
     return Length;
+}
+
+void CreateSettingsini() {
+    string ToWrite =
+    "; Set \"PromptLevel\" to:"
+    "; 1 for no prompts"
+    "; 2 for selective prompts"
+    "; 3 for all prompts"
+    ";  (in the form of \"PromptLevel=#\")"
+    "PromptLevel=2"
+    "; The portableapps directory"
+    "PortableAppsDir=..\\..\\PortableApps\\"
+    "; the relitive path to the file to write the portableapps info to"
+    "PortableApps popup file=App\\LiteStep\\Personal\\PortableApps.rc"
+    "; The path to the desktop folder"
+    "DesktopFolderPath=App\\Litestep\\Personal\\Desktop\\"
+    "; Should the app create desktop shortcuts on each load?"
+    "; this insures that your portableapps are allways up to date,"
+    "; but it will make the loading time significantly longer."
+    "; (it will still update the popup list, just not the desktop)"
+    "CreateDesktopShortcuts=true"
+    "; The path to litestep.exe"
+    "Litestep=App\\Litestep\\Litestep.exe"
+    "; Detect installed portable apps? set to false if you don't use Portableapps"
+    "DetectPortableApps=true";
+    try {
+        ofstream iniWrite ("Data\\Settings.ini");
+        if (iniWrite.is_open()) {
+            iniWrite << ToWrite;
+        } else {
+            Error("Unable to create Data\\Settings.ini!");
+        }
+        iniWrite.close();
+    } catch (...) {
+        Error("Unexpected error occured while trying to create Data\\Settings.ini");
+    }
 }

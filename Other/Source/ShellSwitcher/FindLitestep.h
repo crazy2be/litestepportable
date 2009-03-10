@@ -14,3 +14,4 @@ string FindPortableAppsDirPath();
 string FindDesktopPath();
 string FindPortableAppsPopupFilePath();
 int FindFile(string FilesToFind[], unsigned int Length);
+void CreateSettingsini();
