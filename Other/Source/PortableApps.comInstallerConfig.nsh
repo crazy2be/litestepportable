@@ -31,12 +31,12 @@
 ;== Basic Information.  Basic information about the portable app
 !define NAME "LiteStep Portable"
 !define SHORTNAME "LiteStepPortable"
-!define VERSION "0.5.1.2"
-!define FILENAME "LiteStep_Portable_0.5.1.2"
+!define VERSION "0.5.1.4"
+!define FILENAME "LiteStep_Portable_0.5.1.4"
 !define CHECKRUNNING "LiteStep.exe"
 !define CLOSENAME "LiteStep Portable "
 !define ADDONSDIRECTORYPRESERVE "NONE" ;use "NONE" for no plugins directory or relative to install directory: App\AppName\plugins
-!define INSTALLERCOMMENTS "For additional details, visit PortableApps.com"
+!define INSTALLERCOMMENTS "For additional details, visit code.google.com/p/litestepportable"
 !define INSTALLERADDITIONALTRADEMARKS "" ;end this entry with a period and a space if used
 ;!define INSTALLERMULTILINGUAL "true" ;uncomment this entry for multilingual installers
 
@@ -108,7 +108,7 @@
 ;!define LICENSEAGREEMENT "eula.rtf"
 
 ;== Multi-Installer.  If making an installer with no options (like additional languages), comment out the next line by placing a semicolon at the start of it
-!define MAINSECTIONTITLE "AppName Portable (English) [Required]"
+!define MAINSECTIONTITLE "LiteStep Portable (English) [Required]"
 !ifdef MAINSECTIONTITLE
 	!define MAINSECTIONDESCRIPTION "Install the portable app"
 	!define OPTIONALSECTIONTITLE "Source"
