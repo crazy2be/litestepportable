@@ -63,8 +63,12 @@ int PromptAction() {
 
 bool KillLitestep() {
      // Terminating Litestep
-     HANDLE LitestepHandle = OpenProcess(PROCESS_ALL_ACCESS, FALSE, globalLitestepPID);
-     TerminateProcess(LitestepHandle, EXIT_SUCCESS);
+     if (GetBoolValue("Force Litestep Termination")) {
+         HANDLE LitestepHandle = OpenProcess(PROCESS_ALL_ACCESS, FALSE, globalLitestepPID);
+         TerminateProcess(LitestepHandle, EXIT_SUCCESS);
+     } else {
+         ShellExecute( NULL, "open", GetValue("Litestep").c_str(), "!quit", NULL, SW_SHOW);
+     }
     return false;
 }
 

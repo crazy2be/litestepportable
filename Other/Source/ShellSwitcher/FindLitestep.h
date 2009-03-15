@@ -13,5 +13,6 @@ string FindLiteStepExePath();
 string FindPortableAppsDirPath();
 string FindDesktopPath();
 string FindPortableAppsPopupFilePath();
+string FindPortableAppsLSXFilePath();
 int FindFile(string FilesToFind[], unsigned int Length);
 void CreateSettingsini();

@@ -22,6 +22,7 @@ vector<string> UpdatePopup() {
         "; PortableApps that were installed at the last refresh\n"
         "; (or run of the shellswitcher). All edits will be lost\n"
         "; the next time you run LiteStepPortable.\n";
+    string LSXAlias = Popup;
     bool FindNextFileSuccess = true;
     bool FindNextDirSuccess = true;
     
@@ -76,8 +77,24 @@ vector<string> UpdatePopup() {
                                                     Popup += "\\";
                                                     Popup += FileName;
                                                     Popup += "\"\n";
-                                                    // Add a shortcut on the desktop
-
+                                                    // And to the lsxcommand alias file...
+                                                    // Converts to lowercase
+                                                    string LowerFileName;
+                                                   	for (size_t i = 0; i <= FileName.length(); i++) {
+		                                                LowerFileName += tolower(FileName[i]);
+                                                    }
+                                                    int PortableIndex = LowerFileName.rfind("portable");
+                                                    if (PortableIndex < 1)
+                                                        PortableIndex = ExtIndex;
+                                                    LSXAlias += "*CommandAlias \"";
+                                                    LSXAlias += FileName.substr(0, PortableIndex);
+                                                    LSXAlias += "\" \"";
+                                                    LSXAlias += DirPath;
+                                                    LSXAlias += "\\";
+                                                    LSXAlias += FileName;
+                                                    LSXAlias += "\"\n";
+                                                    // Add The portableapp to the list, for adding desktop
+                                                    // shortcuts (after litestep loads)
                                                     AllPortableApps.push_back(DirPath + "\\" + FileName);
                                                     //Info("Portableapp found!\n" + FileName);
                                             } else {
@@ -121,9 +138,27 @@ vector<string> UpdatePopup() {
                      //exit( EXIT_FAILURE );
                  }
                  PopupWriter.close();
+                 ofstream LSXWriter;
+                 // Open the file for writing
+                 LSXWriter.open(GetValue("PortableApps LSX file").c_str());
+                 // If it was successfull...
+                 if (LSXWriter.is_open()) {
+                     // Write to the file...
+                     LSXWriter << LSXAlias;
+                 } else {
+                     // There was an error :(
+                     Warning("There was an error writing to PortableApps.rc.\n"
+                         "your list may not have the most recent apps.\n"
+                         "A likely cause of this is that the path is invalid.\n"
+                         "Please check settings.ini!");
+                     //system("PAUSE");
+                     //exit( EXIT_FAILURE );
+                 }
+                 LSXWriter.close();
             //}
             //PromptAction();
             //AddAllShortcuts(AllPortableApps);
+            //Info(LSXAlias);
     } else {
         Error("Portableapps diretory is not valid!\n"
             "check settings.ini to change the path");

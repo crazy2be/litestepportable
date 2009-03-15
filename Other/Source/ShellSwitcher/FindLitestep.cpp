@@ -39,7 +39,7 @@ void ValidatePaths() {
                 ErrorHappened = true;
 	    }
 	    FilesToFind[0] = GetValue("PortableApps popup file");
-	    FilesToFind[0] += GetValue("DefaultTheme");
+	    //FilesToFind[0] += GetValue("DefaultTheme");
 	    if (FindFile(FilesToFind, 1) == 1) {
             Returned = FindPortableAppsPopupFilePath();
             if (Returned != "ERROR_NOT_FOUND")
@@ -47,6 +47,14 @@ void ValidatePaths() {
             else
                 ErrorHappened = true;
 	    }
+	    FilesToFind[0] = GetValue("PortableApps LSX File");
+	    if (FindFile(FilesToFind, 1) == 1) {
+            Returned = FindPortableAppsLSXFilePath();
+            if (Returned != "ERROR_NOT_FOUND")
+                SetValue("PortableApps LSX file", Returned);
+            else
+                ErrorHappened = true;
+        }
     }
 	//if (ErrorHappened == true)
 	    //DisplaySettingsDialog();
@@ -219,6 +227,46 @@ string FindPortableAppsPopupFilePath() {
     }
 }
 
+string FindPortableAppsLSXFilePath() {
+    char Path [MAX_PATH];
+    /* The array of places to search for the portableapps folder */
+    string FilesToFind[3];
+    FilesToFind[0] = "..\\Personal\\LSXCommand\\PortableApps.rc";
+    FilesToFind[1] = "App\\Litestep\\Personal\\LSXCommand\\PortableApps.rc";
+    FilesToFind[2] = "Personal\\LSXCommand\\PortableApps.rc";
+    int FindFileInt = FindFile(FilesToFind, 3);
+    if (FindFileInt == 0) {
+        _getcwd(Path, MAX_PATH);
+        FilesToFind[0] = Path;
+        FilesToFind[0] = FilesToFind[0].substr(0, FilesToFind[0].rfind("\\"));
+        //FilesToFind[0] = FilesToFind[0].substr(0, FilesToFind[0].rfind("\\"));
+        FilesToFind[0] += "\\Personal\\LSXCommand\\PortableApps.rc";
+        return FilesToFind[0];
+    } else if (FindFileInt == 1) {
+        _getcwd(Path, MAX_PATH);
+        FilesToFind[1] = Path;
+        //FilesToFind[1] = FilesToFind[0].substr(0, FilesToFind[0].rfind("\\"));
+        FilesToFind[1] += "\\App\\Litestep\\Personal\\LSXCommand\\PortableApps.rc";
+        return FilesToFind[1];
+    } else if (FindFileInt == 2) {
+        _getcwd(Path, MAX_PATH);
+        FilesToFind[2] = Path;
+        //FilesToFind[2] = FilesToFind[2].substr(0, FilesToFind[2].rfind("\\"));
+        //FilesToFind[2] = FilesToFind[2].substr(0, FilesToFind[2].rfind("\\"));
+        //FilesToFind[2] = FilesToFind[2].substr(0, FilesToFind[2].rfind("\\"));
+        FilesToFind[2] += "\\Personal\\LSXCommand\\PortableApps.rc";
+        return FilesToFind[2];
+    } else {
+        Error("Unable to find The Portableapps.rc file!\n"
+            "Please make sure it is in either:\n"
+            + FilesToFind[0] + "\n"
+            + FilesToFind[1] + "\n"
+            + FilesToFind[2] + "\n"
+            "(all paths are relitive)");
+        return "ERROR_NOT_FOUND";
+    }
+}
+
 int FindFile(string FilesToFind[], unsigned int Length) {
     /* Define Variables */
     WIN32_FIND_DATA CurFileData;
@@ -237,27 +285,32 @@ int FindFile(string FilesToFind[], unsigned int Length) {
 
 void CreateSettingsini() {
     string ToWrite =
-    "; Set \"PromptLevel\" to:\n"
-    "; 1 for no prompts\n"
-    "; 2 for selective prompts\n"
-    "; 3 for all prompts\n"
-    ";  (in the form of \"PromptLevel=#\")\n"
-    "PromptLevel=2\n"
-    "; The portableapps directory\n"
-    "PortableAppsDir=..\\..\\PortableApps\\\n"
-    "; the relitive path to the file to write the portableapps info to\n"
-    "PortableApps popup file=App\\LiteStep\\Personal\\PortableApps.rc\n"
-    "; The path to the desktop folder\n"
-    "DesktopFolderPath=App\\Litestep\\Personal\\Desktop\\\n"
-    "; Should the app create desktop shortcuts on each load?\n"
-    "; this insures that your portableapps are allways up to date,\n"
-    "; but it will make the loading time significantly longer.\n"
-    "; (it will still update the popup list, just not the desktop)\n"
-    "CreateDesktopShortcuts=true\n"
-    "; The path to litestep.exe\n"
-    "Litestep=App\\Litestep\\Litestep.exe\n"
-    "; Detect installed portable apps? set to false if you don't use Portableapps\n"
-    "DetectPortableApps=true\n";
+    "; Set \"PromptLevel\" to:"
+    "; 1 for no prompts"
+    "; 2 for selective prompts"
+    "; 3 for all prompts"
+    ";  (in the form of \"PromptLevel=#\")"
+    "PromptLevel=3"
+    "; The portableapps directory"
+    "PortableAppsDir=G:\\PortableApps\\"
+    "; the path to the popup file to write the portableapps info to"
+    "PortableApps popup file=G:\\LiteStep\\Personal\\PortableApps.rc"
+    "; The path to the lsxcommand alias file"
+    "PortableApps LSX File=G:\\LiteStep\\Personal\\LSXCommand\\PortableApps.rc"
+    "; The path to the desktop folder"
+    "DesktopFolderPath=G:\\Litestep\\Personal\\Desktop\\"
+    "; Should the app create desktop shortcuts on each load?"
+    "; this insures that your portableapps are allways up to date,"
+    "; but it will make the loading time significantly longer."
+    "; (it will still update the popup list, just not the desktop)"
+    "CreateDesktopShortcuts=true"
+    "; The path to litestep.exe"
+    "Litestep=G:\\Litestep\\Litestep.exe"
+    "; Detect installed portable apps? set to false if you don't use Portableapps"
+    "DetectPortableApps=true"
+    "; Forcibly termiate litestep? Set to true if you are experiencing"
+    "; troubles with litestep closing properly."
+    "Force Litestep Termination=false";
     try {
         ofstream iniWrite ("Data\\Settings.ini");
         if (iniWrite.is_open()) {
