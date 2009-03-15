@@ -6,7 +6,8 @@
 xPopupPaintingMode							.multicolor
 xPopupColors								$BaseColor$ $BorderColor$
 xpopupAlphaMap								True
-xpopupTextureAlphaTransparency				100
+xpopupTextureAlphaTransparency				$Transparency$
+xpopupFont									$Font$
 ;]
 
 ;[ More complicated draw settings
@@ -37,7 +38,7 @@ xpopupTitlePaintingMode 					.multicolor
 xpopupTitleColors							FFFFFF FF00FF
 xpopupTitleBevels							1 1 1 0
 xpopupTitleAlphaMap							True
-xpopupTitleTextureAlphaTransparency			100
+xpopupTitleTextureAlphaTransparency			$Transparency$
 ;]
 
 ;[ Settings for the seperators (white, horizontal lines)

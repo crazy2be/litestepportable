@@ -1,6 +1,7 @@
 ;[ Includes the RC files in the config
 include				"$themedir$Basic.rc"
 include 			"$themedir$Popup.rc"
+include				"$themedir$ConfigPopup.rc"
 ;IF ShowTask = True
 include				"$themedir$Taskbar.rc"
 ;ENDIF
@@ -16,13 +17,14 @@ include				"$themedir$stats.rc"
 ENDIF
 include				"$themedir$memory.rc"
 *LuaFile			"$themedir$memory.lua"
+*LuaFile			"$themedir$Scripting.lua"
 ;]
 
 ;[ Define some global theme variables
 BorderColor			000000
 BaseColor			FFFFFF
 FontColor			000000
-Transparency		100
+Transparency		155
 Bevels				1 1 1 1
 ShapeType			.rounded
 RoundedEdges		3 2

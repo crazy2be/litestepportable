@@ -11,15 +11,17 @@ lsxColapse True
 ShowStart True
 ;> Stats Settings
 ; Show the System Stats at the top.
-ShowStats True
+ShowStats    true
 ;> Desktop Settings
 ; Show the desktop (with all the shortcuts)
-ShowDesk True
+ShowDesk    true
+; Are maximized windows full screen?
+MaxWindowsFullScreen    true
 ;> Systray Settings
 ; Show the systemtray (icons next to the clock)
 ShowTray True
 ; Make the systray AutoSize (Reccomended!)
 TrayAutoResize True
 ;> Taskbar Settings
-; Show the taskbar (bar at the bottom showing everything that is running).
-ShowTask True
+; Show the taskbar (bar at the bottom showing everything that is running).false
+ShowTask    true

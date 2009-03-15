@@ -2,7 +2,6 @@
 ; alot of the functionality that explorer gives you, including
 ; drag + drop and repositioning your icons.
 
-IF ShowDesk = True
 ;--> Creates a "Desktop" Called "DeskIcons".
 ; you can have multiples, in different folders!
 *Clickonic DeskIcons
@@ -23,11 +22,23 @@ DeskIconsSnapToGrid 			True
 ;[ Font Settings
 DeskIconsFont 					$Font$
 DeskIconsFontSize 				12
-DeskIconsFontColor				$FontColor$
 ;]
 
 ;[ Misc. Settings
 DeskIconsConfirmFileDelete 		True
 DeskIconsUseSelectionRectangle	True
+;]
+
+IF Background
+;[ Desktop Background settings
+*Label Background
+BackgroundX						$(ResolutionX-ResolutionY)/2$
+BackgroundWidth					$ResolutionY$
+BackgroundHeight				$ResolutionY$
+BackgroundPaintingMode			.image
+BackgroundImage					$Background$
+BackgroundGhosted				true
+BackgroundAlphaTransparency		100
+BackgroundAlphaMap				true
 ;]
 ENDIF

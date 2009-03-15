@@ -21,6 +21,7 @@ IRC "$PA$PidginPortable\PidginPortable.exe"
 FTP "$PA$FirefoxPortable\FirefoxPortable.exe"
 IM "$PA$PidginPortable\PidginPortable.exe"
 IMName "Pidgin"
+Tutorial "$LiteStepDir$Tutorial\Tutorial.exe"
 
 
 

@@ -272,8 +272,8 @@ function ParseForCode(ToParse) {
 	EndLines = '';
 	Lines = new Array();
 	Lines = ToParse.split('\n');
-	CodeLinePattern = new RegExp('/<div(\\s+)class="(\\s*)code(\\s*)"(.*?)>/i');
-	EndCodeBlock = new RegExp('/<\/div>/i');
+	CodeLinePattern = new RegExp('<div(\\s+)class="(\\s*)code(\\s*)"(.*?)>');
+	EndCodeBlock = new RegExp('<\/div>');
 	TitleMatch = new RegExp('<title>(.*?)</title>');
 	InCodeDiv = false;
 	for (i = 0; i < Lines.length; i++) {

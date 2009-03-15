@@ -33,6 +33,8 @@ body {
 }
 .Code {
 	background-image: url('..\img\CodeBG.png');
+	color: 00FF00;
+	font-weight: bold;
 	border-style: dashed;
 	border-color: black;
 	border-width: 1;

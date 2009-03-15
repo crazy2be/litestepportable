@@ -3,6 +3,7 @@
 IF Showstats = True
 ;--> Creates the label
 *Label Stats
+ENDIF
 
 ;[ Size/Position on the screen
 StatsY								1
@@ -35,4 +36,3 @@ StatsFontAlign						Left
 StatsFontPadding					4
 StatsText							"[os] RAM:[memInUse(%)]%/[memTotal(MB)]MB[if(connected)] NET:[before(netIn(0), ' ')]/[before(netOut(0), ' ')] [endIf] [CPU]%[ifeval(powersource,'=','Battery')] [Battery]B[endIf] [ifeval(between(clipboardText, '1', '50', 'indexspan'), between(clipboardText, '1', '51', 'indexspan'))][clipboardText][else][between(clipboardText, '1', '50', 'indexspan')]...[endif]"
 ;]
-ENDIF

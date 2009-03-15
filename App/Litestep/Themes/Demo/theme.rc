@@ -31,7 +31,7 @@ IF Showlsx = True
 *NetLoadModule lsxcommand-2.0.2 threaded
 ENDIF
 IF ShowDesk = True
-*NetLoadModule clickonic-1.1.4
+*NetLoadModule clickonic-1.1.5-pre
 ENDIF
 IF ShowStatsGraph = True
 *NetLoadModule xStatsGraph-0.8.1 threaded
@@ -45,4 +45,8 @@ ENDIF
 ; This is set to 0,0,0,0 to give you the whole screen! see the
 ; jDesk docs for detatils on how to change this to what you want.
 
-jDeskWorkArea "0, 0, 0, 0"
+IF MaxWindowsFullScreen = true
+jDeskWorkArea 1,1,-1,-1
+ELSE
+jDeskWorkArea 1,26,-1,-25
+ENDIF

@@ -8,4 +8,4 @@
 *CommandAlias $FMName$ $FileManager$
 *CommandAlias $IMName$ $IM$
 *CommandAlias $EmailName$ $Email$
-*CommandAlias More "$LSD$Portableapps.bat"
+*CommandAlias Tutorial $Tutorial$

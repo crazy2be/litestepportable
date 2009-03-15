@@ -77,6 +77,7 @@ StartTrackingIgnoreTrueTransparency			True
 ;--> a !Bang to execute on being left-clicked. do !About in the lsx to see
 ;   available bangs. !execute [program] can be used to launch exe's
 StartOnLeftClick							!Popup 1 26
+StartOnRightClick							!ConfigPopup 1 26
 StartAlwaysOnTop							$AlwaysOnTop$
 ;]
 

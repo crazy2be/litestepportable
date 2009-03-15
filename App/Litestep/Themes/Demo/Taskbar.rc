@@ -1,6 +1,5 @@
 ;--- xTaskbar
 ;---   A list of all running programs
-IF ShowTask = True
 ;[ Size/Position on screen
 xTaskbarX                       0
 xTaskbarY                       -27
@@ -27,4 +26,3 @@ xTaskbarButtonRoundedEdges		$RoundedEdges$
 xTaskbarButtonBevels			$Bevels$
 xTaskbarButtonColors			FF00FF $BorderColor$
 ;]
-ENDIF
