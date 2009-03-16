@@ -296,7 +296,7 @@ void CreateSettingsini() {
     "; the path to the popup file to write the portableapps info to"
     "PortableApps popup file=G:\\LiteStep\\Personal\\PortableApps.rc"
     "; The path to the lsxcommand alias file"
-    "PortableApps LSX File=G:\\LiteStep\\Personal\\LSXCommand\\PortableApps.rc"
+    "PortableApps LSX file=G:\\LiteStep\\Personal\\LSXCommand\\PortableApps.rc"
     "; The path to the desktop folder"
     "DesktopFolderPath=G:\\Litestep\\Personal\\Desktop\\"
     "; Should the app create desktop shortcuts on each load?"
