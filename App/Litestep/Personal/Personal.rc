@@ -54,6 +54,10 @@ jKeyLWinKey        "!Popup"
 ;------------------------------------------------------------------------------
 ;   Desktop Settings: jDesk, Clickonic, xDesk
 ;------------------------------------------------------------------------------
+;-> Sets the image dir, where litestep searches for image files
+LSImageFolder						"$LiteStepDir$Images\"
+
+;-> Sets the desktop
 DesktopFolder					"$PersonalDir$Desktop\"
 DeskIconsFolder 				$DesktopFolder$
 jDeskDesktopFolder				$DesktopFolder$
