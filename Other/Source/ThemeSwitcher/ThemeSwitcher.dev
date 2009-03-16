@@ -1,7 +1,7 @@
 [Project]
 FileName=ThemeSwitcher.dev
 Name=ThemeSwitcher
-UnitCount=21
+UnitCount=22
 Type=0
 Ver=1
 ObjFiles=
@@ -12,7 +12,7 @@ ResourceIncludes=
 MakeIncludes=
 Compiler=
 CppCompiler=
-Linker=../../PortableApps/Dev-CppPortable/App/devcpp/lib/libpsapi.a_@@_
+Linker=../../../../Dev-CppPortable/App/devcpp/lib/libpsapi.a_@@_
 IsCpp=1
 Icon=ThemeSwitcher.ico
 ExeOutput=
@@ -251,6 +251,15 @@ BuildCmd=
 FileName=ProcessExist.h
 CompileCpp=1
 Folder=ThemeSwitcher
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit22]
+FileName=ThemeSwither.rc
+Folder=Resources
 Compile=1
 Link=1
 Priority=1000

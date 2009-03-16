@@ -3,6 +3,7 @@
 
 #include <windows.h> // include for version info constants
 
+#include "ThemeSwither.rc"
 
 A ICON MOVEABLE PURE LOADONCALL DISCARDABLE "ThemeSwitcher.ico"
 

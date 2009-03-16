@@ -16,7 +16,7 @@ void SwitchTheme(string ThemeName);
 void Error(string ErrorMessage);
 
 /*  Make the class name into a global variable  */
-char szClassName[ ] = "WindowsApp";
+char szClassName[ ] = "LSTM";
 HWND ThemeListhwnd;
 HWND BottomButtonshwnd; /* contains all the buttons at the bottom */
 HWND InstallThemehwnd;

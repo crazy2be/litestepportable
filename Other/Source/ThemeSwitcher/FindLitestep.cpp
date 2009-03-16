@@ -97,18 +97,18 @@ string FindThemesDirPath() {
         _getcwd(Path, MAX_PATH);
         FilesToFind[0] = Path;
         FilesToFind[0] = FilesToFind[0].substr(0, FilesToFind[0].rfind("\\"));
-        FilesToFind[0] += "\\ThemesList.rc";
+        //FilesToFind[0] += "\\ThemesList.rc";
         return FilesToFind[0];
     } else if (FindFileInt == 1) {
         _getcwd(Path, MAX_PATH);
         FilesToFind[1] = Path;
-        FilesToFind[1] += "\\ThemesList.rc";
+        //FilesToFind[1] += "\\ThemesList.rc";
         return FilesToFind[1];
     } else if (FindFileInt == 2) {
         _getcwd(Path, MAX_PATH);
         FilesToFind[2] = Path;
         FilesToFind[2] = FilesToFind[2].substr(0, FilesToFind[2].rfind("\\"));
-        FilesToFind[2] += "\\Themes\\ThemesList.rc";
+        FilesToFind[2] += "\\Themes\\";
         return FilesToFind[2];
     } else {
         Error("Unable to find ThemesList.rc!\n"

@@ -7,7 +7,7 @@ WINDRES = windres.exe
 RES  = ThemeSwitcher_private.res
 OBJ  = main.o GetSettings.o ArgProc.o SwitchTheme.o Error.o InstallTheme.o RefreshThemes.o FindLitestep.o SettingsDialog.o ProcessExist.o $(RES)
 LINKOBJ  = main.o GetSettings.o ArgProc.o SwitchTheme.o Error.o InstallTheme.o RefreshThemes.o FindLitestep.o SettingsDialog.o ProcessExist.o $(RES)
-LIBS =  -L"G:/PortableApps/Dev-CppPortable/App/devcpp/lib" -mwindows ../../PortableApps/Dev-CppPortable/App/devcpp/lib/libpsapi.a  -g3 
+LIBS =  -L"G:/PortableApps/Dev-CppPortable/App/devcpp/lib" -mwindows ../../../../Dev-CppPortable/App/devcpp/lib/libpsapi.a  -g3 
 INCS =  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/include" 
 CXXINCS =  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/lib/gcc/mingw32/3.4.2/include"  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/include/c++/3.4.2/backward"  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/include/c++/3.4.2/mingw32"  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/include/c++/3.4.2"  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/include" 
 BIN  = ThemeSwitcher.exe
@@ -56,5 +56,5 @@ SettingsDialog.o: SettingsDialog.cpp
 ProcessExist.o: ProcessExist.cpp
 	$(CPP) -c ProcessExist.cpp -o ProcessExist.o $(CXXFLAGS)
 
-ThemeSwitcher_private.res: ThemeSwitcher_private.rc 
+ThemeSwitcher_private.res: ThemeSwitcher_private.rc ThemeSwither.rc 
 	$(WINDRES) -i ThemeSwitcher_private.rc --input-format=rc -o ThemeSwitcher_private.res -O coff 

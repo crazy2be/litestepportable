@@ -37,8 +37,8 @@ int WINAPI WinMain (HINSTANCE hThisInstance,
     ButtonWindow.cbSize = sizeof (WNDCLASSEX);
 
     /* Use default icon and mouse-pointer */
-    ButtonWindow.hIcon = LoadIcon (NULL, IDI_APPLICATION);
-    ButtonWindow.hIconSm = LoadIcon (NULL, IDI_APPLICATION);
+    ButtonWindow.hIcon = LoadIcon (hThisInstance, "APPLICATION_ICON");
+    ButtonWindow.hIconSm = LoadIcon (hThisInstance, "APPLICATION_ICON");
     ButtonWindow.hCursor = LoadCursor (NULL, IDC_ARROW);
     ButtonWindow.lpszMenuName = NULL;                 /* No menu */
     ButtonWindow.cbClsExtra = 0;                      /* No extra bytes after the window class */
@@ -58,8 +58,8 @@ int WINAPI WinMain (HINSTANCE hThisInstance,
     wincl.cbSize = sizeof (WNDCLASSEX);
 
     /* Use default icon and mouse-pointer */
-    wincl.hIcon = LoadIcon (NULL, IDI_APPLICATION);
-    wincl.hIconSm = LoadIcon (NULL, IDI_APPLICATION);
+    wincl.hIcon = LoadIcon (hThisInstance, "APPLICATION_ICON");
+    wincl.hIconSm = LoadIcon (hThisInstance, "APPLICATION_ICON");
     wincl.hCursor = LoadCursor (NULL, IDC_ARROW);
     wincl.lpszMenuName = NULL;                 /* No menu */
     wincl.cbClsExtra = 0;                      /* No extra bytes after the window class */
@@ -245,6 +245,7 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
                                  SwitchTheme(ThemeNames[Selidx], true);
                              }
                              return true;
+                             break;
                      }
                      break;
              }
@@ -279,6 +280,8 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
         case 0x8888: //0x8888 = custom message that refreshes the theme list
              RefreshList(ThemeListhwnd, ThemeNames);
              break;
+        //case WM_GETICON:
+            //return 
         default:                      /* for messages that we don't deal with */
             return DefWindowProc (hwnd, message, wParam, lParam);
     }
@@ -375,6 +378,8 @@ LRESULT CALLBACK ButtonWindowProcedure (HWND hwnd, UINT message, WPARAM wParam, 
                      20,
                      SWP_NOACTIVATE);
             }
+            break;
+
         default:                      /* for messages that we don't deal with */
             return DefWindowProc (hwnd, message, wParam, lParam);
     }

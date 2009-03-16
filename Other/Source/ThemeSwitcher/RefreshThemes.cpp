@@ -3,6 +3,7 @@
 #include "GetSettings.h"
 
 void RefreshList(HWND ThemeListHWND, string ThemeNames[]) {
+    Status("Loading themes...");
     /* Clear Current List & File */
     ClearThemeList(ThemeListHWND, ThemeNames);
     ClearThemeListFile();
