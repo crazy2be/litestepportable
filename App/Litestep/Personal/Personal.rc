@@ -64,9 +64,9 @@ jDeskDesktopFolder				$DesktopFolder$
 DeskIconsCustomDrive			".current"
 DeskIconsIconPositionFile		"$PersonalDir$positions.ini"
 
-;--> Uncomment to set a Backround in Most Themes. Change "Backround.jpg" to the
+;--> Uncomment to set a Backround in Most Themes. Change "Backround.png" to the
 ;    name and path to the image you want to use.
-Background						"$litestepdir$Images\Background.jpg"
+Background						"$litestepdir$Images\Background.png"
 ;DeskIconsBackground				$Background$
 ;DeskIconsBackground				"$litestepdir$Images\white.bmp"
 
