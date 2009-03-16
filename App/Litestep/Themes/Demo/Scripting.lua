@@ -6,7 +6,7 @@ bang_ToggleDesktop = function()
 	--lslua.exec('!alert "testing out LUA!')
 	local DesktopEnabled = evar.toboolean('ShowDesk');
 	Desktop = lsmodule.clickonic;
-	Desktop.version = '1.1.5-pre';
+	Desktop.version = '1.1.4';
 	if DesktopEnabled then
 		lslua.set_evar('ShowDesk', 'false');
 		SetRCVar('ShowDesk', 'false');
