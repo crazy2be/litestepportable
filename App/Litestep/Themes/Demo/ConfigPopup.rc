@@ -1,0 +1,14 @@
+RCNewEntryFile "$ThemeDir$Basic.rc"
+*Popup "Configure" !New !ConfigPopup
+	*Popup "Show..." Folder
+		*Popup "Desktop" !ToggleDesktop
+		*Popup "Taskbar" !ToggleTaskbar
+		*Popup "System Info" !ToggleStats
+	*Popup ~Folder
+	*Popup "Fullscreen?" Folder
+		*Popup "Windows on maximize" !ToggleFullscreenWindows
+		*Popup "Desktop" !ToggleFullscreenDesktop
+	*Popup ~Folder
+	*Popup "Recycle" !Recycle
+	*Popup "Take the tutorial!" !Tutorial
+*Popup ~New
