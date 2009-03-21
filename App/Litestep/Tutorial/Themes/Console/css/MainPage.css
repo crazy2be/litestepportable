@@ -4,8 +4,12 @@ body {
 	padding-top: 0px;
 	padding-right: 0px;
 	padding-bottom: 0px;
-	background-image: url('..\img\background.jpg');
-	background-repeat: no-repeat;
+	background-color: black;
+	color: green;
+	scrollbar-base-color: green;
+	
+	/*background-image: url('..\img\background.jpg');
+	background-repeat: no-repeat;*/
 }
 .ContentDiv {
 	
@@ -18,7 +22,7 @@ body {
 	color: 00FF00;
 	font-weight: bold;
 	border-style: dashed;
-	border-color: black;
+	border-color: green;
 	border-width: 1;
 }
 .TutorialSelector {
@@ -35,23 +39,19 @@ body {
 	padding-left: 1px;
 	padding-right: 1px;
 	border-width: 1;
-	border-color: black;
+	border-color: green;
 	border-style: solid;
-	background-color: white;
-	/*filter:alpha(opacity=40);*/
 }
-.DropDownList:hover {
-	/*filter:alpha(opacity=100);*/
+.DropDownListContainer {
+	top: 0px;
+	right: 15px;
 }
 .DropDownListTitle {
-	
+	color: white;
 }
 .DropDownListItems {
 	
 }
 .DropDownList:hover .DropDownListItems { 
 	
-}
-.StatusBar {
-	background-color: white;
 }

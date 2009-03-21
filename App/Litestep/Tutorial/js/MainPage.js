@@ -4,18 +4,26 @@ var MaxPages = 4; //The number of pages in the turorial
 var Lang = "Eng"; // The language
 var Them = "Default"; //The theme
 var CurTut = "LiteStepPortable Introduction"; //The Tutorial name
+var CurStatusTimeout;
 
 // Handlers
 //window.onerror=handleErr;
 function LoadingCode() {
 	//document.getElementsByTagName('body')[0]
 	//	.style.behavior = 'url(\'..\\css\\WH3.htc\')'
+	Status('Loading First Page...');
 	FirstPage();
+	Status('Loading Page Index...');
 	LoadIndex();
+	Status('Loading Installed Languages...');
 	LoadLangs();
+	Status('Loading Installed Themes...');
 	LoadThemes();
+	Status('Loading Installed Tutorials...');
 	LoadTuts();
+	Status('Loading Current Theme...');
 	LoadTheme();
+	Status('Done!');
 }
 
 function LoadIndex() {
@@ -100,7 +108,10 @@ function ParseSomeXMLFile(Path, Properties) {
 	}
 }
 
-function LoadSomeXMLFile(Path, PropertiesToPass, Method) {
+function LoadSomeXMLFile(Path, PropertiesToPass, Method, OtherPropertyToPass) {
+	if (OtherPropertyToPass == null) {
+		OtherPropertyToPass = 'this';
+	}
 	var EndHTML = '';
 	//var XMLProperty = PropertiesToPass;
 	//alert(PropertiesToPass + '\n' + PropertiesToPass.length);
@@ -115,7 +126,10 @@ function LoadSomeXMLFile(Path, PropertiesToPass, Method) {
 				EndHTML += '\',\'';
 			}
 		}
-		EndHTML += '\')">';
+		EndHTML += '\',';
+		EndHTML += OtherPropertyToPass;
+		EndHTML += ')">';
+		//EndHTML += 
 		EndHTML += XMLProperties[i][0];
 		EndHTML += '</a><br />';
 	}
@@ -129,8 +143,8 @@ function LoadTheme() {
 	//var Stuff = '';
 	var CSS = document.getElementsByTagName('link');
 	CSS[0].href = '..\\Themes\\' + Them + '\\css\\MainPage.css';
-	document.getElementsByTagName('body')[0]
-		.style.behavior = 'url(\'..\\css\\WH3.htc\')'
+	//document.getElementsByTagName('body')[0]
+	//	.style.behavior = 'url(\'..\\css\\WH3.htc\')'
 	//Stuff += CSS[0].href;
 	//Stuff += '\n';
 	var Images = ControlDiv.getElementsByTagName('input');
@@ -143,6 +157,12 @@ function LoadTheme() {
 		//Stuff += Images[i].src;
 		//Stuff += '\n';
 	}
+	//if (arguments[0] != null) {
+		//Node = arguments[0];
+		//alert(Node);
+		//alert(Node.innerHTML);
+		//Node.parentNode.parentNode.firstChild.innerHTML = Them;
+	//}
 	//alert(Stuff);
 }
 
@@ -228,21 +248,30 @@ function GotoPage(Path) {
 	}
 }
 
-function ChangeTut(TutorialName, Pages) {
+function ChangeTut(TutorialName, Pages, Node) {
 	CurTut = TutorialName;
 	PageNumber = 1;
 	MaxPages = Pages
 	GotoTutorialPage();
+	if (Node != null) {
+		Node.parentNode.parentNode.firstChild.innerHTML = Node.innerHTML;
+	}
 }
 
-function ChangeLang(LanguageCode) {
+function ChangeLang(LanguageCode, Node) {
 	Lang = LanguageCode;
 	GotoTutorialPage();
+	if (Node != null) {
+		Node.parentNode.parentNode.firstChild.innerHTML = Node.innerHTML;
+	}
 }
 
-function ChangeTheme(ThemeName) {
+function ChangeTheme(ThemeName, Node) {
 	Them = ThemeName;
-	LoadTheme();
+	LoadTheme(Node);
+	if (Node != null) {
+		Node.parentNode.parentNode.firstChild.innerHTML = Node.innerHTML;
+	}
 }
 
 function ToggleTutorialSelectorFunc() {
@@ -299,6 +328,34 @@ function ParseForCode(ToParse) {
 		}
 	}
 	return EndLines;
+}
+
+function Status(newStatus) {
+	var StatusBar = document.getElementById('StatusBar');
+	StatusBar.innerHTML = newStatus;
+	window.clearTimeout(CurStatusTimeout);
+	CurStatusTimeout = window.setTimeout(
+		'HideStatus();'
+		, 2000);
+	
+}
+
+function HideStatus() {
+	var StatusBar = document.getElementById('StatusBar');
+	for (i = 0; i < 100; i++) {
+		//alert('StatusBar.style.filter = \'alpha(opacity=\'' + i + '\')\';');
+		window.setTimeout(
+			'StatusBar.style.filter = \'alpha(opacity=' + i + ')\';',
+			(i-100)*-10);
+		//StatusBar.filters.alpha.opacity
+	}
+	//StatusBar.style.display = 'none';
+}
+
+function ShowStatus() {
+	window.clearTimeout();
+	StatusBar.style.filter = 'alpha(opacity=100)';
+	HideStatus();
 }
 
 function getElementsByClass(searchClass,node,tag) {
