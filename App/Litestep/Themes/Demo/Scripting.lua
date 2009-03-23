@@ -6,7 +6,7 @@ bang_ToggleDesktop = function()
 	--lslua.exec('!alert "testing out LUA!')
 	local DesktopEnabled = evar.toboolean('ShowDesk');
 	Desktop = lsmodule.clickonic;
-	Desktop.version = '1.1.4';
+	Desktop.version = '1.1.5-pre';
 	if DesktopEnabled then
 		lslua.set_evar('ShowDesk', 'false');
 		SetRCVar('ShowDesk', 'false');
@@ -81,7 +81,16 @@ end
 
 function bang_ToggleFullscreenDesktop()
 	Desktop = lsmodule.clickonic;
-	
+	local DesktopFullScreen = evar.toboolean('DeskFullScreen');
+	if DesktopFullScreen then
+		lslua.set_evar('DeskFullScreen', 'false');
+		SetRCVar('DeskFullScreen', 'false');
+		lslua.exec('!ClickonicReposition DeskIcons 0 26 $ResolutionX$ $ResolutionY-52$');
+	else
+		lslua.set_evar('DeskFullScreen', 'true');
+		SetRCVar('DeskFullScreen', 'true');
+		lslua.exec('!ClickonicReposition DeskIcons 0 0 $ResolutionX$ $ResolutionY$');
+	end
 end
 
 function bang_Tutorial()
