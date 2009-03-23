@@ -10,21 +10,21 @@ LINKOBJ  = main.o GetSettings.o ArgProc.o SwitchTheme.o Error.o InstallTheme.o R
 LIBS =  -L"G:/PortableApps/Dev-CppPortable/App/devcpp/lib" -mwindows ../../../../Dev-CppPortable/App/devcpp/lib/libpsapi.a  -g3 
 INCS =  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/include" 
 CXXINCS =  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/lib/gcc/mingw32/3.4.2/include"  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/include/c++/3.4.2/backward"  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/include/c++/3.4.2/mingw32"  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/include/c++/3.4.2"  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/include" 
-BIN  = ThemeSwitcher.exe
+BIN  = ../../../App/Litestep/Utilities/ThemeSwitcher.exe
 CXXFLAGS = $(CXXINCS)   -g3
 CFLAGS = $(INCS)   -g3
 RM = rm -f
 
 .PHONY: all all-before all-after clean clean-custom
 
-all: all-before ThemeSwitcher.exe all-after
+all: all-before ../../../App/Litestep/Utilities/ThemeSwitcher.exe all-after
 
 
 clean: clean-custom
 	${RM} $(OBJ) $(BIN)
 
 $(BIN): $(OBJ)
-	$(CPP) $(LINKOBJ) -o "ThemeSwitcher.exe" $(LIBS)
+	$(CPP) $(LINKOBJ) -o "..\..\..\App\Litestep\Utilities\ThemeSwitcher.exe" $(LIBS)
 
 main.o: main.cpp
 	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
@@ -56,5 +56,5 @@ SettingsDialog.o: SettingsDialog.cpp
 ProcessExist.o: ProcessExist.cpp
 	$(CPP) -c ProcessExist.cpp -o ProcessExist.o $(CXXFLAGS)
 
-ThemeSwitcher_private.res: ThemeSwitcher_private.rc ThemeSwither.rc 
+ThemeSwitcher_private.res: ThemeSwitcher_private.rc ../../../Other/Source/ThemeSwitcher/ThemeSwither.rc 
 	$(WINDRES) -i ThemeSwitcher_private.rc --input-format=rc -o ThemeSwitcher_private.res -O coff 
