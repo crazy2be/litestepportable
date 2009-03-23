@@ -5,11 +5,11 @@
 #define SHELLSWITCHER_PRIVATE_H
 
 /* VERSION DEFINITIONS */
-#define VER_STRING	"0.2.1.52"
+#define VER_STRING	"0.2.1.104"
 #define VER_MAJOR	0
 #define VER_MINOR	2
 #define VER_RELEASE	1
-#define VER_BUILD	52
+#define VER_BUILD	104
 #define COMPANY_NAME	"crazy2be"
 #define FILE_VERSION	""
 #define FILE_DESCRIPTION	"ShellSwitcher for LiteStep, a.k.a. Litestep Portable"

@@ -1,7 +1,7 @@
-*Popup "$Browsername$"							"$Browser$"
-;*Popup "test"									"!ParseEvars !alert X %#xTrayCurrentX#%"
+*Popup "Take the turorial!"						"$Tutorial$"
 *Popup !Separator
 ;¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+*Popup "$Browsername$"							"$Browser$"
 *Popup "$FMName$"								"$FileManager$"
 *Popup "$TxtEditorName$"						"$TxtEditor$"
 *Popup "$IMName$"								"$IM$"

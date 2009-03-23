@@ -8,9 +8,9 @@
 #include "FindLitestep.h"
 #include "ArgProc.h"
 
+
 int main(int argc, char *argv[])
 {
-    
     //exit( EXIT_SUCCESS );
     // Set Global Variables
 	string WD;

@@ -3,6 +3,7 @@
 #include "GetSettings.h"
 #include "Error.h"
 #include "UpdateIcons.h"
+#include "Splash.h"
 
 int PromptAction() {  
     int PromptLevel = GetIntValue("PromptLevel");
@@ -80,22 +81,28 @@ bool KillExplorer() {
 }
 
 bool StartLitestep() {
-     // Starting Litestep
-     // Making the drive.rc file
-     SaveDriveData();
+    // Starting Litestep
+    
+    // Show the splash
+    SPLASH StartSplash;
+    StartSplash.Init();
+    StartSplash.Show();
+    
+    // Making the drive.rc file
+    SaveDriveData();
 
-     const bool DetectPA = GetBoolValue("DetectPortableApps");
-     vector<string> AllApps;
+    const bool DetectPA = GetBoolValue("DetectPortableApps");
+    vector<string> AllApps;
      
-     if (DetectPA)
-         AllApps = UpdatePopup();
+    if (DetectPA)
+        AllApps = UpdatePopup();
      
-     ShellExecute( NULL, "open", GetValue("Litestep").c_str(), NULL, NULL, SW_SHOW);
+    ShellExecute( NULL, "open", GetValue("Litestep").c_str(), NULL, NULL, SW_SHOW);
      
-     if (DetectPA)
-         UpdateIcons(AllApps);
+    if (DetectPA)
+        UpdateIcons(AllApps);
      
-     return false;
+    return false;
 }
 
 bool StartExplorer() {

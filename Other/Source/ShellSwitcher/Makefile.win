@@ -5,9 +5,9 @@ CPP  = g++.exe
 CC   = gcc.exe
 WINDRES = windres.exe
 RES  = ShellSwitcher_private.res
-OBJ  = main.o GetSettings.o ProcessExist.o Error.o Switcher.o GlobalVars.o UpdateIcons.o FindLitestep.o ArgProc.o $(RES)
-LINKOBJ  = main.o GetSettings.o ProcessExist.o Error.o Switcher.o GlobalVars.o UpdateIcons.o FindLitestep.o ArgProc.o $(RES)
-LIBS =  -L"G:/PortableApps/Dev-CppPortable/App/devcpp/lib" -mwindows ../../../../Dev-CppPortable/App/devcpp/lib/libpsapi.a ../../../../Dev-CppPortable/App/devcpp/lib/libshlwapi.a ../../../../Dev-CppPortable/App/devcpp/lib/libole32.a ../../../../Dev-CppPortable/App/devcpp/lib/libuuid.a ../../../../Dev-CppPortable/App/devcpp/lib/libshell32.a  -s 
+OBJ  = main.o GetSettings.o ProcessExist.o Error.o Switcher.o GlobalVars.o UpdateIcons.o FindLitestep.o ArgProc.o Splash.o $(RES)
+LINKOBJ  = main.o GetSettings.o ProcessExist.o Error.o Switcher.o GlobalVars.o UpdateIcons.o FindLitestep.o ArgProc.o Splash.o $(RES)
+LIBS =  -L"G:/PortableApps/Dev-CppPortable/App/devcpp/lib" -mwindows ../../../../Dev-CppPortable/App/devcpp/lib/libpsapi.a ../../../../Dev-CppPortable/App/devcpp/lib/libshlwapi.a ../../../../Dev-CppPortable/App/devcpp/lib/libole32.a ../../../../Dev-CppPortable/App/devcpp/lib/libuuid.a ../../../../Dev-CppPortable/App/devcpp/lib/libshell32.a ../../../../Dev-CppPortable/App/devcpp/lib/libgdiplus.a  -s 
 INCS =  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/include" 
 CXXINCS =  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/lib/gcc/mingw32/3.4.2/include"  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/include/c++/3.4.2/backward"  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/include/c++/3.4.2/mingw32"  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/include/c++/3.4.2"  -I"G:/PortableApps/Dev-CppPortable/App/devcpp/include" 
 BIN  = ../../../LiteStepPortable.exe
@@ -52,6 +52,9 @@ FindLitestep.o: FindLitestep.cpp
 
 ArgProc.o: ArgProc.cpp
 	$(CPP) -c ArgProc.cpp -o ArgProc.o $(CXXFLAGS)
+
+Splash.o: Splash.cpp
+	$(CPP) -c Splash.cpp -o Splash.o $(CXXFLAGS)
 
 ShellSwitcher_private.res: ShellSwitcher_private.rc 
 	$(WINDRES) -i ShellSwitcher_private.rc --input-format=rc -o ShellSwitcher_private.res -O coff 
