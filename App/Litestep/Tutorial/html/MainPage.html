@@ -2,12 +2,12 @@
 <html>
 	<head>
 		<title>Loading...</title>
-		<script type="text/javascript" language="javascript" src="..\js\MainPage.js"></script>
 		<link href="..\Themes\Default\css\MainPage.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="..\css\MainPage.css" rel="stylesheet" type="text/css" media="all">
+		<script type="text/javascript" language="javascript" src="..\js\MainPage.js"></script>
 	</head>
-	<body onLoad="LoadingCode();">
-		<div class="ToggleTutorialSelector" id="ToggleTutorialSelector" onclick="ToggleTutorialSelectorFunc()">
+	<body onLoad="LoadingCode();" onresize="Resize();">
+		<div class="ToggleTutorialSelector" id="ToggleTutorialSelector" onmousedown="MoveTutorialSelBar();">
 		</div>
 		<div class="TutorialSelector" id="TutorialSelector">
 			Loading...
@@ -48,7 +48,7 @@
 			</div>
 			</div>
 		</div>
-		<div class="StatusBar" id="StatusBar" onmouseover="ShowStatus();">
+		<div class="StatusBar" id="StatusBar" onmouseover="ShowStatus();" onmouseout="HideStatus();">
 			Loading...
 		</div>
 	</body>

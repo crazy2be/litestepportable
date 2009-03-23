@@ -5,6 +5,9 @@ var Lang = "Eng"; // The language
 var Them = "Default"; //The theme
 var CurTut = "LiteStepPortable Introduction"; //The Tutorial name
 var CurStatusTimeout;
+var FadeTimeout = new Array(100); // Timout for the fade effect
+var TutSelBarLeft = 100;
+var ContentDivWidth;
 
 // Handlers
 //window.onerror=handleErr;
@@ -23,7 +26,10 @@ function LoadingCode() {
 	LoadTuts();
 	Status('Loading Current Theme...');
 	LoadTheme();
-	Status('Done!');
+	Resize();
+	Status(GetStatus() + 'Done!');
+	HideStatus();
+	ContentDivWidth = document.body.clientWidth-TutSelBarLeft-10;
 }
 
 function LoadIndex() {
@@ -216,7 +222,16 @@ function Page(number) {
 }
 
 function GotoTutorialPage() {
-	GotoPage("..\\Lang\\" + Lang + '\\' + CurTut + "\\html\\Page" + PageNumber + ".html");
+	if (arguments.length > 0) {
+		PageNumber = arguments[0];
+	}
+	Status('Loading Page ' + PageNumber + ' of ' + MaxPages + ' in tutorial ' + CurTut + '...');
+	if (GotoPage("..\\Lang\\" + Lang + '\\' + CurTut + "\\html\\Page" + PageNumber + ".html") == 'ERROR') {
+		Status(GetStatus() + 'Failed.');
+	} else {
+		Status(GetStatus() + 'Done!');
+	}
+	HideStatus();
 }
 
 function GotoPage(Path) {
@@ -230,6 +245,7 @@ function GotoPage(Path) {
 		alert('Error occured while attempting to retreive page:\n'
 			+ '(' + Path + ')\n'
 			+ error.message + '\n');
+		return 'ERROR';
 	}
 	// Find all the images in the loaded document, and correct their paths.
 	var Images = ContentDiv.getElementsByTagName('img');
@@ -244,7 +260,26 @@ function GotoPage(Path) {
 		//alert(Path);
 		Images[i].src = Path + 'Lang/'
 			+ Lang + '\\' + CurTut + '/img/' + FileName;
+		window.setTimeout('ContentDiv.getElementsByTagName(\'img\')['+i+'].naturalWidth = ContentDiv.getElementsByTagName(\'img\')['+i+'].width', 100+(10*i));
+		//window.setTimeout(Images[i].naturalHeight = Images[i].height, 200);
 		//alert(Images[i]);
+	}
+	window.setTimeout('ResizeImages();', 300);
+}
+
+function ResizeImages() {
+	var Images = ContentDiv.getElementsByTagName('img');
+	for (i = 0; i < Images.length; i++) {
+		//alert(Images[i].src + '\n' + Images[i].width);
+		//var h = Images[i].offsetHeight;
+		//var w = Images[i].offsetWidth;
+		//alert ('The image size of ' + Images[i].src + ' is '+w+'*'+h)
+		if (Images[i].width > ContentDivWidth) {
+			Images[i].width = ContentDivWidth-15;
+		} else if (Images[i].width < Images[i].naturalWidth) {
+			Images[i].width = ContentDivWidth-15;
+		}
+		//Status(Images[i].width + "    " + Images[i].naturalWidth);
 	}
 }
 
@@ -252,10 +287,13 @@ function ChangeTut(TutorialName, Pages, Node) {
 	CurTut = TutorialName;
 	PageNumber = 1;
 	MaxPages = Pages
+	Status('Loading Tutorial: ' + TutorialName + '...');
 	GotoTutorialPage();
 	if (Node != null) {
 		Node.parentNode.parentNode.firstChild.innerHTML = Node.innerHTML;
 	}
+	//Status(GetStatus() + ' Done!');
+	//HideStatus();
 }
 
 function ChangeLang(LanguageCode, Node) {
@@ -268,10 +306,13 @@ function ChangeLang(LanguageCode, Node) {
 
 function ChangeTheme(ThemeName, Node) {
 	Them = ThemeName;
-	LoadTheme(Node);
+	Status('Loading Theme: ' + ThemeName + '...');
+	LoadTheme();
 	if (Node != null) {
 		Node.parentNode.parentNode.firstChild.innerHTML = Node.innerHTML;
 	}
+	Status(GetStatus() + 'Done!');
+	HideStatus();
 }
 
 function ToggleTutorialSelectorFunc() {
@@ -281,9 +322,9 @@ function ToggleTutorialSelectorFunc() {
 	ContentDiv.style.width =
 		(ContentDiv.style.width == "581px")
 			? ("481px") : ("581px");
-	ContentDiv.style.left =
+	/*ContentDiv.style.left =
 		(ContentDiv.style.left == "10px")
-			? ("110px") : ("10px");
+			? ("110px") : ("10px");*/
 	ToggleTutorialSelector.style.left =
 		(ToggleTutorialSelector.style.left == "0px")
 			? ("100px") : ("0px");
@@ -333,18 +374,19 @@ function ParseForCode(ToParse) {
 function Status(newStatus) {
 	var StatusBar = document.getElementById('StatusBar');
 	StatusBar.innerHTML = newStatus;
-	window.clearTimeout(CurStatusTimeout);
-	CurStatusTimeout = window.setTimeout(
-		'HideStatus();'
-		, 2000);
+	ShowStatus();
+	//window.clearTimeout(CurStatusTimeout);
+	//CurStatusTimeout = window.setTimeout(
+	//	'HideStatus();'
+	//	, 2000);
 	
 }
 
 function HideStatus() {
 	var StatusBar = document.getElementById('StatusBar');
-	for (i = 0; i < 100; i++) {
+	for (i = 0; i < 100; i=i+5) {
 		//alert('StatusBar.style.filter = \'alpha(opacity=\'' + i + '\')\';');
-		window.setTimeout(
+		FadeTimeout[i] = window.setTimeout(
 			'StatusBar.style.filter = \'alpha(opacity=' + i + ')\';',
 			(i-100)*-10);
 		//StatusBar.filters.alpha.opacity
@@ -353,9 +395,15 @@ function HideStatus() {
 }
 
 function ShowStatus() {
-	window.clearTimeout();
+	for (i = 0; i < FadeTimeout.length; i++) {
+		window.clearTimeout(FadeTimeout[i]);
+	}
 	StatusBar.style.filter = 'alpha(opacity=100)';
-	HideStatus();
+	//HideStatus();
+}
+
+function GetStatus() {
+	return document.getElementById('StatusBar').innerHTML;
 }
 
 function getElementsByClass(searchClass,node,tag) {
@@ -374,4 +422,74 @@ function getElementsByClass(searchClass,node,tag) {
 		}
 	}
 	return classElements;
+}
+
+function Resize() {
+	ContentDivWidth = document.body.clientWidth-TutSelBarLeft-10;
+	if (ContentDivWidth > 0) {
+		ContentDiv.style.width = ContentDivWidth;
+	} //else {
+		//window.resizeBy(5, 5);
+		//document.body.clientWidth = TutSelBarLeft+20;
+	//}
+	var ContentDivHeight = document.body.clientHeight-25;
+	if (ContentDivHeight > 0) {
+		ContentDiv.style.height = ContentDivHeight;
+		ToggleTutorialSelector.style.height = ContentDivHeight+5;
+	}
+	ResizeImages();
+}
+
+var dragX = 0;
+
+function MoveTutorialSelBar(e) {
+	if (ToggleTutorialSelector.style.left == '')
+		ToggleTutorialSelector.style.left = TutSelBarLeft + 'px';
+	if (e == null) { e = window.event; htype='move';} 
+		dragXoffset=e.clientX-parseInt(ToggleTutorialSelector.style.left);
+		dragX = e.clientX;
+		document.onmousemove=MoveTutorialSelBarMH;
+		document.onmouseup=MoveTutorialSelBarCleanup;
+		return false;
+}
+
+function MoveTutorialSelBarCleanup(e) {
+	document.onmousemove=null;
+	document.onmouseup=null;
+	ContentDivWidth = document.body.clientWidth-TutSelBarLeft-10;
+	if (e == null) { e = window.event; } 
+	if (dragX == e.clientX) {
+		if (ToggleTutorialSelector.style.left == '0px') {
+			ToggleTutorialSelector.style.left = TutSelBarLeft + 'px';
+			TutorialSelector.style.width = TutSelBarLeft + 'px';
+			var ContentDivWidth = document.body.clientWidth-TutSelBarLeft-10;
+			ContentDiv.style.width = ContentDivWidth+'px';
+			ResizeImages();
+		} else {
+			//TutSelBarLeft = 0;
+			ToggleTutorialSelector.style.left = 0 + 'px';
+			TutorialSelector.style.width = '0px';
+			var ContentDivWidth = document.body.clientWidth-10;
+			ContentDiv.style.width = ContentDivWidth+'px';
+			ResizeImages();
+		}
+	}
+}
+
+function MoveTutorialSelBarMH(e) {
+	if (e == null) { e = window.event } 
+		ContentDivWidth = document.body.clientWidth-TutSelBarLeft-10;
+		if (ContentDivWidth > 200 && e.clientX-dragXoffset > 0) {
+			ContentDiv.style.width = ContentDivWidth+'px';
+			ToggleTutorialSelector.style.left = TutSelBarLeft+'px';
+			TutSelBarLeft = e.clientX-dragXoffset;
+			TutorialSelector.style.width = e.clientX-dragXoffset+'px';
+			ResizeImages();
+		} else if (ContentDivWidth <= 200) {
+			//alert(document.body.clientWidth-219);
+			TutSelBarLeft = document.body.clientWidth-211;
+			//MoveTutorialSelBarCleanup(e);
+			//throw 'bah';
+		}
+		return false;
 }
