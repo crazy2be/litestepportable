@@ -10,5 +10,5 @@ RCNewEntryFile "$ThemeDir$Basic.rc"
 		*Popup "Desktop" !ToggleFullscreenDesktop
 	*Popup ~Folder
 	*Popup "Recycle" !Recycle
-	*Popup "Take the tutorial!" !Tutorial
+	*Popup "Take the tutorial!" "$Tutorial$"
 *Popup ~New
