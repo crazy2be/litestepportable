@@ -50,15 +50,14 @@ include "$personaldir$Progs.rc"
 		;	¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
 
 		*Popup "Change themes" Folder
-			*Popup "Install Theme"				!execute ["$ThemesDir$ThemeSwitcher.exe /install"]
-			*Popup "Refresh List"     			!execute ["$ThemesDir$ThemeSwitcher.exe /refresh"]
+			*Popup "Install Theme"				"$LiteStepDir$utilities\ThemeSwitcher.exe /install"
+			*Popup "Refresh List"     			"$LiteStepDir$utilities\ThemeSwitcher.exe /refresh"
 			*Popup !Separator
 	;		¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
 			include "$ThemesDir$themeslist.rc"
 		*Popup ~Folder
 
 		*Popup "Utilities" Folder
-			*Popup "LOEC - Edit your Evars"		!execute ["$LiteStepDir$utilities\wxlua.exe" "$LiteStepDir$utilities\LOEC.lua"]
 			*Popup "Theme Manager"			"$LiteStepDir$utilities\ThemeSwitcher.exe"
 		*Popup ~Folder
 
