@@ -1,44 +1,63 @@
-<h1>The LSXCommand RunBar!</h1>
-This is my favorite part of LiteStep, because it's so fast and so usefull.
-Using this, you can run just any program, although you may have to set them up
-manually, as is disscussed later in this section.
-<br /><img src="LSXCommand.png" /><br />
-The LSXCommand RunBar is in the top-left corner, just to the right of the popup
-button. To use the runbar, just click in it (it should auto-expand), and type
-something! If you have FireFox (portable) installed, just type "Firefox", and
-It'll start firefox for you! All of these "shortcuts" as they are called, can
-be configured and changed in<br>
-<b>Popup &#62; More Stuff &#62; Litestep &#62; Edit Config &#62; Personal Files &#62; LSXCommand > Shortcuts.rc</b>
+<title>Evars</title>
+<h1>Evars</h1>
+This lesson is a little more advanced...<br>
+Unless you want to customize the theme, or the Popup, then you can skip over
+this lesson for now. Just click<br>
+<b>Popup &#62; Take the tutorial!</b><br>
+To see this tutorial at any time.
 <br>
-<h2>Adding Shortcuts, or "Aliases"</h2>
-This section covers the simple task of adding shortcuts to your runbar to make
-all of your favorite programs more accessable. It is reccomended that you read it,
-even if you don't think you want to :P<br>
-<br>
-The Shortcuts.rc file probobly looks something like this:
+<b>Evars</b> are the backbone of LiteStep. Everything that LiteStep does is defined by evars (with a few exceptions). Almost every line in any RC file is an evar definition, unless:
+<ul>
+	<li>It starts with a '*' (e.g. *Popup Blah Blah.exe)</li>
+		<ul><li>These are special lines that have non-standard implementations. You'll have to look at the module documentation for these (with the exception of *Popup lines, covered in the <a href="#" onclick="GotoTutorialPage(3)">Popup</a> Tutorial</li></ul>
+	<li>It starts with ';' (e.g. ;This does stuff)</li>
+		<ul><li>Lines like this are <b>comment</b> lines. they provide some kind of information to the person reading the rc files, and are ignored by the parser.</li></ul>
+	<li>It starts with 'include' (e.g. include $Themedir$Basic.rc)</li>
+		<ul><li>This 'includes', or adds, another file to the config. LiteStep basically finds all these lines, makes one big file in memory, then parses that file when loading.</li></ul>
+	<li>It starts with 'IF', 'Else', or 'ENDIF'</li>
+		<ul><li>Should be fairly self-explanatory. Only parses the code between the "IF" and "ENDIF" if the condition specified in the IF declaration is true. You can read the litestep release docs for this one.</li></ul>
+</ul>
+Evars are refered to with $ signs encasing the evar, like this:
 <div class="code">
-; here you can add "shortcuts" to your favorite programs. type, for example
-; "firefox" instead of "E:\PortableApps\FirefoxPortable\FirefoxPortable.exe"
-; abit simpler, no ;)
-; like this:
-; *CommandAlias [Shorcut to Type] [Application to run]
-*CommandAlias $BrowserName$ $Browser$
-*CommandAlias $TxtEditorName$ $TxtEditor$
-*CommandAlias $FMName$ $FileManager$
-*CommandAlias $IMName$ $IM$
-*CommandAlias $EmailName$ $Email$
-*CommandAlias More "$LSD$Portableapps.bat"
+SomeSecondEvar    $FirstEvar$
 </div>
-That comment basicly explains it :). To add shortcuts to your favorite programs
-via the LSXCommand, just add the shortcuts like this:<br>
+In this case, the second evar would contain the value of the first evar, whatever that value may be defined as.
+
+So say you opened up "Basic.rc" in the themedir of the default theme, "Demo". It might look something like this:
 <div class="code">
-*CommandAlias [Shorcut to Type] [Application to run]
+;[ Includes the RC files in the config
+include				"$themedir$Basic.rc"
+include 			"$themedir$Popup.rc"
+include				"$themedir$ConfigPopup.rc"
+include				"$themedir$Taskbar.rc"
+include				"$themedir$Systray.rc"
+include				"$themedir$desktop.rc"
+include				"$themedir$other.rc"
+IF ShowStats = True
+include				"$themedir$stats.rc"
+ENDIF
+include				"$themedir$memory.rc"
+*LuaFile			"$themedir$memory.lua"
+*LuaFile			"$themedir$Scripting.lua"
+;]
+
+;[ Define some global theme variables
+BorderColor			000000
+BaseColor			FFFFFF
+FontColor			000000
+Transparency		155
+Bevels				1 1 1 1
+ShapeType			.rounded
+RoundedEdges		3 2
+AlwaysOnTop			True
+Font				MS Sans Shief
+None		$themedir$images\transparent.png
+;]
 </div>
-So, say i wanted to add a shortcut to Gimp(Portable):<br>
-<div class="code">
-*CommandAlias GIMP $PA$GimpPortable\GimpPortable.exe
-</div>
-As per the lesson on evars, $PA$ is an evar that expands to the PortableApps
-Directory.<br>
-<br>
-Next page, please ;)
+<ul>
+	<li>The first line is a comment, it is ignored by the parser.</li>
+	<li>The next 7 lines include required files for the theme. Their names should explain what they do, and if you want to customize that part of the theme, that's where you should look.</li>
+	<li>A Simple "IF" statement. Note that variables must be defined at the time of parsing to work in RC files (So variables exported by modules will not work in these IF statements)</li>
+	<li>Including the Lua files used by this theme (for anything dynamic, such as the auto-expanding tray)</li>
+	<li>Here, we are defining some evars! These evars are used in other files, such as taskbar.rc, for that modules settings. So, changing the evars here will change the settings throughout the theme.</li>
+</ul>

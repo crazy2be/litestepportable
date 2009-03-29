@@ -1,6 +1,6 @@
 // Global Variables
 var PageNumber = 1; //The tutorial page we are on
-var MaxPages = 4; //The number of pages in the turorial
+var MaxPages = 6; //The number of pages in the turorial
 var Lang = "Eng"; // The language
 var Them = "Default"; //The theme
 var CurTut = "LiteStepPortable Introduction"; //The Tutorial name
@@ -260,6 +260,7 @@ function GotoPage(Path) {
 		//alert(Path);
 		Images[i].src = Path + 'Lang/'
 			+ Lang + '\\' + CurTut + '/img/' + FileName;
+		//Images[i].onmouseover = 'ResizeImages()';
 		window.setTimeout('ContentDiv.getElementsByTagName(\'img\')['+i+'].naturalWidth = ContentDiv.getElementsByTagName(\'img\')['+i+'].width', 100+(10*i));
 		//window.setTimeout(Images[i].naturalHeight = Images[i].height, 200);
 		//alert(Images[i]);
@@ -277,7 +278,10 @@ function ResizeImages() {
 		if (Images[i].width > ContentDivWidth) {
 			Images[i].width = ContentDivWidth-15;
 		} else if (Images[i].width < Images[i].naturalWidth) {
-			Images[i].width = ContentDivWidth-15;
+			if (Images[i].naturalWidth < (ContentDivWidth-15))
+				Images[i].width = Images[i].naturalWidth
+			else
+				Images[i].width = ContentDivWidth-15;
 		}
 		//Status(Images[i].width + "    " + Images[i].naturalWidth);
 	}
