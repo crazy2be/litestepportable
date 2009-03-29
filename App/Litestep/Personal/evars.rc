@@ -3,15 +3,15 @@
 ;------------------------------------------------------------------------------
 ; path to your portable apps directory
 PA "$LSD$PortableApps\"
-FileManager "$PA$FreeCommanderPortable\FreeCommanderPortable.exe"
-FMName "Free Commander"
+FileManager ""
+FMName "None"
 TxtEditor "$PA$Notepad++Portable\Notepad++Portable.exe"
 TxtEditorName "Notepad++"
 CmdPrompt "E:\WINDOWS\system32\cmd.exe"
-AudioPlayer "E:\Program Files\VideoLAN\VLC\vlc.exe"
-MediaPlayer "E:\Program Files\VideoLAN\VLC\vlc.exe"
+AudioPlayer "$PA$VLCPortable\VLCPortable.exe"
+MediaPlayer "$PA$VLCPortable\VLCPortable.exe"
 GfxViewer "rundll32.exe E:\WINDOWS\system32\shimgvw.dll,ImageView_Fullscreen"
-GfxEditor "E:\Program Files\Paint.NET\PaintDotNet.exe"
+GfxEditor "$PA$GIMPPortable\GIMPPortable.exe"
 Browser "$PA$FirefoxPortable\FirefoxPortable.exe"
 Browsername "Firefox"
 DUN "E:\WINDOWS\system32\rasphone.exe"
@@ -22,8 +22,6 @@ FTP "$PA$FirefoxPortable\FirefoxPortable.exe"
 IM "$PA$PidginPortable\PidginPortable.exe"
 IMName "Pidgin"
 Tutorial "$LiteStepDir$Tutorial\Tutorial.exe"
-
-
 
 ;------------------------------------------------------------------------------
 ;    Add and define any additional evars you require

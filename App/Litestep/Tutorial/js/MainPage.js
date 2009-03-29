@@ -172,12 +172,29 @@ function LoadTheme() {
 	//alert(Stuff);
 }
 
-function ExitCode() {
-	if (confirm("Are you sure you wish to exit?\n"
-		+ "This tutorial covers only the basics, and will likely reduce frustration later...\n"
-		+ "The tutorial will be run the next time you start litestep.")) {
+function ExitCode(Prompt) {
+	if (Prompt) {
+		if (!confirm("Are you sure you wish to exit?\n"
+			+ "This tutorial covers only the basics, and will likely reduce frustration later...\n"
+			+ "The tutorial will be run the next time you start litestep.")) {
+				return;
+		} else {
 			window.close();
+		}
 	}
+	var Runner = new ActiveXObject("Wscript.Shell");
+	var RCD = Runner.CurrentDirectory;
+	Runner.CurrentDirectory = RCD.substring(0, RCD.lastIndexOf("\\"));
+	var Path = Runner.CurrentDirectory + "\\Litestep.exe";
+	try {
+		Runner.Run(Path + " !EndTutorial");
+	} catch (error) {
+		alert('Error occured while attempting to find LiteStep:\n'
+			+ '(' + Path + ')\n'
+			+ error.message + '\n');
+	}
+	Runner.CurrentDirectory = RCD;
+	window.close();
 }
 
 function NextPage() {

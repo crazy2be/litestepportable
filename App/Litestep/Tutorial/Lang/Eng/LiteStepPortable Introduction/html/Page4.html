@@ -15,9 +15,9 @@ To see this tutorial at any time.
 	<li>It starts with 'include' (e.g. include $Themedir$Basic.rc)</li>
 		<ul><li>This 'includes', or adds, another file to the config. LiteStep basically finds all these lines, makes one big file in memory, then parses that file when loading.</li></ul>
 	<li>It starts with 'IF', 'Else', or 'ENDIF'</li>
-		<ul><li>Should be fairly self-explanatory. Only parses the code between the "IF" and "ENDIF" if the condition specified in the IF declaration is true. You can read the litestep release docs for this one.</li></ul>
+		<ul><li>Should be fairly self-explanatory. Only parses the code between the "IF" and "ENDIF" if the condition specified in the IF declaration is true. You can read the LiteStep release docs for this one.</li></ul>
 </ul>
-Evars are refered to with $ signs encasing the evar, like this:
+Evars are referred to with $ signs encasing the evar, like this:
 <div class="code">
 SomeSecondEvar    $FirstEvar$
 </div>
@@ -61,3 +61,43 @@ None		$themedir$images\transparent.png
 	<li>Including the Lua files used by this theme (for anything dynamic, such as the auto-expanding tray)</li>
 	<li>Here, we are defining some evars! These evars are used in other files, such as taskbar.rc, for that modules settings. So, changing the evars here will change the settings throughout the theme.</li>
 </ul>
+
+<h2>Basics: Changing the programs used for various functions</h2>
+If you use a different browser other than FireFox, such as chrome or opera, then you can change that in one place, and have LiteStep automatically change it all over. The way to do this is by changing the value of evars in <a href="../../Personal/Evars.rc">Evars.rc</a> (Found in /App/Litestep/Personal/Evars.rc). Your Evars.rc might look something like this:
+<div class="code">
+;------------------------------------------------------------------------------
+;    Edit *only* the paths as needed, and leave the file's *FORMAT* unchanged
+;------------------------------------------------------------------------------
+; path to your portable apps directory
+PA "$LSD$PortableApps\"
+FileManager ""
+FMName "None"
+TxtEditor "$PA$Notepad++Portable\Notepad++Portable.exe"
+TxtEditorName "Notepad++"
+CmdPrompt "E:\WINDOWS\system32\cmd.exe"
+AudioPlayer "$PA$VLCPortable\VLCPortable.exe"
+MediaPlayer "$PA$VLCPortable\VLCPortable.exe"
+GfxViewer "rundll32.exe E:\WINDOWS\system32\shimgvw.dll,ImageView_Fullscreen"
+GfxEditor "$PA$GIMPPortable\GIMPPortable.exe"
+Browser "$PA$FirefoxPortable\FirefoxPortable.exe"
+Browsername "Firefox"
+DUN "E:\WINDOWS\system32\rasphone.exe"
+Email "$PA$ThunderbirdPortable\ThunderbirdPortable.exe"
+EmailName "ThunderBird"
+IRC "$PA$PidginPortable\PidginPortable.exe"
+FTP "$PA$FirefoxPortable\FirefoxPortable.exe"
+IM "$PA$PidginPortable\PidginPortable.exe"
+IMName "Pidgin"
+Tutorial "$LiteStepDir$Tutorial\Tutorial.exe"
+
+;------------------------------------------------------------------------------
+;    Add and define any additional evars you require
+;------------------------------------------------------------------------------
+
+;MiscApp       "C:\E:\Program Files\misc\app.exe
+</div>
+Simple to change, all you have to do is replace "$PA$FirefoxPortable\FirefoxPortable.exe" with something like "$PA$ChromePortable\ChromePortable.exe", where $PA$ refers to the portableapps directory. (you can also use $LSD$ to make the path relative to the drive root).
+
+You probably also want to change the name of the browser, so change "Firefox" to "Chrome", for example.
+
+To see your changes, simply recycle LiteStep.

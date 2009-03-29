@@ -26,11 +26,12 @@ xTrayFont					$font$
 ;[ Makes the systray autosize. (scripting!)
 IF TrayAutoResize = True
 	xTrayAutoSize				True
-	IF ShowStats = True
-	xTrayOnResize				!Execute [!ParseEvars !xTrayMove -%#xTrayIconWidth*xTrayCurrentIconCount-TimeX%# 1][!ParseEvars !LabelResize Sysbord %#xTrayIconWidth*xTrayCurrentIconCount+TimeWidth+2%# $SysbordHeight$][!ParseEvars !LabelMove Sysbord -%#xTrayIconWidth*xTrayCurrentIconCount-TimeX%# 1][!ParseEvars !LabelResize Stats %#$StatsWidth$-(xTrayIconWidth*xTrayCurrentIconCount)+$xTrayIconWidth$-1%# $StatsHeight$] ;[!ParseEvars !xStatsGraphResize CpuGraph %#$CpuGraphWidth$-(xTrayIconWidth*xTrayCurrentIconCount)+$xTrayIconWidth$-1%# $CpuGraphHeight$]
-	ELSE
-	xTrayOnResize				!Execute [!ParseEvars !xTrayMove -%#xTrayIconWidth*xTrayCurrentIconCount-TimeX%# 1][!ParseEvars !LabelResize Sysbord %#xTrayIconWidth*xTrayCurrentIconCount+TimeWidth+2%# $SysbordHeight$][!ParseEvars !LabelMove Sysbord -%#xTrayIconWidth*xTrayCurrentIconCount-TimeX%# 1]
-	ENDIF
+	xTrayOnResize				!ResizeTray
+	;IF ShowStats = True
+	;xTrayOnResize				!Execute [!ParseEvars !xTrayMove -%#xTrayIconWidth*xTrayCurrentIconCount-TimeX%# 1][!ParseEvars !LabelResize Sysbord %#xTrayIconWidth*xTrayCurrentIconCount+TimeWidth+2%# $SysbordHeight$][!ParseEvars !LabelMove Sysbord -%#xTrayIconWidth*xTrayCurrentIconCount-TimeX%# 1][!ParseEvars !LabelResize Stats %#$StatsWidth$-(xTrayIconWidth*xTrayCurrentIconCount)+$xTrayIconWidth$-1%# $StatsHeight$] ;[!ParseEvars !xStatsGraphResize CpuGraph %#$CpuGraphWidth$-(xTrayIconWidth*xTrayCurrentIconCount)+$xTrayIconWidth$-1%# $CpuGraphHeight$]
+	;ELSE
+	;xTrayOnResize				!Execute [!ParseEvars !xTrayMove -%#xTrayIconWidth*xTrayCurrentIconCount-TimeX%# 1][!ParseEvars !LabelResize Sysbord %#xTrayIconWidth*xTrayCurrentIconCount+TimeWidth+2%# $SysbordHeight$][!ParseEvars !LabelMove Sysbord -%#xTrayIconWidth*xTrayCurrentIconCount-TimeX%# 1]
+	;ENDIF
 ELSE
 	;xTray
 ENDIF

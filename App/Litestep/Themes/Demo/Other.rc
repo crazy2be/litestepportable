@@ -33,21 +33,21 @@ CommandRoundedEdges							$RoundedEdges$
 ;[ Default text and selection settings
 CommandSelectAllOnFocus							True
 CommandSelectAllOnMouseFocus					True
-;--> Switch the comment around on these two focus lsx on loading.
-;NetLoadModuleOnLoad							!CommandSetText Runbar
-NetLoadModuleOnLoad								!CommandShowText Runbar
 ;]
 
 ;[ Make the lsx collapsable
 ;--> Set lsxColapse = False in basic.rc to disable
 IF lsxColapse = True
-	IF ShowStats = True
-		CommandOnFocus						!Execute [!CommandResizeBy $CommandMaxWidth-CommandWidth$ 0 5 5][!LabelRepositionBy Stats $CommandMaxWidth-CommandWidth$ 0 -$CommandMaxWidth-CommandWidth$ 0 5 5]
-		CommandOnUnFocus					!Execute [!CommandResizeBy -$CommandMaxWidth-CommandWidth$ 0 5 5][!LabelRepositionBy Stats -$CommandMaxWidth-CommandWidth$ 0 $CommandMaxWidth-CommandWidth$ 0 5 5]
-	ELSE
-		CommandOnFocus						!Execute [!CommandResizeBy $CommandMaxWidth-CommandWidth$ 0 5 5]
-		CommandOnUnFocus					!Execute [!CommandResizeBy -$CommandMaxWidth-CommandWidth$ 0 5 5]
-	ENDIF
+	LSXExpanded false
+	CommandOnFocus !ResizeLSX
+	CommandOnUnFocus !ResizeLSX
+	;IF ShowStats = True
+	;	CommandOnFocus						!Execute [!CommandResizeBy $CommandMaxWidth-CommandWidth$ 0 5 5][!LabelRepositionBy Stats $CommandMaxWidth-CommandWidth$ 0 -$CommandMaxWidth-CommandWidth$ 0 5 5]
+	;	CommandOnUnFocus					!Execute [!CommandResizeBy -$CommandMaxWidth-CommandWidth$ 0 5 5][!LabelRepositionBy Stats -$CommandMaxWidth-CommandWidth$ 0 $CommandMaxWidth-CommandWidth$ 0 5 5]
+	;ELSE
+	;	CommandOnFocus						!Execute [!CommandResizeBy $CommandMaxWidth-CommandWidth$ 0 5 5]
+	;	CommandOnUnFocus					!Execute [!CommandResizeBy -$CommandMaxWidth-CommandWidth$ 0 5 5]
+	;ENDIF
 ELSE
 	CommandWidth							$CommandMaxWidth$
 ENDIF

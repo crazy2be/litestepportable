@@ -21,6 +21,7 @@ Include "$themedir$Main.rc"
 *NetLoadModule xStatsClass-1.1 threaded
 *NetLoadModule jdesk-0.73 threaded
 IF ShowTask = True
+;*NetLoadModule screenbar-1.4
 *NetLoadModule xtaskbar-2.2 threaded
 ENDIF
 *NetLoadModule xlabel-4.2 threaded
@@ -31,7 +32,7 @@ IF Showlsx = True
 *NetLoadModule lsxcommand-2.0.2 threaded
 ENDIF
 IF ShowDesk = True
-*NetLoadModule clickonic-1.1.4
+*NetLoadModule clickonic-1.1.5-pre
 ENDIF
 IF ShowStatsGraph = True
 *NetLoadModule xStatsGraph-0.8.1 threaded
@@ -50,3 +51,7 @@ jDeskWorkArea 1,1,-1,-1
 ELSE
 jDeskWorkArea 1,26,-1,-25
 ENDIF
+
+;--> Do the script startup once all the modules load.
+; (See Scripting.lua for what this function does)
+NetLoadModuleOnLoad								!Startup

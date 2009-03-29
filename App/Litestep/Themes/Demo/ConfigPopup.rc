@@ -1,14 +1,13 @@
-RCNewEntryFile "$ThemeDir$Basic.rc"
 *Popup "Configure" !New !ConfigPopup
 	*Popup "Show..." Folder
-		*Popup "Desktop" !ToggleDesktop
-		*Popup "Taskbar" !ToggleTaskbar
-		*Popup "System Info" !ToggleStats
+		*Popup .icon="%SystemRoot%\explorer.exe,3" "Desktop" !ToggleDesktop
+		*Popup .icon="$ThemeDir$Images\Taskbar.ico" "Taskbar" !ToggleTaskbar
+		*Popup .icon="$ThemeDir$Images\Sysinfo.ico" "System Info" !ToggleStats
 	*Popup ~Folder
 	*Popup "Fullscreen?" Folder
-		*Popup "Windows on maximize" !ToggleFullscreenWindows
-		*Popup "Desktop" !ToggleFullscreenDesktop
+		*Popup .icon="%SystemRoot%\system32\SHELL32.dll,2" "Windows on maximize" !ToggleFullscreenWindows
+		*Popup .icon="%SystemRoot%\explorer.exe,3" "Desktop" !ToggleFullscreenDesktop
 	*Popup ~Folder
-	*Popup "Recycle" !Recycle
+	*Popup .icon="$ThemeDir$Images\Recycle.ico" "Recycle" !Recycle
 	*Popup "Take the tutorial!" "$Tutorial$"
 *Popup ~New

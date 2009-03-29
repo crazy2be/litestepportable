@@ -15,6 +15,8 @@ ShowStats    true
 ;> Desktop Settings
 ; Show the desktop (with all the shortcuts)
 ShowDesk    true
+; Is the desktop fullscreen?
+DeskFullScreen    true
 ; Are maximized windows full screen?
 MaxWindowsFullScreen    true
 ;> Systray Settings
@@ -25,3 +27,4 @@ TrayAutoResize True
 ;> Taskbar Settings
 ; Show the taskbar (bar at the bottom showing everything that is running).false
 ShowTask    true
+FirstRun    false

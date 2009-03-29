@@ -8,9 +8,15 @@
 
 ;[ Size/Positon Settings
 DeskIconsX 						0
-DeskIconsY 						0
 DeskIconsWidth  				$ResolutionX$
+
+IF DeskFullScreen
+DeskIconsY 						0
 DeskIconsHeight 				$ResolutionY$
+ELSE
+DeskIconsY						26
+DeskIconsHeight					$ResolutionY-52$
+ENDIF
 ;]
 
 ;[ Icon Settings
